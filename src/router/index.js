@@ -14,6 +14,8 @@ import UsuarioRoles from '@/components/DireccionGeneral/UsuarioRoles.vue';
 import Roles from '@/components/DireccionGeneral/Roles.vue';
 import Bitacora from '@/components/DireccionGeneral/Bitacora.vue';
 import RolesModal from '@/components/DireccionGeneral/RolesModal.vue';
+import AprobacionModal from '@/components/DireccionGeneral/AprobacionModal.vue';
+
 
 const roleMap = {
   1: 'Administrativo',
@@ -108,6 +110,12 @@ const router = createRouter({
           path: '/rolesModal',
           name: 'rolesModal',
           component: RolesModal,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {
+          path: '/aprobacionModal',
+          name: 'aprobacionModal',
+          component: AprobacionModal,
           meta: { requiresRole: ['Direccion General'] }
         },
         {

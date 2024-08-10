@@ -139,8 +139,6 @@
           </div>
 
 
-
-
           <!-- Modal -->
           <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
             <div class="bg-white p-6 rounded shadow-lg w-full max-w-md relative">
@@ -238,7 +236,7 @@ import moment from "moment";
 const body = document.getElementsByTagName("body");
 
 const apiClient = axios.create({
-  baseURL: 'http://127.0.0.1:8000/',
+  baseURL: 'https://back-end-hospital2-0.onrender.com/',
   headers: {
     'Authorization': `Bearer ${localStorage.getItem('token')}`
   }
@@ -246,7 +244,7 @@ const apiClient = axios.create({
 
 export default {
 
-  name: "AprobacionServiciosHospitalarios",
+  name: "RolesModal",
   data() {
     return {
 
