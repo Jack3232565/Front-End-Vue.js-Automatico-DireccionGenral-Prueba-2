@@ -250,7 +250,7 @@ export default {
 
       solicitudes: [],
       currentSolicitud: {},
-      api: "http://127.0.0.1:8000/roles/",
+      api: "https://back-end-hospital2-0.onrender.com/roles/",
       solicitud: {
         Nombre: "",
         Descripcion: "",
