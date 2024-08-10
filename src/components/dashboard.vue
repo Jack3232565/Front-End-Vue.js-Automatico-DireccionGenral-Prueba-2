@@ -435,7 +435,7 @@ import PiePaginaView from './pie-pagina.vue';
 import axios from 'axios';
 
 const apiClient = axios.create({
-   baseURL: "http://127.0.0.1:8000/",
+   baseURL: "https://back-end-hospital2-0.onrender.com/",
    headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
    },
@@ -483,7 +483,7 @@ export default {
 
       fetchRoles() {
          // Obtén los roles y guárdalos en localStorage
-         apiClient.get('http://127.0.0.1:8000/roles/')
+         apiClient.get('https://back-end-hospital2-0.onrender.com/roles/')
             .then(response => {
                this.roles = response.data;
                localStorage.setItem('roles', JSON.stringify(this.roles));
@@ -495,53 +495,56 @@ export default {
 
 
       async fetchUserData() {
-         try {
-            // Realiza la solicitud a tbb_usuarios usando apiClient
-            const response = await apiClient.get('tbb_usuarios/');
-            const data = response.data;
+    try {
+        // Realiza la solicitud a tbb_usuarios usando apiClient
+        const response = await apiClient.get('tbb_usuarios/');
+        const data = response.data;
 
-            // Verifica que la respuesta sea un arreglo y que tenga al menos un elemento
-            if (Array.isArray(data) && data.length > 0) {
-               // Asume que el primer objeto en el arreglo es el que necesitas
-               const usuario = data.find(user => user.Correo_Electronico === this.userEmail1);
+        // Verifica que la respuesta sea un arreglo y que tenga al menos un elemento
+        if (Array.isArray(data) && data.length > 0) {
+            // Asume que el primer objeto en el arreglo es el que necesitas
+            const usuario = data.find(user => user.Correo_Electronico === this.userEmail1);
 
-               if (usuario) {
-                  this.userEmail1 = usuario.Correo_Electronico;
+            if (usuario) {
+                this.userEmail1 = usuario.Correo_Electronico;
 
-                  // Verifica el valor de Persona_ID
-                  if (usuario.Persona_ID) {
-                     // Realiza la solicitud a /persons usando apiClient
-                     const personResponse = await apiClient.get(`person/${usuario.Persona_ID}`);
-                     const personData = personResponse.data;
+                // Verifica el valor de Persona_ID
+                if (usuario.Persona_ID) {
+                    // Realiza la solicitud a /persons usando apiClient
+                    const personResponse = await apiClient.get(`person/${usuario.Persona_ID}`);
+                    const personData = personResponse.data;
 
-                     // Imprimir los datos para depuración
-                     console.log('Datos de la persona:', personData);
+                    // Imprimir los datos para depuración
+                    console.log('Datos de la persona:', personData);
 
-                     // Asegúrate de construir una URL absoluta para la fotografía
-                     if (personData.Fotografia) {
-                        this.userPhoto1 = `http://127.0.0.1:8000/${personData.Fotografia}`;
+                    // Asegúrate de construir una URL absoluta para la fotografía
+                    if (personData.Fotografia) {
+                        // Elimina cualquier prefijo './' si existe
+                        const cleanedPhotoPath = personData.Fotografia.replace('./', '');
+                        this.userPhoto1 = `https://back-end-hospital2-0.onrender.com/${cleanedPhotoPath}`;
                         console.log('Fotografía actualizada:', this.userPhoto1);
-                     } else {
+                    } else {
                         this.userPhoto1 = ''; // O una URL de imagen predeterminada
                         console.error('Fotografía no disponible.');
-                     }
-                  } else {
-                     console.error('Persona_ID no está definido.');
-                     this.userPhoto1 = ''; // O una URL de imagen predeterminada
-                  }
-               } else {
-                  console.error('Usuario no encontrado.');
-                  this.userPhoto1 = ''; // O una URL de imagen predeterminada
-               }
+                    }
+                } else {
+                    console.error('Persona_ID no está definido.');
+                    this.userPhoto1 = ''; // O una URL de imagen predeterminada
+                }
             } else {
-               console.error('Datos de tbb_usuarios no están disponibles.');
-               this.userPhoto1 = ''; // O una URL de imagen predeterminada
+                console.error('Usuario no encontrado.');
+                this.userPhoto1 = ''; // O una URL de imagen predeterminada
             }
-         } catch (error) {
-            console.error('Error fetching user data:', error);
+        } else {
+            console.error('Datos de tbb_usuarios no están disponibles.');
             this.userPhoto1 = ''; // O una URL de imagen predeterminada
-         }
-      },
+        }
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        this.userPhoto1 = ''; // O una URL de imagen predeterminada
+    }
+},
+
 
       logout() {
          // Borra el localStorage

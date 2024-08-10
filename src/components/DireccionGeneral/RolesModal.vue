@@ -55,13 +55,14 @@
                   </tr>
                 </thead>
                 <tbody class="text-gray-600 text-xs font-light">
+
                   <tr v-for="(solicitud, id) in paginatedData" :key="id" class="text-center">
                     <td class="py-3 px-6 text-left whitespace-nowrap truncate">
                       {{ solicitud.id }}
                     </td>
 
                     <td class="text-center px-6 py-8 whitespace-nowrap  text-md-center font-medium text-gray-900">
-                      <div class="flex flex-col  text-green-700">
+                      <div class="flex flex-col text-black-700 text-blod ">
                         <h5 class="text-sm">
                           {{ solicitud.Nombre }}
                         </h5>
@@ -83,10 +84,10 @@
                       </div>
                       <div v-else class="text-center">
                         <a class="iq-icons-list" href="#" target="_self">
-                          <div class="icon" style="color: orange">
-                            <i class="fa fa-spinner fa-spin"></i>
+                          <div class="icon" style="color: #FF5F3F">
+                            <i class="fa fa-pause-circle" aria-hidden="true"></i>
                           </div>
-                          <span style="color: orange">Inactivo</span>
+                          <span style="color: #FF5F3F">Inactivo</span>
                         </a>
                       </div>
                     </td>
@@ -163,15 +164,15 @@
                 </div>
                 <div class="mb-4">
                   <label for="Descripcion" class="block text-gray-700">Descripción</label>
-                  <input type="text" id="Descripcion" v-model="currentSolicitud.Descripcion"
-                    class="w-full border border-gray-300 rounded p-2" required />
+                  <textarea id="Descripcion" v-model="currentSolicitud.Descripcion"
+                    class="w-full border border-gray-300 rounded p-2" required rows="4"></textarea>
                 </div>
                 <div class="mb-4">
                   <label for="Estatus" class="block text-gray-700">Estatus</label>
                   <select id="Estatus" v-model="currentSolicitud.Estatus"
                     class="w-full border border-gray-300 rounded p-2" required>
-                    <option :value="true">Activo</option>
-                    <option :value="false">Inactivo</option>
+                    <option :value="true" style="color: green;" >Activo</option>
+                    <option :value="false" style="color: #FF5F3F;">Inactivo</option>
                   </select>
                 </div>
                 <div class="mb-4">
@@ -359,8 +360,6 @@ export default {
   },
 
   methods: {
-
-
 
     async handleSubmit() {
       try {

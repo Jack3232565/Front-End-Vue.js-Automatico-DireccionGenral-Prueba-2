@@ -587,7 +587,7 @@ const body = document.getElementsByTagName("body");
 
 
 const apiClient = axios.create({
-  baseURL: 'http://127.0.0.1:8000/',
+  baseURL: 'https://back-end-hospital2-0.onrender.com/',
   headers: {
     'Authorization': `Bearer ${localStorage.getItem('token')}`
   }
@@ -600,7 +600,7 @@ export default {
     return {
       solicitudes: [],
       currentSolicitud: {},
-      api: "http://127.0.0.1:8000/tbb_aprobaciones/",
+      api: "https://back-end-hospital2-0.onrender.com/tbb_aprobaciones/",
       solicitud: {
 
         Personal_Medico_ID: "",
@@ -875,8 +875,8 @@ deleteSolicitud(id) {
     async fetchData() {
     try {
       const [tableDataResponse, personasResponse] = await Promise.all([
-        fetch('http://127.0.0.1:8000/tbb_aprobaciones/'),
-        fetch('http://127.0.0.1:8000/persons/'),
+        fetch('https://back-end-hospital2-0.onrender.com/tbb_aprobaciones/'),
+        fetch('https://back-end-hospital2-0.onrender.com/persons/'),
 
       ]);
       this.dataTable = await tableDataResponse.json();

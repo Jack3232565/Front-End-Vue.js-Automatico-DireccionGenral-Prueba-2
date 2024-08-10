@@ -111,7 +111,7 @@ import axios from "axios";
 import { RouterLink } from "vue-router";
 
 const apiClient = axios.create({
-  baseURL: "http://127.0.0.1:8000/",
+  baseURL: "https://back-end-hospital2-0.onrender.com/",
   headers: {
     Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
@@ -137,7 +137,7 @@ export default {
   },
   async created() {
     try {
-      const response = await apiClient.get("http://127.0.0.1:8000/roles/");
+      const response = await apiClient.get("https://back-end-hospital2-0.onrender.com/roles/");
       this.roles = response.data; // Guarda la lista de roles en el estado
     } catch (error) {
       this.mensaje = "Error al cargar los roles";
@@ -146,7 +146,7 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await apiClient.post("http://127.0.0.1:8000/login/", {
+        const response = await apiClient.post("https://back-end-hospital2-0.onrender.com/login/", {
           Nombre_Usuario: this.usuario.Nombre_Usuario,
           Correo_Electronico: this.usuario.Correo_Electronico,
           Numero_Telefonico_Movil: this.usuario.Numero_Telefonico_Movil,
@@ -174,7 +174,7 @@ export default {
     async fetchRole() {
       try {
         const response = await apiClient.get(
-          `http://127.0.0.1:8000/roles/${this.selectedRole}`
+          `https://back-end-hospital2-0.onrender.com/roles/${this.selectedRole}`
         );
         // Procesa la respuesta si es necesario
       } catch (error) {
