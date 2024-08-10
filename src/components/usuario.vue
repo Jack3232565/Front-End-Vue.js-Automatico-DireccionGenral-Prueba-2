@@ -1,82 +1,78 @@
 <template>
-  <div class="py-16">
-    <div class="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
-      <!-- Col -->
+  <div class="py-4 md:py-8">
+    <div class="flex flex-col lg:flex-row bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-2xl">
+      <!-- Columna de imagen -->
       <div
-        class="w-full h-auto bg-gray-400 dark:bg-gray-800 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
+        class="w-full h-48 lg:h-auto bg-gray-400 dark:bg-gray-800 hidden lg:block lg:w-5/12 bg-cover rounded-t-lg lg:rounded-l-lg"
         style="background-image: url('https://i.pinimg.com/originals/ec/0e/69/ec0e690e32f7c84e714886136a2f6469.jpg');"
       ></div>
-      <!-- Col -->
-      <div class="w-full lg:w-7/12 bg-white dark:bg-gray-700 p-5 rounded-lg lg:rounded-l-none">
-        <h3 class="py-4 text-2xl text-center text-gray-800 dark:text-white">Registro Usuario</h3>
-        <form @submit.prevent="registerUser" class="px-8 pt-6 pb-8 mb-4 bg-white dark:bg-gray-800 rounded">
-          <div class="mb-2 md:flex md:justify-between">
-            <div class="mt-6">
-              <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-white" for="usuario">Usuario</label>
-              <input
-                v-model="username"
-                class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="usuario"
-                type="text"
-                placeholder="Usuario"
-                required
-              />
-            </div>
+      <!-- Columna de formulario -->
+      <div class="w-full lg:w-7/12 bg-white dark:bg-gray-700 p-4 lg:p-6 rounded-lg lg:rounded-l-none">
+        <h3 class="text-xl lg:text-2xl text-center text-gray-800 dark:text-white mb-4 lg:mb-6">Registro Usuario</h3>
+        <form @submit.prevent="registerUser" class="space-y-4 lg:space-y-6">
+          <!-- Usuario -->
+          <div>
+            <label class="block mb-1 text-sm font-bold text-gray-700 dark:text-white" for="usuario">Usuario</label>
+            <input
+              v-model="username"
+              class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              id="usuario"
+              type="text"
+              placeholder="Usuario"
+              required
+            />
           </div>
-          <div class="mb-2 md:flex md:justify-between">
-            <div class="mt-6">
-              <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-white" for="correo">Correo Electrónico</label>
-              <input
-                v-model="email"
-                class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="correo"
-                type="email"
-                placeholder="Correo Electrónico"
-                required
-              />
-            </div>
+          <!-- Correo Electrónico -->
+          <div>
+            <label class="block mb-1 text-sm font-bold text-gray-700 dark:text-white" for="correo">Correo Electrónico</label>
+            <input
+              v-model="email"
+              class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              id="correo"
+              type="email"
+              placeholder="Correo Electrónico"
+              required
+            />
           </div>
-          <div class="mb-2 md:flex md:justify-between">
-            <div class="mt-6">
-              <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-white" for="telefono">Número Telefónico Móvil</label>
-              <input
-                v-model="phoneNumber"
-                class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="telefono"
-                type="tel"
-                placeholder="Número Telefónico Móvil"
-                required
-              />
-            </div>
+          <!-- Número Telefónico Móvil -->
+          <div>
+            <label class="block mb-1 text-sm font-bold text-gray-700 dark:text-white" for="telefono">Número Telefónico Móvil</label>
+            <input
+              v-model="phoneNumber"
+              class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              id="telefono"
+              type="tel"
+              placeholder="Número Telefónico Móvil"
+              required
+            />
           </div>
-          <div class="mb-2 md:flex md:justify-between">
-            <div class="mt-6">
-              <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-white" for="password">Contraseña</label>
-              <input
-                v-model="password"
-                class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="password"
-                type="password"
-                placeholder="******"
-                required
-              />
-            </div>
+          <!-- Contraseña -->
+          <div>
+            <label class="block mb-1 text-sm font-bold text-gray-700 dark:text-white" for="password">Contraseña</label>
+            <input
+              v-model="password"
+              class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              placeholder="******"
+              required
+            />
           </div>
-          <div class="mb-2 md:flex md:justify-between">
-            <div class="mt-6">
-              <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-white" for="repetirContrasena">Repetir Contraseña</label>
-              <input
-                v-model="repeatPassword"
-                class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="repetirContrasena"
-                type="password"
-                placeholder="******"
-                required
-              />
-              <p v-if="password && repeatPassword && password !== repeatPassword" class="text-red-500 text-xs italic">Las contraseñas no coinciden.</p>
-            </div>
+          <!-- Repetir Contraseña -->
+          <div>
+            <label class="block mb-1 text-sm font-bold text-gray-700 dark:text-white" for="repetirContrasena">Repetir Contraseña</label>
+            <input
+              v-model="repeatPassword"
+              class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              id="repetirContrasena"
+              type="password"
+              placeholder="******"
+              required
+            />
+            <p v-if="password && repeatPassword && password !== repeatPassword" class="text-red-500 text-xs italic mt-1">Las contraseñas no coinciden.</p>
           </div>
-          <div class="mb-4">
+          <!-- Botón de Registro -->
+          <div>
             <button
               class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
               type="submit"
@@ -84,13 +80,21 @@
               Registrar Usuario
             </button>
           </div>
-          <p v-if="errorMessage" class="text-red-500 text-xs italic">{{ errorMessage }}</p>
-          <p v-if="successMessage" class="text-green-500 text-xs italic">{{ successMessage }}</p>
+          <!-- Mensajes -->
+          <div v-if="successMessage || errorMessage" class="text-center">
+            <p v-if="successMessage" class="text-green-500 text-xs italic mb-2">{{ successMessage }}</p>
+            <p v-if="errorMessage" class="text-red-500 text-xs italic mb-2">{{ errorMessage }}</p>
+            <button v-if="successMessage" class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600 mt-2" @click="login">
+              Iniciar
+            </button>
+          </div>
         </form>
       </div>
     </div>
   </div>
 </template>
+
+
 
 <script>
 import axios from 'axios';
@@ -109,9 +113,18 @@ export default {
     };
   },
   methods: {
+
+    goToLogin() {
+      // Redirigir a la ruta de login
+      this.$router.push('/login');
+    },
+    handleSuccess() {
+      this.successMessage = 'Usuario registrado con éxito.';
+    },
+
     async fetchPersonaID() {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/persons/');
+        const response = await axios.get('https://back-end-hospital2-0.onrender.com/persons/');
         const personas = response.data;
         console.log('Datos de personas:', personas);
         if (personas.length > 0) {
@@ -146,7 +159,7 @@ export default {
       };
 
       try {
-        const response = await axios.post('http://127.0.0.1:8000/tbb_usuarios/', user);
+        const response = await axios.post('https://back-end-hospital2-0.onrender.com/tbb_usuarios/', user);
         console.log('Usuario registrado:', response.data);
         this.successMessage = 'Usuario registrado con éxito.';
         this.errorMessage = '';
