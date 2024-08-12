@@ -15,6 +15,8 @@ import Roles from '@/components/DireccionGeneral/Roles.vue';
 import Bitacora from '@/components/DireccionGeneral/Bitacora.vue';
 import RolesModal from '@/components/DireccionGeneral/RolesModal.vue';
 import AprobacionModal from '@/components/DireccionGeneral/AprobacionModal.vue';
+import GraficosDireccionG from '../components/DireccionGeneral/GraficosDireccionG.vue'
+import GrficoApro from '@/components/DireccionGeneral/GraficosDG/GrficoApro.vue';
 
 
 const roleMap = {
@@ -116,6 +118,18 @@ const router = createRouter({
           path: '/aprobacionModal',
           name: 'aprobacionModal',
           component: AprobacionModal,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {
+          path: '/gradicosDG',
+          name: 'graficosDG',
+          component: GraficosDireccionG,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {
+          path: '/grafApro',
+          name: 'grafApro',
+          component: GrficoApro,
           meta: { requiresRole: ['Direccion General'] }
         },
         {

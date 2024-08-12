@@ -112,6 +112,8 @@
                         </a>
                      </li>
                   </RouterLink>
+
+                  <RouterLink to="/gradicosDG">
                   <li>
                      <a href="#"
                         class="flex items-center px-4 py-2 text-gray-900 transition-transform transform hover:scale-110">
@@ -126,6 +128,8 @@
                         Estadistica
                      </a>
                   </li>
+               </RouterLink>
+
                   <RouterLink to="/Bitacora">
                      <li>
                         <a href="#"

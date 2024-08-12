@@ -396,7 +396,7 @@
 
   // Crea una instancia de Axios
   const apiClient = axios.create({
-    baseURL: 'http://127.0.0.1:8000/',
+    baseURL: 'https://back-end-hospital2-0.onrender.com/',
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     }
@@ -409,7 +409,7 @@
       return {
         solicitudes: [],
         currentSolicitud: {},
-        api: "http://127.0.0.1:8000/usuario_roles/",
+        api: "https://back-end-hospital2-0.onrender.com/usuario_roles/",
         solicitud: {
           Usuario_ID: "",
           Rol_ID: "",
@@ -771,8 +771,8 @@ updateSolicitud() {
   async fetchData1() {
       try {
         const [tableDataResponse, rolesResponse] = await Promise.all([
-          fetch('http://127.0.0.1:8000/usuario_roles/'),
-          fetch('http://127.0.0.1:8000/roles/')
+          fetch('https://back-end-hospital2-0.onrender.com/usuario_roles/'),
+          fetch('https://back-end-hospital2-0.onrender.com/roles/')
         ]);
         this.dataTable1 = await tableDataResponse.json();
         this.roles = await rolesResponse.json();
