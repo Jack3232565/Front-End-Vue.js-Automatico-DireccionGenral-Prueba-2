@@ -17,7 +17,7 @@ import RolesModal from '@/components/DireccionGeneral/RolesModal.vue';
 import AprobacionModal from '@/components/DireccionGeneral/AprobacionModal.vue';
 import GraficosDireccionG from '../components/DireccionGeneral/GraficosDireccionG.vue'
 import GrficoApro from '@/components/DireccionGeneral/GraficosDG/GrficoApro.vue';
-
+import GrficoRoles from '@/components/DireccionGeneral/GraficosDG/GrficoRoles.vue'
 
 const roleMap = {
   1: 'Administrativo',
@@ -130,6 +130,12 @@ const router = createRouter({
           path: '/grafApro',
           name: 'grafApro',
           component: GrficoApro,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {
+          path: '/grafRoles',
+          name: 'grafRoles',
+          component: GrficoRoles,
           meta: { requiresRole: ['Direccion General'] }
         },
         {
