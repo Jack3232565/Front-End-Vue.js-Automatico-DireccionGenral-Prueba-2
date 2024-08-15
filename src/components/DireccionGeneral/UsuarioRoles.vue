@@ -505,7 +505,8 @@
       body[0].classList.add("sidebar-main-menu");
       console.log("DOM is rendered");
       console.log(Object.keys(this.currentSolicitud).length);
-      this.getVista();
+      
+      // this.getVista();
   
       this.fetchData();
       this.fetchData1();
@@ -520,7 +521,7 @@
     created() {
       console.log("DOM is created");
       this.getSolicitudes();
-      this.getVista();
+      // this.getVista();
     },
   
     methods: {
@@ -643,30 +644,30 @@ updateSolicitud() {
     }
   },
   
-      getVista() {
-        axios
-          .get("http://127.0.0.1:8000/hospital/api/v1vista_estado_solicitudes/")
-          .then((response) => {
-            console.log(response.data);
-            console.log("envio");
+      // getVista() {
+      //   axios
+      //     .get("http://127.0.0.1:8000/hospital/api/v1vista_estado_solicitudes/")
+      //     .then((response) => {
+      //       console.log(response.data);
+      //       console.log("envio");
   
-            // Reiniciar datos de la gráfica
-            this.chart5.series.forEach((serie) => {
-              serie.data = [];
-            });
+      //       // Reiniciar datos de la gráfica
+      //       this.chart5.series.forEach((serie) => {
+      //         serie.data = [];
+      //       });
   
-            // Iterar sobre los datos obtenidos y agregarlos a las series correspondientes
-            response.data.forEach((item) => {
-              this.chart5.series[0].data.push(item.num_aprobadas);
-              this.chart5.series[1].data.push(item.num_en_proceso);
-              this.chart5.series[2].data.push(item.num_no_aprobadas);
-              this.chart5.series[3].data.push(item.num_canceladas);
-            });
-          })
-          .catch((error) => {
-            console.error("Error al obtener las solicitudes:", error);
-          });
-      },
+      //       // Iterar sobre los datos obtenidos y agregarlos a las series correspondientes
+      //       response.data.forEach((item) => {
+      //         this.chart5.series[0].data.push(item.num_aprobadas);
+      //         this.chart5.series[1].data.push(item.num_en_proceso);
+      //         this.chart5.series[2].data.push(item.num_no_aprobadas);
+      //         this.chart5.series[3].data.push(item.num_canceladas);
+      //       });
+      //     })
+      //     .catch((error) => {
+      //       console.error("Error al obtener las solicitudes:", error);
+      //     });
+      // },
   
       previousPage() {
         if (this.currentPage > 1) {
@@ -687,8 +688,6 @@ updateSolicitud() {
           return "Sin Fecha";
         }
       },
-  
-  
   
   
   

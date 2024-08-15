@@ -15,7 +15,8 @@ import Roles from '@/components/DireccionGeneral/Roles.vue';
 import Bitacora from '@/components/DireccionGeneral/Bitacora.vue';
 import RolesModal from '@/components/DireccionGeneral/RolesModal.vue';
 import AprobacionModal from '@/components/DireccionGeneral/AprobacionModal.vue';
-import GraficosDireccionG from '../components/DireccionGeneral/GraficosDireccionG.vue'
+import UsuarioRolesModal from '@/components/DireccionGeneral/UsuarioRolesModal.vue';
+import GraficosDireccionG from '../components/DireccionGeneral/GraficosDireccionG.vue';
 import GrficoApro from '@/components/DireccionGeneral/GraficosDG/GrficoApro.vue';
 import GrficoRoles from '@/components/DireccionGeneral/GraficosDG/GrficoRoles.vue'
 
@@ -118,6 +119,12 @@ const router = createRouter({
           path: '/aprobacionModal',
           name: 'aprobacionModal',
           component: AprobacionModal,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {
+          path: '/usuarioRolesModal',
+          name: 'usuarioRolesModal',
+          component: UsuarioRolesModal,
           meta: { requiresRole: ['Direccion General'] }
         },
         {
