@@ -181,7 +181,7 @@
                 <div class="mb-4">
                   <label for="Fecha_Actualizacion" class="block text-gray-700">Fecha de Actualización</label>
                   <input type="datetime-local" id="Fecha_Actualizacion" v-model="currentSolicitud.Fecha_Actualizacion"
-                    class="w-full border border-gray-300 rounded p-2" required />
+                    class="w-full border border-gray-300 rounded p-2"  />
                 </div>
                 <div class="text-center">
                   <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
