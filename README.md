@@ -1,6 +1,8 @@
 # sistema-hospital
 
-This template should help get you started developing with Vue 3 in Vite.
+Ruta de acceso al sitio Web
+
+https://master.d1iett6p40pz8d.amplifyapp.com/
 
 ## Recommended IDE Setup
 
