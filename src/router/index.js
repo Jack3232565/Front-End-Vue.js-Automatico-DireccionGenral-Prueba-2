@@ -20,6 +20,9 @@ import GraficosDireccionG from '../components/DireccionGeneral/GraficosDireccion
 import GrficoApro from '@/components/DireccionGeneral/GraficosDG/GrficoApro.vue';
 import GrficoRoles from '@/components/DireccionGeneral/GraficosDG/GrficoRoles.vue'
 
+// Recursos humano
+// import rescursos from  
+
 const roleMap = {
   1: 'Administrativo',
   8: 'Direccion General',
@@ -28,7 +31,8 @@ const roleMap = {
   11: 'Médico Especialista',
   12: 'Enfermero',
   13: 'Familiar del Paciente',
-  14: 'Medico Forence'
+  14: 'Medico Forence',
+  15: 'Recursos Humanos'
   // Añade más roles según sea necesario
 };
 
