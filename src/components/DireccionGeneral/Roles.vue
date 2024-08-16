@@ -311,9 +311,7 @@
 
 
 
-
-
-  </div>
+</div>
 
 </template>
 
