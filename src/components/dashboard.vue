@@ -340,7 +340,7 @@
             </li>
 
             <!-- Transplante - -->
-            <li v-if="userRole === 'Transplantes' || userRole === 'Médico Especialista' || userRole === 'Médico General' || userRole === 'Administrativo' || userRole === 'Direccion General'">
+            <li v-if="userRole === 'Trasplante' || userRole === 'Médico Especialista' || userRole === 'Médico General' || userRole === 'Administrativo' || userRole === 'Direccion General'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example6" data-collapse-toggle="dropdown-example6">
