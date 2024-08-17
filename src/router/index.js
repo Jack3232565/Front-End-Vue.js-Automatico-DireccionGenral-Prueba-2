@@ -99,7 +99,7 @@ const router = createRouter({
           path: '/aprobacionSM',
           name: 'aprobacionSM',
           component: AprobacionSM,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Direccion General', 'Recursos Humanos'] }
         },
         {
           path: '/usuarioRoles',
