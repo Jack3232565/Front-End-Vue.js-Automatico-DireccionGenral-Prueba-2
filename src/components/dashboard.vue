@@ -154,7 +154,7 @@
             </li>
 
             <!-- Recursos Humanos -->
-            <li v-if="userRole === 'Administrador' || userRole === 'Medico Especialista' || userRole === 'Medico General' || userRole === 'Administrativo'">
+            <li v-if="userRole === 'Recursos Humanos' || userRole === 'Medico Especialista' || userRole === 'Medico General' || userRole === 'Administrativo'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example0" data-collapse-toggle="dropdown-example0">
