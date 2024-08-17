@@ -2,7 +2,7 @@
 
 Ruta de acceso al sitio Web
 
-https://master.d1iett6p40pz8d.amplifyapp.com/
+https://master.d24kzxoqei0zxg.amplifyapp.com
 
 ## Recommended IDE Setup
 
