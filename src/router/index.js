@@ -39,6 +39,7 @@ const roleMap = {
   19: 'Estudios',
   20: 'Registros Medicos',
   21: 'Pediatria',
+  22: 'Radiologia',
   // Añade más roles según sea necesario
 };
 
