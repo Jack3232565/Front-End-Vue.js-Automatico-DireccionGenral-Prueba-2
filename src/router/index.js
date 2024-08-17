@@ -38,7 +38,7 @@ const roleMap = {
   18: 'Programacion Quirurgica',
   19: 'Estudios',
   20: 'Registros Médicos',
-  21: 'Pediatria',
+  21: 'Pediatría',
   22: 'Radiologia',
   // Añade más roles según sea necesario
 };
