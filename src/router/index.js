@@ -34,7 +34,7 @@ const roleMap = {
   14: 'Medico Forence',
   15: 'Recursos Humanos',
   16: 'Farmacia',
-  17: 'Trasplante',
+  17: 'Trasplantes',
   18: 'Programacion Quirurgica',
   19: 'Estudios',
   20: 'Registros Medicos',
