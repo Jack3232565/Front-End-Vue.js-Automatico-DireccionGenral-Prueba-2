@@ -455,11 +455,12 @@ import moment from "moment";
 
 const body = document.getElementsByTagName("body");
 
+// Crea una instancia de Axios
 const apiClient = axios.create({
-baseURL: 'http://127.0.0.1:8000/',
-headers: {
-  'Authorization': `Bearer ${localStorage.getItem('token')}`
-}
+  baseURL: "https://back-end-hospital2-0.onrender.com/",
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
 });
 
 export default {
@@ -469,7 +470,7 @@ export default {
     return {
       solicitudes: [],
       currentSolicitud: {},
-      api: "http://127.0.0.1:8000/roles/",
+      api: "https://back-end-hospital2-0.onrender.com/roles/",
       solicitud: {
 
         Nombre: "",
@@ -487,68 +488,6 @@ export default {
         inline: true,
       },
 
-      chart5: {
-        series: [
-          { name: "Solcitudes Aprobadas", data: [] },
-          { name: "En proceso de aprobación", data: [] },
-          { name: "Solicitudes Negadas", data: [] },
-          { name: "Solicitudes Canceladas", data: [] },
-        ],
-
-        colors: ["#089bab", "#FC9F5B", "#FF0000", "#9b9b9b"],
-        chart: {
-          type: "bar",
-          height: 350,
-          stacked: true,
-          toolbar: {
-            show: true,
-          },
-          zoom: {
-            enabled: true,
-          },
-        },
-        responsive: [
-          {
-            breakpoint: 480,
-            options: {
-              legend: {
-                position: "bottom",
-                offsetX: -10,
-                offsetY: 0,
-              },
-            },
-          },
-        ],
-        plotOptions: {
-          bar: {
-            horizontal: false,
-          },
-        },
-        xaxis: {
-          type: "text",
-          categories: [
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril",
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto",
-            "Septiembre",
-            "Octubre",
-            "Noviembre",
-            "Diciembre",
-          ],
-        },
-        legend: {
-          position: "right",
-          offsetY: 40,
-        },
-        fill: {
-          opacity: 1,
-        },
-      },
       
     };
   },
@@ -557,7 +496,7 @@ export default {
     body[0].classList.add("sidebar-main-menu");
     console.log("DOM is rendered");
     console.log(Object.keys(this.currentSolicitud).length);
-    this.getVista();
+
 
 
   },
@@ -569,7 +508,7 @@ export default {
   created() {
     console.log("DOM is created");
     this.getSolicitudes();
-    this.getVista();
+ 
   },
 
   methods: {
@@ -675,30 +614,6 @@ deleteSolicitud(id) {
   }
 },
 
-    getVista() {
-      axios
-        .get("http://127.0.0.1:8000/hospital/api/v1vista_estado_solicitudes/")
-        .then((response) => {
-          console.log(response.data);
-          console.log("envio");
-
-          // Reiniciar datos de la gráfica
-          this.chart5.series.forEach((serie) => {
-            serie.data = [];
-          });
-
-          // Iterar sobre los datos obtenidos y agregarlos a las series correspondientes
-          response.data.forEach((item) => {
-            this.chart5.series[0].data.push(item.num_aprobadas);
-            this.chart5.series[1].data.push(item.num_en_proceso);
-            this.chart5.series[2].data.push(item.num_no_aprobadas);
-            this.chart5.series[3].data.push(item.num_canceladas);
-          });
-        })
-        .catch((error) => {
-          console.error("Error al obtener las solicitudes:", error);
-        });
-    },
 
     previousPage() {
       if (this.currentPage > 1) {

@@ -292,7 +292,7 @@
             </li>
 
             <!-- Estudios - -->
-            <li v-if="userRole === 'Medico General' || userRole === 'Paciente' || userRole === 'Medico Especialista' || userRole === 'Administrativo' || userRole === 'Direccion General'">
+            <li v-if="userRole === 'Estudios' || userRole === 'Paciente' || userRole === 'Medico Especialista' || userRole === 'Administrativo' || userRole === 'Direccion General'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example3" data-collapse-toggle="dropdown-example3">
@@ -340,7 +340,7 @@
             </li>
 
             <!-- Transplante - -->
-            <li v-if="userRole === 'Direccion General' || userRole === 'Médico Especialista' || userRole === 'Médico General' || userRole === 'Administrativo' || userRole === 'Direccion General'">
+            <li v-if="userRole === 'Transplantes' || userRole === 'Médico Especialista' || userRole === 'Médico General' || userRole === 'Administrativo' || userRole === 'Direccion General'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example6" data-collapse-toggle="dropdown-example6">
@@ -374,7 +374,7 @@
             </li>
 
             <!-- Cirugias - -->
-            <li v-if="userRole === 'Médico General' || userRole === 'Médico Especialista' || userRole === 'Direccion General' || userRole === 'Administrativo'">
+            <li v-if="userRole === 'Programacion Quirurgica' || userRole === 'Médico Especialista' || userRole === 'Direccion General' || userRole === 'Administrativo'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example2" data-collapse-toggle="dropdown-example2">
