@@ -33,7 +33,7 @@ const roleMap = {
   13: 'Familiar del Paciente',
   14: 'Medico Forence',
   15: 'Recursos Humanos',
-  16: 'Farmacia Intrahospitalaria'
+  16: 'Farmacia'
   // Añade más roles según sea necesario
 };
 
