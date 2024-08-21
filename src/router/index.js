@@ -27,6 +27,9 @@ import GraficasC from '@/components/ProgramacionQuirugica/graficasC.vue'
 import CrearC from '@/components/ProgramacionQuirugica/CrearC.vue'
 
 
+// Recursos humano
+// import rescursos from  
+
 const roleMap = {
   1: 'Administrativo',
   8: 'Direccion General',
@@ -35,7 +38,15 @@ const roleMap = {
   11: 'Médico Especialista',
   12: 'Enfermero',
   13: 'Familiar del Paciente',
-  14: 'Medico Forence'
+  14: 'Medico Forence',
+  15: 'Recursos Humanos',
+  16: 'Farmacia',
+  17: 'Trasplantes',
+  18: 'Programacion Quirurgica',
+  19: 'Estudios',
+  20: 'Registros Médicos',
+  21: 'Pediatría',
+  22: 'Radiologia',
   // Añade más roles según sea necesario
 };
 
@@ -102,7 +113,7 @@ const router = createRouter({
           path: '/aprobacionSM',
           name: 'aprobacionSM',
           component: AprobacionSM,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Direccion General', 'Recursos Humanos'] }
         },
         {
           path: '/usuarioRoles',

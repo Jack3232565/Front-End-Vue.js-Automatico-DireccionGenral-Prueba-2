@@ -59,7 +59,7 @@
             </li>
 
             <!-- Direccion General -->
-            <li v-if="userRole === 'Administrador' || userRole === 'Direccion General'">
+            <li v-if="userRole === 'Administrativo' || userRole === 'Direccion General'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example8" data-collapse-toggle="dropdown-example8">
@@ -154,7 +154,7 @@
             </li>
 
             <!-- Recursos Humanos -->
-            <li v-if="userRole === 'Administrador' || userRole === 'Medico Especialista' || userRole === 'Medico General'">
+            <li v-if="userRole === 'Recursos Humanos' || userRole === 'Medico Especialista' || userRole === 'Medico General' || userRole === 'Administrativo' || userRole === 'Direccion General'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example0" data-collapse-toggle="dropdown-example0">
@@ -192,7 +192,7 @@
             </li>
 
             <!-- Registros Medicos -->
-            <li v-if="userRole === 'Medico General' || userRole === 'Medico Especialista' || userRole === 'Direccion General'">
+            <li v-if="userRole === 'Registros Médicos' || userRole === 'Medico Especialista' || userRole === 'Direccion General' || userRole === 'Administrativo'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example7" data-collapse-toggle="dropdown-example7">
@@ -226,7 +226,7 @@
             </li>
 
             <!-- Pediatria - -->
-            <li v-if="userRole === 'Medico General' || userRole === 'Medico Especialista' || userRole === 'Enfermero'">
+            <li v-if="userRole === 'Pediatría' || userRole === 'Medico Especialista' || userRole === 'Enfermero' || userRole === 'Administrativo' || userRole === 'Direccion General'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example4" data-collapse-toggle="dropdown-example4">
@@ -255,7 +255,7 @@
             </li>
 
             <!-- Farmacia - Medicamentos - -->
-            <li v-if="userRole === 'Medico General' || userRole === 'Enfermero' || userRole === 'Medico Especialista'">
+            <li v-if="userRole === 'Medico General' || userRole === 'Enfermero' || userRole === 'Medico Especialista' || userRole === 'Administrativo' || userRole === 'Farmacia'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example5" data-collapse-toggle="dropdown-example5">
@@ -292,7 +292,7 @@
             </li>
 
             <!-- Estudios - -->
-            <li v-if="userRole === 'Medico General' || userRole === 'Paciente' || userRole === 'Medico Especialista'">
+            <li v-if="userRole === 'Radiologia' || userRole === 'Paciente' || userRole === 'Medico Especialista' || userRole === 'Administrativo' || userRole === 'Direccion General'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example3" data-collapse-toggle="dropdown-example3">
@@ -340,7 +340,7 @@
             </li>
 
             <!-- Transplante - -->
-            <li v-if="userRole === 'Direccion General' || userRole === 'Médico Especialista' || userRole === 'Médico General'  ">
+            <li v-if="userRole === 'Trasplantes' || userRole === 'Médico Especialista' || userRole === 'Médico General' || userRole === 'Administrativo' || userRole === 'Direccion General'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example6" data-collapse-toggle="dropdown-example6">
@@ -374,7 +374,7 @@
             </li>
 
             <!-- Cirugias - -->
-            <li v-if="userRole === 'Médico General' || userRole === 'Médico Especialista' || userRole === 'Direccion General'">
+            <li v-if="userRole === 'Programacion Quirurgica' || userRole === 'Médico Especialista' || userRole === 'Direccion General' || userRole === 'Administrativo'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example2" data-collapse-toggle="dropdown-example2">
