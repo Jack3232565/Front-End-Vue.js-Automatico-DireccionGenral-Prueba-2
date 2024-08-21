@@ -19,6 +19,13 @@ import UsuarioRolesModal from '@/components/DireccionGeneral/UsuarioRolesModal.v
 import GraficosDireccionG from '../components/DireccionGeneral/GraficosDireccionG.vue';
 import GrficoApro from '@/components/DireccionGeneral/GraficosDG/GrficoApro.vue';
 import GrficoRoles from '@/components/DireccionGeneral/GraficosDG/GrficoRoles.vue'
+import Calendar from '@/components/ProgramacionQuirugica/calendar.vue'
+
+
+import tablaC from '@/components/ProgramacionQuirugica/tablaC.vue'
+import GraficasC from '@/components/ProgramacionQuirugica/graficasC.vue'
+import CrearC from '@/components/ProgramacionQuirugica/CrearC.vue'
+
 
 const roleMap = {
   1: 'Administrativo',
@@ -151,6 +158,20 @@ const router = createRouter({
           component: Bitacora,
           meta: { requiresRole: ['Direccion General'] }
         },
+      
+
+        {path:'/calendario',
+        name:'calendar',
+        component : Calendar,
+        meta: { requiresRole: ['Direccion General'] }
+        },
+
+        {path:"/tablac",name:"tablac",component:tablaC, meta: { requiresRole: ['Direccion General'] }},
+
+        {path:"/graficasC",name:"graficasC",component:GraficasC, meta: { requiresRole: ['Direccion General'] }},
+
+        {path:"/crearC",name:"crearC",component:CrearC, meta: { requiresRole: ['Direccion General'] }}
+        
       ]
     }
   ]
