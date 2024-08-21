@@ -70,7 +70,7 @@
               <option value="" disabled>Selecciona estatus</option>
               <option value="Activo">Activo</option>
               <option value="Inactivo">Inactivo</option>
-              <option value="En Revisión">En Revisión</option>
+              <!-- <option value="En Revisión">En Revisión</option> -->
             </select>
           </div>
 
