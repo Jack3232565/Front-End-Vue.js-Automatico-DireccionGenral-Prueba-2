@@ -20,6 +20,16 @@ import GraficosDireccionG from '../components/DireccionGeneral/GraficosDireccion
 import GrficoApro from '@/components/DireccionGeneral/GraficosDG/GrficoApro.vue';
 import GrficoRoles from '@/components/DireccionGeneral/GraficosDG/GrficoRoles.vue'
 
+import tablaMedic from '@/components/Farmacia/tablamedicamentos.vue';
+import medicamentos from '@/components/Farmacia/medicamentos.vue';
+import LotesMed from '@/components/Farmacia/LotesMed.vue';
+import tablaLotes from '@/components/Farmacia/tablalotes.vue';
+import ConsumiblesView from '@/components/Farmacia/consumibles.vue';
+import tablaCon from '@/components/Farmacia/tablaconsumibles.vue';
+import dispensacionView from '@/components/Farmacia/dispensacion.vue'
+import tablaDis from '@/components/Farmacia/tabladispensacion.vue'
+
+
 // Recursos humano
 // import rescursos from  
 
@@ -162,6 +172,56 @@ const router = createRouter({
           component: Bitacora,
           meta: { requiresRole: ['Direccion General'] }
         },
+        {
+          path: '/tablamedic',
+          name: 'tablamedicamentos',
+          component: tablaMedic,
+          meta: { requiresRole: ['Farmacia'] }
+        },
+        {
+          path: '/medicament',
+          name: 'medicamentos',
+          component: medicamentos,
+          meta: { requiresRole: ['Farmacia'] }
+        },
+        {
+          path: '/lotes',
+          name: 'lotesmed',
+          component: LotesMed,
+          meta: { requiresRole: ['Farmacia'] }
+        },
+        {
+          path: '/tablalot',
+          name: 'tablalotes',
+          component: tablaLotes,
+          meta: { requiresRole: ['Farmacia'] }
+        },
+        {
+          path: '/consumibles',
+          name: 'consumibles',
+          component: ConsumiblesView,
+          meta: { requiresRole: ['Farmacia'] }
+        },
+        {
+          path: '/tablacon',
+          name: 'tablaconsumibles',
+          component: tablaCon,
+          meta: { requiresRole: ['Farmacia'] }
+        },
+        {
+          path: '/dispensation',
+          name: 'dispensacion',
+          component: dispensacionView,
+          meta: { requiresRole: ['Farmacia'] }
+        },
+        {
+          path: '/tabladis',
+          name: 'tabladis',
+          component: tablaDis,
+          meta: { requiresRole: ['Farmacia'] }
+        },
+
+        
       ]
     }
   ]
