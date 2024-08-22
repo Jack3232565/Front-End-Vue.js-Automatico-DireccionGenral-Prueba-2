@@ -64,19 +64,19 @@ const router = createRouter({
           meta: { requiresRole: ['Direccion General'] }
         },
         {
-          path: 'resultadosEstudio',
+          path: '/resultadosEstudio',
           name: 'resultadosEstudio',
           component: ResultadosEstudioView,
           meta: { requiresRole: ['Radiologia','Medico General', 'Medico Especialista'] }
         },
         {
-          path: 'estudio',
+          path: '/estudio',
           name: 'estudio',
           component: EstudioView,
           meta: { requiresRole: ['Radiologia','Medico General', 'Medico Especialista'] }
         },
         {
-          path: 'dashboardRadiologia',
+          path: '/dashboardRadiologia',
           name: 'dashboardRadiologia',
           component: dashboardRadiologiaView,
           meta: { requiresRole: ['Radiologia','Medico General', 'Medico Especialista'] }
