@@ -357,18 +357,32 @@
                <ul id="dropdown-example6" class="hidden py-2 space-y-2">
 
                   <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Organos</a>
+                     <RouterLink to="/requestTansplant">
+                        <a href="#"
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Registrar
+                           Solicitud</a>
+                     </RouterLink>
                   </li>
                   <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Detalle
-                        de Organo</a>
+                     <RouterLink to="/TableTransplante">
+                        <a href="#"
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Ver
+                           Solicitudes</a>
+                     </RouterLink>
                   </li>
                   <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Solicitud
-                        de Transplante</a>
+                     <RouterLink to="/organform">
+                        <a href="#"
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"> Registrar
+                           Organos</a>
+                     </RouterLink>
+                  </li>
+                  <li>
+                     <RouterLink to="/organos">
+                        <a href="#"
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Ver
+                           Solicitud</a>
+                     </RouterLink>
                   </li>
                </ul>
             </li>
