@@ -487,7 +487,7 @@ export default {
 
       fetchRoles() {
          // Obtén los roles y guárdalos en localStorage
-         apiClient.get('https://back-end-hospital2-0.onrender.com/rols/')
+         apiClient.get('https://back-end-hospital2-0.onrender.com/roles/')
             .then(response => {
                this.roles = response.data;
                localStorage.setItem('roles', JSON.stringify(this.roles));

@@ -328,7 +328,6 @@
 
 <script>
 import axios from "axios";
-
 import moment from "moment";
 
 const body = document.getElementsByTagName("body");
@@ -341,14 +340,12 @@ const apiClient = axios.create({
 });
 
 export default {
-
   name: "RolesModal",
   data() {
     return {
-
       solicitudes: [],
       currentSolicitud: {},
-      api: "https://back-end-hospital2-0.onrender.com/rols/",
+      api: "https://back-end-hospital2-0.onrender.com/roles/",
       solicitud: {
         Nombre: "",
         Descripcion: "",
@@ -356,47 +353,34 @@ export default {
         Fecha_Registro: "",
         Fecha_Actualizacion: "",
       },
-
       showModal: false,
       searchInput: "",
       currentPage: 1, // Página actual
       resultsPerPage: 5, // Resultados por página
       totalPages: 1, // Total de páginas
       paginatedData: [], // Datos de la página actual
-
       config: {
         dateFormat: "Y-m-d",
         inline: true,
       },
-
     };
   },
 
   mounted() {
     body[0].classList.add("sidebar-main-menu");
     console.log("DOM is rendered");
-    console.log(Object.keys(this.currentSolicitud).length);
-
-
     this.getSolicitudes();
-
   },
 
   unmounted() {
     body[0].classList.remove("sidebar-main-menu");
   },
 
-  created() {
-    console.log("DOM is created");
-    this.getSolicitudes();
-
-  },
-
   methods: {
-
     async handleSubmit() {
       try {
         if (this.currentSolicitud.id) {
+          console.log('Updating rol with id:', this.currentSolicitud.id);
           await apiClient.put(`${this.api}${this.currentSolicitud.id}/`, this.currentSolicitud);
         } else {
           await apiClient.post(this.api, this.currentSolicitud);
@@ -405,11 +389,15 @@ export default {
         this.currentSolicitud = {}; // Limpia el formulario
         this.showModal = false; // Cierra el modal
       } catch (error) {
-        console.error('Error saving solicitud:', error);
+        if (error.response) {
+          console.error('Error response:', error.response.data);
+        } else if (error.request) {
+          console.error('Error request:', error.request);
+        } else {
+          console.error('Error message:', error.message);
+        }
       }
     },
-
-
 
     async getSolicitudes() {
       try {
@@ -421,68 +409,52 @@ export default {
       }
     },
 
-
     saveSolicitud() {
-      // Verifica si no se ha insertado ninguna fecha y hora en Fecha_Actualizacion
       if (!this.solicitud.Fecha_Actualizacion) {
-        this.solicitud.Fecha_Actualizacion = null; // Establece Fecha_Actualizacion como null
+        this.solicitud.Fecha_Actualizacion = null;
       }
 
-      // Verifica los campos requeridos y crea un mensaje específico para cada uno
       let missingFields = [];
-      if (!this.solicitud.Nombre) {
-        missingFields.push('Nombre');
-      }
-      if (!this.solicitud.Descripcion) {
-        missingFields.push('Descripción');
-      }
-      if (!this.solicitud.Estatus) {
-        missingFields.push('Estatus');
-      }
-      if (!this.solicitud.Fecha_Registro) {
-        missingFields.push('Fecha de Registro');
-      }
+      if (!this.solicitud.Nombre) missingFields.push('Nombre');
+      if (!this.solicitud.Descripcion) missingFields.push('Descripción');
+      if (!this.solicitud.Estatus) missingFields.push('Estatus');
+      if (!this.solicitud.Fecha_Registro) missingFields.push('Fecha de Registro');
 
-      // Si hay campos faltantes, muestra un mensaje de advertencia
       if (missingFields.length > 0) {
         this.showWarningMessage = true;
         console.error(`Faltan los siguientes campos: ${missingFields.join(', ')}.`);
         return;
       }
 
-      // Oculta el mensaje de advertencia si todos los datos están presentes
       this.showWarningMessage = false;
 
       apiClient
         .post(this.api, this.solicitud)
         .then((response) => {
-          console.log('Aprobación creada:', response.data);
+          console.log('Solicitud creada:', response.data);
           this.getSolicitudes();
           this.solicitud = {}; // Limpia el formulario
         })
         .catch((error) => {
-          console.error('Error al crear la aprobación:', error.response ? error.response.data : error.message);
+          console.error('Error al crear la solicitud:', error.response ? error.response.data : error.message);
         });
     },
 
-
     editBtn(id) {
-      console.log(id); // Verifica que `id` no sea `undefined`
-      this.solicitudes.map((solicitud) => {
-        if (solicitud.id === id) {
-          console.log(solicitud.Personal_Medico_ID);
-          this.currentSolicitud = {
-            id: solicitud.id,
-            Nombre: solicitud.Nombre,
-            Descripcion: solicitud.Descripcion,
-            Estatus: solicitud.Estatus,
-            Fecha_Registro: solicitud.Fecha_Registro,
-            Fecha_Actualizacion: solicitud.Fecha_Actualizacion
-              ? solicitud.Fecha_Actualizacion
-              : null,
-          };
-        }
-      });
+      console.log(id);
+      const solicitud = this.solicitudes.find(s => s.id === id);
+      if (solicitud) {
+        this.currentSolicitud = {
+          id: solicitud.id,
+          Nombre: solicitud.Nombre,
+          Descripcion: solicitud.Descripcion,
+          Estatus: solicitud.Estatus,
+          Fecha_Registro: solicitud.Fecha_Registro,
+          Fecha_Actualizacion: solicitud.Fecha_Actualizacion ? solicitud.Fecha_Actualizacion : null,
+        };
+      } else {
+        console.error('Solicitud not found for id:', id);
+      }
     },
 
     updateSolicitud(id) {
@@ -492,75 +464,58 @@ export default {
       apiClient
         .put(`${this.api}${id}/`, this.currentSolicitud)
         .then((response) => {
-          console.log(response.data);
+          console.log('Solicitud updated:', response.data);
           this.getSolicitudes();
           this.currentSolicitud = {};
-          // Recargar la página
-          window.location.reload();
         })
         .catch((error) => {
-          console.log(error);
+          console.error('Error updating solicitud:', error);
         });
     },
 
     deleteSolicitud(id) {
-      const solicitud = this.solicitudes.find(
-        (solicitud) => solicitud.id === id
-      );
-
-      if (
-        confirm(`¿Deseas eliminar la solicitud? 
-                 - ID: ${solicitud.id}
-                 - Nombre: ${solicitud.Nombre}
-                 - Descripción: ${solicitud.Descripcion}
-                 - Estatus: ${solicitud.Estatus}
-                 - Fecha de Solicitud: ${this.formatearFecha(solicitud.Fecha_Registro)}
-                 - Fecha de Aprobación: ${this.formatearFecha(solicitud.Fecha_Actualizacion)}`)
-      ) {
-        apiClient
-          .delete(`${this.api}${id}/`) // Usa la URL correcta
-          .then((response) => {
-            console.log(response.data);
-            this.getSolicitudes();
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+      const solicitud = this.solicitudes.find(s => s.id === id);
+      if (solicitud) {
+        if (confirm(`¿Deseas eliminar la solicitud? 
+                     - ID: ${solicitud.id}
+                     - Nombre: ${solicitud.Nombre}
+                     - Descripción: ${solicitud.Descripcion}
+                     - Estatus: ${solicitud.Estatus}
+                     - Fecha de Solicitud: ${this.formatearFecha(solicitud.Fecha_Registro)}
+                     - Fecha de Aprobación: ${this.formatearFecha(solicitud.Fecha_Actualizacion)}`)) {
+          apiClient
+            .delete(`${this.api}${id}/`)
+            .then((response) => {
+              console.log('Solicitud deleted:', response.data);
+              this.getSolicitudes();
+            })
+            .catch((error) => {
+              console.error('Error deleting solicitud:', error);
+            });
+        }
+      } else {
+        console.error('Solicitud not found for id:', id);
       }
     },
 
-
-
-
-
-    
-
-  // Actualiza la paginación basada en la búsqueda y el número total de solicitudes
-  updatePagination() {
-
-    console.log("Actualizando la paginación...");
-
-      const filteredData = this.solicitudes.filter((solicitud) =>
-        solicitud.Nombre.toLowerCase().includes(this.searchInput.toLowerCase())
-      );
-
+    updatePagination() {
+      console.log("Actualizando la paginación...");
+      const filteredData = this.solicitudes.filter(s => s.Nombre.toLowerCase().includes(this.searchInput.toLowerCase()));
       this.totalPages = Math.ceil(filteredData.length / this.resultsPerPage);
-
-      this.paginatedData = filteredData.slice(
-        (this.currentPage - 1) * this.resultsPerPage,
-        this.currentPage * this.resultsPerPage
-      );
+      this.paginatedData = filteredData.slice((this.currentPage - 1) * this.resultsPerPage, this.currentPage * this.resultsPerPage);
     },
 
-    // Cambia a la página anterior
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
+        this.updatePagination();
       }
     },
+
     previousPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
+        this.updatePagination();
       }
     },
 
@@ -572,8 +527,6 @@ export default {
       }
     },
 
-
-
     formatearFecha(fecha) {
       if (moment(fecha, moment.ISO_8601, true).isValid()) {
         return moment(fecha).format("DD/MM/YYYY HH:mm:ss");
@@ -583,93 +536,33 @@ export default {
     },
   },
 
-watch:{
-    // Observa los cambios en el input de búsqueda
+  watch: {
     searchInput() {
       this.updatePagination();
     }
-  
-},
+  },
 
   computed: {
-    // esta en adaptacion a la plantilla
-
     paginatedItems() {
-      // Lógica para obtener los elementos paginados
-      const start = (this.currentPage - 1) * this.itemsPerPage;
-      const end = start + this.itemsPerPage;
-      return this.items.slice(start, end);
-    },
-
-    paginatedData() {
-      const startIndex = (this.currentPage - 1) * this.resultsPerPage;
-      const endIndex = startIndex + this.resultsPerPage;
-      return this.filteredData
-        .slice(startIndex, endIndex)
-        .map((item, index) => {
-          return {
-            ...item,
-            index: startIndex + index + 1, // Ajusta el índice para mantener la secuencia numérica continua
-          };
-        });
-    },
-
-        totalPages() {
-      return Math.ceil(this.solicitudes.length / this.resultsPerPage);
+      const start = (this.currentPage - 1) * this.resultsPerPage;
+      const end = start + this.resultsPerPage;
+      return this.solicitudes.slice(start, end);
     },
 
     filteredData() {
-      // Modifica la función para filtrar según el término de búsqueda
-      console.log("Search input:", this.searchInput);
-      return this.solicitudes.filter((solicitud) => {
-        const matchSearchInput = Object.values(solicitud).some((value) => {
-          return String(value)
-            .toLowerCase()
-            .includes(this.searchInput.toLowerCase());
-        });
-
-        // Obtener el texto correspondiente al servicio_paciente_id
-        let servicioText = "";
-        switch (solicitud.Personal_Medico_ID) {
-          case 1:
-            servicioText = "Urgencias";
-            break;
-
-          default:
-            servicioText = String(solicitud.Nombre, solicitud.Descripcion); // Si no coincide con ninguno, mantener el valor original
-        }
-
-        const matchServicioId = servicioText
-          .toLowerCase()
-          .includes(this.searchInput.toLowerCase());
-
-        let departamentoText = "";
-        switch (solicitud.Solicitud_id) {
-          case 1:
-            departamentoText = "Dirección General";
-            break;
-
-          default:
-            departamentoText = String(solicitud.Solicitud_id);
-        }
-
-        const matchDepartamentoId = departamentoText
-          .toLowerCase()
-          .includes(this.searchInput.toLowerCase());
-
-
-        return matchSearchInput || matchServicioId || matchDepartamentoId;
+      return this.solicitudes.filter(solicitud => {
+        const matchSearchInput = Object.values(solicitud).some(value => String(value).toLowerCase().includes(this.searchInput.toLowerCase()));
+        return matchSearchInput;
       });
     },
 
-
-
-
-
-
+    totalPages() {
+      return Math.ceil(this.solicitudes.length / this.resultsPerPage);
+    },
   },
 };
 </script>
+
 
 
 

@@ -134,6 +134,33 @@
                             class="text-sm">Pausado</span>
                         </a>
                       </div>
+                      <div v-else-if="solicitud.Estatus === 'Registrada'" class="text-center">
+                        <a class="iq-icons-list" target="_self">
+                          <div class="icon" style="color: #3f4152">
+                            <i class="fa fa-pause" aria-hidden="true"></i>
+                          </div>
+                          <span style="color: #3f4152; font-weight: bold; font-size: 12px;"
+                            class="text-sm">Pausado</span>
+                        </a>
+                      </div>
+                      <div v-else-if="solicitud.Estatus === 'Programada'" class="text-center">
+                        <a class="iq-icons-list" target="_self">
+                          <div class="icon" style="color: #3f4152">
+                            <i class="fa fa-pause" aria-hidden="true"></i>
+                          </div>
+                          <span style="color: #3f4152; font-weight: bold; font-size: 12px;"
+                            class="text-sm">Pausado</span>
+                        </a>
+                      </div>
+                      <div v-else-if="solicitud.Estatus === 'Realizada'" class="text-center">
+                        <a class="iq-icons-list" target="_self">
+                          <div class="icon" style="color: #3f4152">
+                            <i class="fa fa-pause" aria-hidden="true"></i>
+                          </div>
+                          <span style="color: #3f4152; font-weight: bold; font-size: 12px;"
+                            class="text-sm">Pausado</span>
+                        </a>
+                      </div>
                       <div v-else class="col-12 col-md-6 col-lg-3">
                         {{ solicitud.Estatus }}
                       </div>
@@ -273,12 +300,15 @@
                 </div>
 
                 <div class="mb-4">
+                  <!-- --'Registrada', 'Programada', 'Cancelada', 'Reprogramada', 'En_Proceso', 'Realizada', 'Aprobado' -->
                   <label for="Estatus" class="form-label float-left ml-2">Estatus</label>
                   <select class="form-control" v-model="currentSolicitud.Estatus">
                     <option value="Aprobado">Aprobado</option>
                     <option value="En Proceso">En Proceso</option>
+                    <option value="En Proceso">Realizada</option>
                     <option value="Reprogramado">Reprogramado</option>
                     <option value="Pausado">Pausado</option>
+                    <option value="Reprogramado">Registrada</option>
                     <option value="Cancelado">Cancelado</option>
                   </select>
                 </div>

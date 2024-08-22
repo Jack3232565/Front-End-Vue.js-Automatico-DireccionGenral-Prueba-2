@@ -52,11 +52,11 @@
       onMounted(async () => {
         try {
           // Obtener los datos de los roles
-          const rolesResponse = await fetch('https://back-end-hospital2-0.onrender.com/rols/');
+          const rolesResponse = await fetch('https://back-end-hospital2-0.onrender.com/roles/');
           const roles = await rolesResponse.json();
   
           // Obtener los datos de los usuarios y sus roles
-          const userRolesResponse = await fetch('https://back-end-hospital2-0.onrender.com/usersrols/');
+          const userRolesResponse = await fetch('https://back-end-hospital2-0.onrender.com/usuario_roles/');
           const userRoles = await userRolesResponse.json();
   
           // Contar cuántos usuarios tienen cada rol
