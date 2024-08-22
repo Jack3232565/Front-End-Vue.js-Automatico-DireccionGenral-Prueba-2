@@ -58,8 +58,6 @@
     <tr class="bg-gray-200 text-gray-600 uppercase text-xs leading-normal">
       <th class="py-3 px-6 text-left">ID</th>
       <th class="py-3 px-6 text-left">Tipo de Estudio</th>
-      <th class="py-3 px-6 text-left">Fecha Registro</th>
-      <th class="py-3 px-6 text-left">Fecha Actualización</th>
       <th class="py-3 px-6 text-left">Total Costo</th>
       <th class="py-3 px-6 text-left">Estatus</th>
       <th class="py-3 px-6 text-left">Dirigido a</th>
@@ -85,16 +83,9 @@
         </div>
       </td>
       
-      <!-- Fecha Registro -->
-      <td class="text-sm">
-        {{ formatearFecha(solicitud.Fecha_Registro) }}
-      </td>
+  
       
-      <!-- Fecha Actualización -->
-      <td class="text-sm">
-        {{ formatearFecha(solicitud.Fecha_Actualizacion) }}
-      </td>
-      
+  
       <!-- Total Costo -->
       <td class="text-sm">
         {{ solicitud.Total_Costo }}
@@ -258,34 +249,12 @@
         required
       />
     </div>
-    <div class="mt-4">
-      <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-white" for="fechaRegistro">
-        Fecha Registro
-      </label>
-      <input
-        class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-        id="fechaRegistro"
-        type="date"
-        v-model="currentSolicitud.Fecha_Registro"
-        required
-      />
-    </div>
+    
   </div>
 
   <!-- Fecha Actualizacion, Total Costo, Estatus -->
   <div class="mb-4 md:flex md:justify-between">
-    <div class="mt-4">
-      <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-white" for="fechaActualizacion">
-        Fecha Actualizacion
-      </label>
-      <input
-        class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-        id="fechaActualizacion"
-        type="date"
-        v-model="currentSolicitud.Fecha_Actualizacion"
-        required
-      />
-    </div>
+    
     <div class="mt-4">
       <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-white" for="totalCosto">
         Total Costo
@@ -434,7 +403,6 @@
   transform: scale(1.05);
 }
 </style>
-
 <script>
 import axios from "axios";
 import moment from "moment";
@@ -459,25 +427,25 @@ export default {
         Tipo: "",
         Nivel_Urgencia: "",
         Solicitud_ID: "",
-        Consumibles_ID:"",
+        Consumibles_ID: "",
         Estatus: "",
         Total_Costo: "",
         Dirigido_A: "",
         Observaciones: "",
-        Fecha_Registro: "",
-        Fecha_Actualizacion: "",
+        Fecha_Registro: moment().format("YYYY-MM-DD"), // Fecha actual en formato estándar
+        Fecha_Actualizacion: moment().format("YYYY-MM-DD"),
       },
       showModal: false,
       searchInput: "",
-      currentPage: 1, // Página actual
-      resultsPerPage: 10, // Resultados por página
-      totalPages: 1, // Total de páginas
-      paginatedData: [], // Datos de la página actual
+      currentPage: 1,
+      resultsPerPage: 10,
+      totalPages: 1,
+      paginatedData: [],
 
       notification: {
         show: false,
         message: '',
-        type: '' // "success" o "error"
+        type: ''
       }
     };
   },
@@ -512,11 +480,11 @@ export default {
         if (this.currentSolicitud.id) {
           await apiClient.put(`${this.api}${this.currentSolicitud.id}/`, this.currentSolicitud);
         } else {
-          await apiClient.post(this.api, this.currentSolicitud);
+          await apiClient.post(this.api, { ...this.currentSolicitud, Fecha_Registro: moment().format("YYYY-MM-DD") }); // Establece la fecha de registro automáticamente
         }
         this.getSolicitudes();
-        this.currentSolicitud = {}; // Limpia el formulario
-        this.showModal = false; // Cierra el modal
+        this.currentSolicitud = {};
+        this.showModal = false;
         this.showNotification('Éxito', 'Estudio agregado.');
       } catch (error) {
         console.error('Error al agregar:', error);
@@ -557,7 +525,7 @@ export default {
         .then((response) => {
           console.log('Estudio creado:', response.data);
           this.getSolicitudes();
-          this.solicitud = {}; // Limpia el formulario
+          this.solicitud = {};
         })
         .catch((error) => {
           console.error('Error al crear el estudio:', error.response ? error.response.data : error.message);
@@ -590,8 +558,7 @@ export default {
     deleteSolicitud(id) {
       const solicitud = this.solicitudes.find(solicitud => solicitud.id === id);
 
-      if (confirm(`¿Deseas eliminar el Estudio?`)
-      ) {
+      if (confirm(`¿Deseas eliminar el Estudio?`)) {
         apiClient.delete(`${this.api}${id}/`)
           .then((response) => {
             console.log(response.data);
@@ -600,8 +567,8 @@ export default {
           .catch((error) => {
             console.log(error);
           });
+        this.showNotification('Éxito', 'Estudio eliminado.');
       }
-      this.showNotification('Éxito', 'Estudio eliminado.');
     },
 
     updatePagination() {
@@ -689,4 +656,3 @@ export default {
   }
 };
 </script>
-
