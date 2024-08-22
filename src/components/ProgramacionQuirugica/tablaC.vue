@@ -1,20 +1,25 @@
 <template>
-  <div>
-    <!-- Título centrado y con letra más grande -->
-    <h1 class="titulo-centrado">Tabla de Cirugías</h1>
-    <div class="contenedor-superior">
-      <!-- Botón para crear cirugía alineado a la derecha y más grande -->
-      <button @click="irACrearCirugia" class="boton-crear">Crear Cirugía</button>
+  <div class="container mt-4">
+    <!-- Título centrado, más grande y en negrita -->
+    <h1 class="text-center mb-4 font-weight-bold" style="font-size: 36px;">Tabla de Cirugías</h1>
+    
+    <div class="d-flex justify-content-between mb-3">
+      <!-- Botón para crear cirugía alineado a la derecha -->
+      <button @click="irACrearCirugia" class="btn btn-secondary">Crear Cirugía</button>
+      
       <!-- Barra de búsqueda centrada y con color verde -->
-      <div class="barra-busqueda">
-        <input v-model="busqueda" placeholder="Buscar cirugía..." />
-        <i class="fas fa-search"></i>
+      <div class="input-group" style="max-width: 400px;">
+        <input v-model="busqueda" type="text" class="form-control" placeholder="Buscar cirugía..." />
+        <span class="input-group-text bg-success text-white">
+          <i class="fas fa-search"></i>
+        </span>
       </div>
     </div>
-    <table>
-      <thead>
+    
+    <table class="table table-bordered">
+      <thead class="bg-light">
         <tr>
-          <th>Id de la Cirugía</th>
+          <th class="blue-column">Id de la Cirugía</th>
           <th>Tipo</th>
           <th>Nombre</th>
           <th>Descripción</th>
@@ -28,7 +33,7 @@
       </thead>
       <tbody>
         <tr v-for="cirugia in cirugiasFiltradas" :key="cirugia.ID">
-          <td>{{ cirugia.ID }}</td>
+          <td class="blue-column">{{ cirugia.ID }}</td>
           <td>{{ cirugia.Tipo }}</td>
           <td>{{ cirugia.Nombre }}</td>
           <td>{{ cirugia.Descripcion }}</td>
@@ -38,10 +43,10 @@
           <td>{{ cirugia.Estatus }}</td>
           <td>{{ cirugia.Consumible }}</td>
           <td>
-            <button @click="eliminarCirugia(cirugia.ID)">
+            <button @click="eliminarCirugia(cirugia.ID)" class="btn btn-danger btn-sm">
               <i class="fas fa-trash-alt"></i> Eliminar
             </button>
-            <button @click="editarCirugia(cirugia.ID)">
+            <button @click="editarCirugia(cirugia.ID)" class="btn btn-warning btn-sm">
               <i class="fas fa-edit"></i> Editar
             </button>
           </td>
@@ -57,6 +62,7 @@ export default {
     return {
       cirugias: [],
       busqueda: '', // Variable para almacenar el texto de búsqueda
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkJydW5vIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoic3RyaW5nIiwiQ29udHJhc2VuYSI6ImJydW5vIiwiTnVtZXJvX1RlbGVmb25pY29fTW92aWwiOiJzdHJpbmcifQ.x2mprKqz7Af2HLrWycpWLlYqI9xtG9SWJOQ8Pgn4qqg', // Reemplaza con tu token real
     };
   },
   computed: {
@@ -76,137 +82,95 @@ export default {
   },
   mounted() {
     // Hacer la solicitud a la API y obtener los datos de cirugías
-    fetch('http://127.0.0.1:8000/hospital/api/v1/cirugias/')
-      .then(response => response.json())
-      .then(data => {
-        this.cirugias = data; // Asignar los datos a la variable cirugias
-      })
-      .catch(error => console.error('Error al obtener los datos:', error));
+    fetch('http://127.0.0.1:8000/cirugias/', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${this.token}`, // Incluye el token en el encabezado
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error en la respuesta del servidor');
+      }
+      return response.json();
+    })
+    .then(data => {
+      this.cirugias = data; // Asignar los datos a la variable cirugias
+    })
+    .catch(error => console.error('Error al obtener los datos:', error));
   },
   methods: {
     irACrearCirugia() {
       this.$router.push({ name: 'crearC' }); // Redirecciona a la vista CrearCirugias
     },
     eliminarCirugia(id) {
-      fetch(`http://127.0.0.1:8000/hospital/api/v1/cirugias/${id}/`, {
-        method: 'DELETE'
+  fetch(`http://127.0.0.1:8000/cirugia/${id}/`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${this.token}`,
+    }
+  })
+  .then(response => {
+    console.log('Response status:', response.status); // Imprime el estado de la respuesta
+    if (!response.ok) {
+      return response.text().then(text => { throw new Error(text || 'Hubo un problema al eliminar la cirugía.') });
+    }
+    // Si la eliminación es exitosa, actualizar la lista de cirugías
+    this.obtenerCirugias();
+  })
+  .catch(error => console.error('Error al eliminar la cirugía:', error));
+  },
+  editarCirugia(id) {
+  this.$router.push({ name: 'editarC', params: { id: id } });
+  },
+    obtenerCirugias() {
+      // Método para obtener nuevamente las cirugías después de eliminar
+      fetch('http://127.0.0.1:8000/cirugias/', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.token}`, // Incluye el token en el encabezado
+        }
       })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Hubo un problema al eliminar la cirugía.');
-          }
-          // Si la eliminación es exitosa, actualizar la lista de cirugías
-          this.obtenerCirugias();
-        })
-        .catch(error => console.error('Error al eliminar la cirugía:', error));
-      console.log("Eliminar cirugía con ID:", id);
-    },
-    editarCirugia(id) {
-      // Aquí debes implementar la lógica para editar la cirugía con el ID proporcionado
-      console.log("Editar cirugía con ID:", id);
-    },
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error en la respuesta del servidor');
+        }
+        return response.json();
+      })
+      .then(data => {
+        this.cirugias = data; // Asignar los datos a la variable cirugias
+      })
+      .catch(error => console.error('Error al obtener los datos:', error));
+    }
   }
 };
 </script>
 
-<style scoped>
+<style>
 /* Estilos para iconos de Font Awesome */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-</style>
-
-<style>
-/* Estilos para el título centrado y más grande */
-.titulo-centrado {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-/* Contenedor superior con botón y barra de búsqueda */
-.contenedor-superior {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-/* Estilos para el botón de crear cirugía más grande y alineado a la derecha */
-.boton-crear {
-  background-color: #239a9e;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-  margin-left: auto;
-}
-
-.boton-crear:hover {
-  background-color: #14901a;
-}
 
 /* Estilos para la barra de búsqueda centrada y con color verde */
-.barra-busqueda {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+.input-group-text {
+  background-color: #243e2a; /* Color verde de Bootstrap */
+  color: rgb(66, 76, 75);
 }
 
-.barra-busqueda input[type="text"] {
-  padding: 5px 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  margin-right: 5px;
-  background-color: #2ecc71; /* Color verde */
-  color: white; /* Texto en blanco para contraste */
+.form-control {
+  border-right: none;
 }
 
-.barra-busqueda i.fas.fa-search {
-  color: #239a9e; /* Color verde oscuro */
+.table {
+  margin-bottom: 0;
 }
 
-/* Estilos para la tabla */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
+.table thead th {
+  background-color: #4a4c4d; /* Gris claro */
+  color: #495057; /* Color del texto para mejor contraste */
 }
 
-th,
-td {
-  border: 1px solid #920d0d;
-  padding: 8px;
-  text-align: left;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-/* Estilos para los botones dentro de la tabla */
-button {
-  background-color: #239a9e;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 4px;
-  margin-right: 5px;
-}
-
-button:hover {
-  background-color: #14901a;
-}
-
-/* Estilos para el ícono */
-.fas.fa-trash-alt {
-  margin-right: 5px;
+/* Fondo azul bajito para la primera columna */
+.blue-column {
+  background-color: #220c50; /* Azul bajito */
 }
 </style>
