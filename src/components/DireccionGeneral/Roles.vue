@@ -348,7 +348,7 @@ export default {
 
       solicitudes: [],
       currentSolicitud: {},
-      api: "https://back-end-hospital2-0.onrender.com/roles/",
+      api: "https://back-end-hospital2-0.onrender.com/rols/",
       solicitud: {
         Nombre: "",
         Descripcion: "",

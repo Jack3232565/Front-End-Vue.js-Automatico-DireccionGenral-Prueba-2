@@ -137,7 +137,7 @@ export default {
   },
   async created() {
     try {
-      const response = await apiClient.get("https://back-end-hospital2-0.onrender.com/roles/");
+      const response = await apiClient.get("https://back-end-hospital2-0.onrender.com/rols/");
       this.roles = response.data; // Guarda la lista de roles en el estado
     } catch (error) {
       this.mensaje = "Error al cargar los roles";

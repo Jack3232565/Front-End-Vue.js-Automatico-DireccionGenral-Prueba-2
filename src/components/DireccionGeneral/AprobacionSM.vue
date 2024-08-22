@@ -674,7 +674,7 @@ export default {
       try {
         const [tableDataResponse, rolesResponse] = await Promise.all([
           apiClient.get('tbb_aprobaciones/'),
-          apiClient.get('tbd_solicitudes/')
+          apiClient.get('solicitudes/')
         ]);
         this.dataTable1 = tableDataResponse.data;
         this.roles = rolesResponse.data;

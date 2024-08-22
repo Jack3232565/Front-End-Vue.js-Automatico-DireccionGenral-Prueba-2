@@ -345,7 +345,7 @@ export default {
     return {
       solicitudes: [],
       currentSolicitud: {},
-      api: "https://back-end-hospital2-0.onrender.com/usuario_roles/",
+      api: "https://back-end-hospital2-0.onrender.com/usersrols/",
       solicitud: {
         Usuario_ID: "",
         Rol_ID: "",
@@ -429,7 +429,7 @@ export default {
 
     getSolicitudes() {
       apiClient
-        .get("usuario_roles/")
+        .get("usersrols/")
         .then((response) => {
           console.log(response.data);
           this.solicitudes = response.data;
@@ -456,7 +456,7 @@ export default {
       }
 
       apiClient
-        .post("usuario_roles/", this.solicitud)
+        .post("usersrols/", this.solicitud)
         .then((response) => {
           console.log("Aprobación creada:", response.data);
           this.getSolicitudes();
@@ -550,7 +550,7 @@ export default {
                   )}`)
       ) {
         apiClient
-          .delete(`usuario_roles/${Usuario_ID}/${Rol_ID}/`)
+          .delete(`usersrols/${Usuario_ID}/${Rol_ID}/`)
           .then((response) => {
             console.log(response.data);
             this.getSolicitudes();
@@ -646,8 +646,8 @@ export default {
     async fetchData1() {
       try {
         const [tableDataResponse, rolesResponse] = await Promise.all([
-          apiClient.get("usuario_roles/"),
-          apiClient.get("roles/"),
+          apiClient.get("usersrols/"),
+          apiClient.get("rols/"),
         ]);
         this.dataTable1 = tableDataResponse.data;
         this.roles = rolesResponse.data;
@@ -701,8 +701,8 @@ export default {
   async fetchData1() {
     try {
       const [tableDataResponse, rolesResponse] = await Promise.all([
-        fetch("https://back-end-hospital2-0.onrender.com/usuario_roles/"),
-        fetch("https://back-end-hospital2-0.onrender.com/roles/"),
+        fetch("https://back-end-hospital2-0.onrender.com/usersrols/"),
+        fetch("https://back-end-hospital2-0.onrender.com/rols/"),
       ]);
       this.dataTable1 = await tableDataResponse.json();
       this.roles = await rolesResponse.json();
