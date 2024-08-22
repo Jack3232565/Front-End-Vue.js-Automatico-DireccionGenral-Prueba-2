@@ -175,7 +175,7 @@ export default {
     },
     async validatePerson() {
       try {
-        const response = await apiClient.post('http://127.0.0.1:8000/person/validate', {
+        const response = await apiClient.post('https://back-end-hospital2-0.onrender.com/persons/validate', {
           curp: this.curp
         });
         return response.data.exists;
@@ -208,7 +208,7 @@ export default {
         formData.append('Fecha_Registro', new Date().toISOString());
         formData.append('Fecha_Actualizacion', new Date().toISOString());
 
-        const response = await apiClient.post('http://127.0.0.1:8000/person/', formData, {
+        const response = await apiClient.post('https://back-end-hospital2-0.onrender.com/person/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
