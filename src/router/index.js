@@ -21,11 +21,11 @@ import GrficoApro from '@/components/DireccionGeneral/GraficosDG/GrficoApro.vue'
 import GrficoRoles from '@/components/DireccionGeneral/GraficosDG/GrficoRoles.vue'
 import Calendar from '@/components/ProgramacionQuirugica/calendar.vue'
 
-
+//import del area programacion quirurgica
 import tablaC from '@/components/ProgramacionQuirugica/tablaC.vue'
 import GraficasC from '@/components/ProgramacionQuirugica/graficasC.vue'
 import CrearC from '@/components/ProgramacionQuirugica/CrearC.vue'
-
+import editarC from '@/components/ProgramacionQuirugica/editarC.vue';
 
 // Recursos humano
 // import rescursos from  
@@ -171,17 +171,34 @@ const router = createRouter({
         },
       
 
-        {path:'/calendario',
+        {path:'/calendar',
         name:'calendar',
         component : Calendar,
         meta: { requiresRole: ['Direccion General'] }
         },
 
-        {path:"/tablac",name:"tablac",component:tablaC, meta: { requiresRole: ['Direccion General'] }},
+        {path:"/tablac",
+        name:"tablac",
+        component:tablaC,
+        meta: { requiresRole: ['Direccion General'] }
+        },
 
-        {path:"/graficasC",name:"graficasC",component:GraficasC, meta: { requiresRole: ['Direccion General'] }},
+        {path:"/graficasC",
+        name:"graficasC",
+        component:GraficasC, 
+        meta: { requiresRole: ['Direccion General'] }
+        },
 
-        {path:"/crearC",name:"crearC",component:CrearC, meta: { requiresRole: ['Direccion General'] }}
+        {path:"/crearC",
+        name:"crearC",
+        component:CrearC, 
+        meta: { requiresRole: ['Direccion General'] }
+        },
+        {path:"/editarC/:id",
+        name:"editarC",
+        component: editarC,  
+        meta: { requiresRole: ['Direccion General'] }
+        }
         
       ]
     }
