@@ -292,7 +292,7 @@
             </li>
 
             <!-- Estudios - -->
-            <li v-if="userRole === 'Medico General' || userRole === 'Paciente' || userRole === 'Medico Especialista'">
+            <li v-if="userRole === 'Radiologia' || userRole === 'Medico General' || userRole === 'Paciente' || userRole === 'Medico Especialista'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example3" data-collapse-toggle="dropdown-example3">
@@ -311,34 +311,23 @@
                   <li>
                      <RouterLink to="/estudio">
                         <a href="#"
-                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Registrar
-                           Estudios</a>
-                     </RouterLink>
-                  </li>
-                  <li>
-                     <RouterLink to="/tablaEstudios">
-                        <a href="#"
-                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Listar
-                           Estudios</a>
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Estudios</a>
                      </RouterLink>
                   </li>
                   <li>
                      <RouterLink to="/resultadosEstudio">
                         <a href="#"
-                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Registrar
-                           Resultados de Estudios</a>
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Resultados Estudios</a>
                      </RouterLink>
                   </li>
                   <li>
-                     <RouterLink to="/tablaResultadoEstudio">
+                     <RouterLink to="/dashboardRadiologia">
                         <a href="#"
-                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Listar
-                           Resultados de Estudios</a>
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Dashboards de Estudios</a>
                      </RouterLink>
                   </li>
                </ul>
             </li>
-
             <!-- Transplante - -->
             <li v-if="userRole === 'Direccion General' || userRole === 'Médico Especialista' || userRole === 'Médico General'  ">
                <button type="button"

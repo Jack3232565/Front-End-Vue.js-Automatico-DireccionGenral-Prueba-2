@@ -4,10 +4,9 @@ import LoginView from '@/components/login.vue';
 import DashboardView from '@/components/dashboard.vue';
 import PersonasView from '@/components/personas.vue';
 import UsuarioView from '@/components/usuario.vue';
-import ResultadosEstudioView from '@/components/resultadosEstudio.vue';
-import EstudioView from '@/components/estudio.vue';
-import TablaResutadoEstudioView from '@/components/tablaResultadoEstudio.vue';
-import TablaEstudiosView from '@/components/tablaEstudios.vue';
+import ResultadosEstudioView from '@/components/Radiologia/resultadosEstudio.vue'
+import EstudioView from '@/components/Radiologia/estudio.vue'
+import dashboardRadiologiaView from '@/components/Radiologia/dashboardRadiologia.vue'
 import PiePaginaView from '@/components/pie-pagina.vue';
 import AprobacionSM from '../components/DireccionGeneral/AprobacionSM.vue';
 import UsuarioRoles from '@/components/DireccionGeneral/UsuarioRoles.vue';
@@ -28,7 +27,9 @@ const roleMap = {
   11: 'Médico Especialista',
   12: 'Enfermero',
   13: 'Familiar del Paciente',
-  14: 'Medico Forence'
+  14: 'Medico Forence',
+  22: 'Radiologia',
+
   // Añade más roles según sea necesario
 };
 
@@ -66,25 +67,19 @@ const router = createRouter({
           path: 'resultadosEstudio',
           name: 'resultadosEstudio',
           component: ResultadosEstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
-        },
-        {
-          path: 'tablaResultadoEstudio',
-          name: 'tablaResultadoEstudio',
-          component: TablaResutadoEstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
+          meta: { requiresRole: ['Radiologia','Medico General', 'Medico Especialista'] }
         },
         {
           path: 'estudio',
           name: 'estudio',
           component: EstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
+          meta: { requiresRole: ['Radiologia','Medico General', 'Medico Especialista'] }
         },
         {
-          path: 'tablaEstudios',
-          name: 'tablaEstudios',
-          component: TablaEstudiosView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
+          path: 'dashboardRadiologia',
+          name: 'dashboardRadiologia',
+          component: dashboardRadiologiaView,
+          meta: { requiresRole: ['Radiologia','Medico General', 'Medico Especialista'] }
         },
         {
           path: 'pie-pagina',
