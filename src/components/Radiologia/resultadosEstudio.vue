@@ -64,8 +64,6 @@
       <th class="py-3 px-6 text-left">Resultados</th>
       <th class="py-3 px-6 text-left">Observaciones</th>
       <th class="py-3 px-6 text-left">Estatus</th>
-      <th class="py-3 px-6 text-left">Fecha Registro</th>
-      <th class="py-3 px-6 text-left">Fecha Actualización</th>
       <th class="py-3 px-6 text-left">Editar</th>
       <th class="py-3 px-6 text-left">Eliminar</th>
     </tr>
@@ -154,16 +152,7 @@
         </div>
       </td>
       
-      <!-- Fecha Registro -->
-      <td class="text-sm">
-        {{ formatearFecha(solicitud.Fecha_Registro) }}
-      </td>
-      
-      <!-- Fecha Actualización -->
-      <td class="text-sm">
-        {{ formatearFecha(solicitud.Fecha_Actualizacion) }}
-      </td>
-      
+
       <!-- Editar -->
       <td class="text-center px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
         <a class="iq-icons-list" href="#" target="_self" @click="editBtn(solicitud.id); showModal = true">
@@ -330,34 +319,7 @@
     </div>
     
   </div>
-  <!-- Estatus, Fecha Registro, Fecha Actualizacion -->
-  <div class="mb-4 md:flex md:justify-between">
 
-    <div class="mt-4">
-      <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-white" for="fechaRegistro">
-        Fecha Registro
-      </label>
-      <input
-        class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-        id="fechaRegistro"
-        type="date"
-        v-model="currentSolicitud.Fecha_Registro"
-        required
-      />
-    </div>
-    <div class="mt-4">
-      <label class="block mb-2 text-sm font-bold text-gray-700 dark:text-white" for="fechaActualizacion">
-        Fecha Actualización
-      </label>
-      <input
-        class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-        id="fechaActualizacion"
-        type="date"
-        v-model="currentSolicitud.Fecha_Actualizacion"
-        required
-      />
-    </div>
-  </div>
 
   <div class="text-center">
     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
@@ -433,8 +395,8 @@ export default {
         Resultados: "",
         Observaciones: "",
         Estatus: "",
-        Fecha_Registro: "",
-        Fecha_Actualizacion: "",
+        Fecha_Registro: moment().format("YYYY-MM-DD"), // Fecha actual en formato estándar
+        Fecha_Actualizacion: moment().format("YYYY-MM-DD"),
       },
       showModal: false,
       searchInput: "",
@@ -481,7 +443,7 @@ export default {
         if (this.currentSolicitud.id) {
           await apiClient.put(`${this.api}${this.currentSolicitud.id}/`, this.currentSolicitud);
         } else {
-          await apiClient.post(this.api, this.currentSolicitud);
+          await apiClient.post(this.api, { ...this.currentSolicitud, Fecha_Registro: moment().format("YYYY-MM-DD") }); // Establece la fecha de registro automáticamente
         }
         this.getSolicitudes();
         this.currentSolicitud = {}; 
