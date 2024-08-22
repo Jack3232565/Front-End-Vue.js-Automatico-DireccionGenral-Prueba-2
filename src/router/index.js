@@ -33,6 +33,13 @@ import tablaDis from '@/components/Farmacia/tabladispensacion.vue'
 // Recursos humano
 // import rescursos from  
 
+// Transplantes
+import OrganForm from '@/components/Transplantes/OrganForm.vue'
+import OrgansView from '@/components/Transplantes/Organs.vue'
+import RequestView from '@/components/Transplantes/RequestTransplant.vue'
+import TableRView from '@/components/Transplantes/TableRequest.vue'
+import UpdateRView from '@/components/Transplantes/UpdateRequest.vue'
+
 const roleMap = {
   1: 'Administrativo',
   8: 'Direccion General',
@@ -222,6 +229,44 @@ const router = createRouter({
         },
 
         
+        // Transplantes
+        {
+          path: '/requestTansplant',
+          name: 'requestTansplant',
+          component: RequestView,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {
+          path: '/TableTransplante',
+          name: 'TableTransplante',
+          component: TableRView,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {
+          path: '/UpdateTransplante/:id',
+          name: 'UpdateTransplante',
+          component: UpdateRView,
+          props: true,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {
+          path: '/organos',
+          name: 'organos',
+          component: OrgansView,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {
+          path: '/organform',
+          name: 'organform',
+          component: OrganForm,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {
+          path: '/bitacora',
+          name: 'bitacora',
+          component: Bitacora,
+          meta: { requiresRole: ['Direccion General'] }
+        },
       ]
     }
   ]
