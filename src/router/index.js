@@ -27,6 +27,14 @@ import GraficasC from '@/components/ProgramacionQuirugica/graficasC.vue'
 import CrearC from '@/components/ProgramacionQuirugica/CrearC.vue'
 import editarC from '@/components/ProgramacionQuirugica/editarC.vue';
 
+//Espacios
+import CrearEspacio from '@/components/ProgramacionQuirugica/Espacios/CrearEspacio.vue';
+import EditarEspacio from '@/components/ProgramacionQuirugica/Espacios/EditarEspacio.vue';
+import EspaciosList from '@/components/ProgramacionQuirugica/Espacios/EspaciosList.vue';
+
+
+
+
 // Recursos humano
 // import rescursos from  
 
@@ -198,6 +206,21 @@ const router = createRouter({
         name:"editarC",
         component: editarC,  
         meta: { requiresRole: ['Direccion General'] }
+        },
+        {path:"/CrearEspacio",
+        name:"CrearEspacio",
+        component: CrearEspacio,
+        meta: { requiresRole: ['Direccion General'] }
+        },
+        {path:"/EditarEspacio/:id",
+          name:"EditarEspacio",
+          component: EditarEspacio,
+          meta: { requiresRole: ['Direccion General'] }
+        }, 
+        {path:"/EspaciosList",
+          name:"EspaciosList",
+          component: EspaciosList,
+          meta: { requiresRole: ['Direccion General'] }
         }
         
       ]
