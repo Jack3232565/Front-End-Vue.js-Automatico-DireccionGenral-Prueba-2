@@ -27,6 +27,20 @@ import ConsumiblesView from '@/components/Farmacia/consumibles.vue';
 import tablaCon from '@/components/Farmacia/tablaconsumibles.vue';
 import dispensacionView from '@/components/Farmacia/dispensacion.vue'
 import tablaDis from '@/components/Farmacia/tabladispensacion.vue'
+import graficos from '@/components/Farmacia/graficos.vue'
+
+// Transplantes
+import OrganForm from '@/components/Transplantes/OrganForm.vue';
+import RequestView from '@/components/Transplantes/RequestTransplant.vue';
+import TableRView from '@/components/Transplantes/TableRequest.vue';
+import UpdateRView from '@/components/Transplantes/UpdateRequest.vue';
+import OrgansView from '@/components/Transplantes/Organs.vue';
+
+// Radiologia
+import ResultadosEstudioView from '@/components/Radiologia/resultadosEstudio.vue';
+import EstudioView from '@/components/Radiologia/estudio.vue';
+import dashboardRadiologiaView from '@/components/Radiologia/dashboardRadiologia.vue';
+
 
 
 const roleMap = {
@@ -78,14 +92,6 @@ const router = createRouter({
           name: 'usuario',
           component: UsuarioView,
           meta: { requiresRole: ['Direccion General','Administrativo' ] }
-        },
-
-
-        {
-          path: '/estudio',
-          name: 'estudio',
-          component: EstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
         },
         {
           path: 'pie-pagina',
@@ -250,7 +256,7 @@ const router = createRouter({
           path: '/resultadosEstudio',
           name: 'resultadosEstudio',
           component: ResultadosEstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
+          meta: { requiresRole: ['Administrativo','Medico General', 'Medico Especialista'] }
         },
         {
           path: '/estudio',
@@ -264,8 +270,7 @@ const router = createRouter({
           component: dashboardRadiologiaView,
           meta: { requiresRole: ['Administrativo','Radiologia','Medico General', 'Medico Especialista'] }
         },
-
-
+        
 
         {
           path: '/bitacora',
