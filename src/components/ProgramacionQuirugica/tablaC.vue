@@ -1,164 +1,138 @@
 <template>
-  <div class="container mt-4">
-    <!-- Título centrado, más grande y en negrita -->
-    <h1 class="text-center mb-4 font-weight-bold" style="font-size: 36px;">Tabla de Cirugías</h1>
-    
-    <div class="d-flex justify-content-between mb-3">
-      <!-- Botón para crear cirugía alineado a la derecha -->
-      <button @click="irACrearCirugia" class="btn btn-secondary">Crear Cirugía</button>
-      
-      <!-- Barra de búsqueda centrada y con color verde -->
-      <div class="input-group" style="max-width: 400px;">
-        <input v-model="busqueda" type="text" class="form-control" placeholder="Buscar cirugía..." />
-        <span class="input-group-text bg-success text-white">
+  <div class="bg-gray-300 rounded-2xl p-10 flex flex-col items-center max-w-6xl w-full">
+    <h1 class="font-bold text-3xl text-[#0F6466] mb-4">Registros de Cirugías</h1>
+
+    <div class="w-full mb-4 flex justify-between items-center">
+      <button @click="irACrearCirugia" class="bg-gray-500 text-white py-2 px-4 rounded-xl hover:scale-105 duration-300 hover:bg-[#002c7424] font-medium">
+        Crear Cirugía
+      </button>
+
+      <div class="relative w-full max-w-md">
+        <input v-model="busqueda" type="text" class="p-2 rounded-xl border border-gray-300 w-full pr-10" placeholder="Buscar cirugía..." />
+        <span class="absolute inset-y-0 right-0 flex items-center px-3 bg-[#0F6466] text-white rounded-r-xl">
           <i class="fas fa-search"></i>
         </span>
       </div>
     </div>
-    
-    <table class="table table-bordered">
-      <thead class="bg-light">
-        <tr>
-          <th class="blue-column">Id de la Cirugía</th>
-          <th>Tipo</th>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Nivel de Urgencia</th>
-          <th>Horario</th>
-          <th>Observaciones</th>
-          <th>Estatus</th>
-          <th>Consumible</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="cirugia in cirugiasFiltradas" :key="cirugia.ID">
-          <td class="blue-column">{{ cirugia.ID }}</td>
-          <td>{{ cirugia.Tipo }}</td>
-          <td>{{ cirugia.Nombre }}</td>
-          <td>{{ cirugia.Descripcion }}</td>
-          <td>{{ cirugia.Nivel_Urgencia }}</td>
-          <td>{{ cirugia.Horario }}</td>
-          <td>{{ cirugia.Observaciones }}</td>
-          <td>{{ cirugia.Estatus }}</td>
-          <td>{{ cirugia.Consumible }}</td>
-          <td>
-            <button @click="eliminarCirugia(cirugia.ID)" class="btn btn-danger btn-sm">
-              <i class="fas fa-trash-alt"></i> Eliminar
-            </button>
-            <button @click="editarCirugia(cirugia.ID)" class="btn btn-warning btn-sm">
-              <i class="fas fa-edit"></i> Editar
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div class="w-full overflow-x-auto">
+      <table class="w-full table-auto border-collapse border border-gray-300">
+        <thead class="bg-gray-200">
+          <tr>
+            
+            <th class="p-2 border-b">Nombre</th>
+            <th class="p-2 border-b">Descripción</th>
+            <th class="p-2 border-b">Nivel de Urgencia</th>
+            <th class="p-2 border-b">Horario</th>
+            <th class="p-2 border-b">Observaciones</th>
+            <th class="p-2 border-b">Consumible</th>
+            <th class="p-2 border-b">Acciones</th> <!-- Columna para botones -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="cirugia in cirugiasFiltradas" :key="cirugia.ID">
+            
+            <td class="p-2 border-b">{{ cirugia.Nombre }}</td>
+            <td class="p-2 border-b">{{ cirugia.Descripcion }}</td>
+            <td class="p-2 border-b">{{ cirugia.Nivel_Urgencia }}</td>
+            <td class="p-2 border-b">{{ cirugia.Horario }}</td>
+            <td class="p-2 border-b">{{ cirugia.Observaciones }}</td>
+            <td class="p-2 border-b">{{ cirugia.Consumible }}</td>
+            <td class="p-2 border-b text-center">
+              <button @click="eliminarCirugia(cirugia.ID)" class="bg-red-500 text-white py-1 px-2 rounded-xl hover:scale-105 duration-300 hover:bg-red-600">
+                <i class="fas fa-trash-alt"></i> Eliminar
+              </button>
+              <button @click="editarCirugia(cirugia.ID)" class="bg-yellow-500 text-white py-1 px-2 rounded-xl hover:scale-105 duration-300 hover:bg-yellow-600">
+                <i class="fas fa-edit"></i> Editar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
       cirugias: [],
       busqueda: '', // Variable para almacenar el texto de búsqueda
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkJydW5vIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoic3RyaW5nIiwiQ29udHJhc2VuYSI6ImJydW5vIiwiTnVtZXJvX1RlbGVmb25pY29fTW92aWwiOiJzdHJpbmcifQ.x2mprKqz7Af2HLrWycpWLlYqI9xtG9SWJOQ8Pgn4qqg', // Reemplaza con tu token real
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6InN0cmluZyIsIkNvcnJlb19FbGVjdHJvbmljbyI6InN0cmluZyIsIkNvbnRyYXNlbmEiOiJzdHJpbmciLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6InN0cmluZyJ9.1tIv5sjC7ltAH08d4Ngyb44Ba-uK2p3LW9_yuYf42qM' // Reemplaza con tu token real
     };
   },
   computed: {
     cirugiasFiltradas() {
-      // Filtra las cirugías basadas en el texto de búsqueda
+      const searchTerm = this.busqueda.toLowerCase();
+
       return this.cirugias.filter(cirugia => {
+        const tipo = (cirugia.Tipo || '').toString().toLowerCase();
+        const nombre = (cirugia.Nombre || '').toString().toLowerCase();
+        const descripcion = (cirugia.Descripcion || '').toString().toLowerCase();
+        const nivelUrgencia = (cirugia.Nivel_Urgencia || '').toString().toLowerCase();
+        const horario = (cirugia.Horario || '').toString().toLowerCase();
+        const observaciones = (cirugia.Observaciones || '').toString().toLowerCase();
+        const consumible = (cirugia.Consumible || '').toString().toLowerCase();
+
         return (
-          cirugia.Tipo.toLowerCase().includes(this.busqueda.toLowerCase()) ||
-          cirugia.Nombre.toLowerCase().includes(this.busqueda.toLowerCase()) ||
-          cirugia.Descripcion.toLowerCase().includes(this.busqueda.toLowerCase()) ||
-          cirugia.Nivel_Urgencia.toLowerCase().includes(this.busqueda.toLowerCase()) ||
-          cirugia.Estatus.toLowerCase().includes(this.busqueda.toLowerCase()) ||
-          cirugia.Consumible.toLowerCase().includes(this.busqueda.toLowerCase())
+          tipo.includes(searchTerm) ||
+          nombre.includes(searchTerm) ||
+          descripcion.includes(searchTerm) ||
+          nivelUrgencia.includes(searchTerm) ||
+          horario.includes(searchTerm) ||
+          observaciones.includes(searchTerm) ||
+          consumible.includes(searchTerm)
         );
       });
-    },
+    }
   },
   mounted() {
-    // Hacer la solicitud a la API y obtener los datos de cirugías
-    fetch('http://127.0.0.1:8000/cirugias/', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${this.token}`, // Incluye el token en el encabezado
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Error en la respuesta del servidor');
-      }
-      return response.json();
-    })
-    .then(data => {
-      this.cirugias = data; // Asignar los datos a la variable cirugias
-    })
-    .catch(error => console.error('Error al obtener los datos:', error));
+    this.obtenerCirugias();
   },
   methods: {
     irACrearCirugia() {
       this.$router.push({ name: 'crearC' }); // Redirecciona a la vista CrearCirugias
     },
     eliminarCirugia(id) {
-  fetch(`http://127.0.0.1:8000/cirugia/${id}/`, {
-    method: 'DELETE',
-    headers: {
-      'Authorization': `Bearer ${this.token}`,
-    }
-  })
-  .then(response => {
-    console.log('Response status:', response.status); // Imprime el estado de la respuesta
-    if (!response.ok) {
-      return response.text().then(text => { throw new Error(text || 'Hubo un problema al eliminar la cirugía.') });
-    }
-    // Si la eliminación es exitosa, actualizar la lista de cirugías
-    this.obtenerCirugias();
-  })
-  .catch(error => console.error('Error al eliminar la cirugía:', error));
-  },
-  editarCirugia(id) {
-  this.$router.push({ name: 'editarC', params: { id: id } });
-  },
-    obtenerCirugias() {
-      // Método para obtener nuevamente las cirugías después de eliminar
-      fetch('http://127.0.0.1:8000/cirugias/', {
-        method: 'GET',
+      axios.delete(`http://127.0.0.1:8000/cirugia/${id}/`, {
         headers: {
-          'Authorization': `Bearer ${this.token}`, // Incluye el token en el encabezado
+          'Authorization': `Bearer ${this.token}`,
         }
       })
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Error en la respuesta del servidor');
+        console.log('Response status:', response.status); // Imprime el estado de la respuesta
+        // Si la eliminación es exitosa, actualizar la lista de cirugías
+        this.obtenerCirugias();
+      })
+      .catch(error => {
+        console.error('Error al eliminar la cirugía:', error.response ? error.response.data : error.message);
+      });
+    },
+    editarCirugia(id) {
+      this.$router.push({ name: 'EditCirugia', params: { id: id } });
+    },
+    obtenerCirugias() {
+      axios.get('http://127.0.0.1:8000/cirugias/', {
+        headers: {
+          'Authorization': `Bearer ${this.token}`,
         }
-        return response.json();
       })
-      .then(data => {
-        this.cirugias = data; // Asignar los datos a la variable cirugias
+      .then(response => {
+        this.cirugias = response.data; // Asignar los datos a la variable cirugias
       })
-      .catch(error => console.error('Error al obtener los datos:', error));
+      .catch(error => {
+        console.error('Error al obtener los datos:', error.response ? error.response.data : error.message);
+      });
     }
   }
 };
 </script>
 
 <style>
-/* Estilos para iconos de Font Awesome */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-
-/* Estilos para la barra de búsqueda centrada y con color verde */
-.input-group-text {
-  background-color: #243e2a; /* Color verde de Bootstrap */
-  color: rgb(66, 76, 75);
-}
-
-.form-control {
-  border-right: none;
-}
 
 .table {
   margin-bottom: 0;
@@ -169,8 +143,40 @@ export default {
   color: #495057; /* Color del texto para mejor contraste */
 }
 
-/* Fondo azul bajito para la primera columna */
-.blue-column {
-  background-color: #220c50; /* Azul bajito */
+.bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.bg-gray-300 {
+  background-color: #e5e7eb;
+}
+
+.bg-gray-500 {
+  background-color: #6b7280;
+}
+
+.bg-gray-500:hover {
+  background-color: #4b5563;
+}
+
+.bg-[#0F6466] {
+  background-color: #0F6466;
+}
+
+.text-[#0F6466] {
+  color: #0F6466;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-gray-300 {
+  color: #d1d5db;
+}
+
+.table td {
+  word-wrap: break-word; /* Ajustar el texto largo */
+  max-width: 200px; /* Limitar el ancho máximo de las celdas */
 }
 </style>

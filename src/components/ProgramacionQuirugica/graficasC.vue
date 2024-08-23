@@ -5,7 +5,7 @@
     <div class="row">
       <!-- Gráfico de Tipo de Cirugía -->
       <div class="col-md-6 mb-4">
-        <canvas id="tipoCirugiaChart"></canvas>
+        <canvas id="estatusCirugiaChart"></canvas>
       </div>
       <!-- Gráfico de Nivel de Urgencia -->
       <div class="col-md-6 mb-4">
@@ -22,11 +22,15 @@ export default {
   data() {
     return {
       cirugias: [], // Datos de las cirugías
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkJydW5vIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoic3RyaW5nIiwiQ29udHJhc2VuYSI6ImJydW5vIiwiTnVtZXJvX1RlbGVmb25pY29fTW92aWwiOiJzdHJpbmcifQ.x2mprKqz7Af2HLrWycpWLlYqI9xtG9SWJOQ8Pgn4qqg', // Reemplaza con tu token real
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6InN0cmluZyIsIkNvcnJlb19FbGVjdHJvbmljbyI6InN0cmluZyIsIkNvbnRyYXNlbmEiOiJzdHJpbmciLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6InN0cmluZyJ9.1tIv5sjC7ltAH08d4Ngyb44Ba-uK2p3LW9_yuYf42qM', // Reemplaza con tu token real
+      estatusCirugiaChart: null,
+      nivelUrgenciaChart: null,
     };
   },
   mounted() {
     this.obtenerCirugias();
+    // Actualizar cada 30 segundos (puedes ajustar el intervalo)
+    setInterval(this.actualizarGraficos, 30000);
   },
   methods: {
     obtenerCirugias() {
@@ -50,25 +54,25 @@ export default {
     },
     crearGraficos() {
       // Preparar datos para el gráfico de tipo de cirugía
-      const tipos = {};
+      const estatus = {};
       this.cirugias.forEach(cirugia => {
-        tipos[cirugia.Tipo] = (tipos[cirugia.Tipo] || 0) + 1;
+        estatus[cirugia.Estatus] = (estatus[cirugia.Estatus] || 0) + 1;
       });
-      const tipoLabels = Object.keys(tipos);
-      const tipoValues = Object.values(tipos);
+      const estatusLabels = Object.keys(estatus);
+      const estatusValues = Object.values(estatus);
 
       // Generar colores aleatorios para cada barra
-      const tipoColors = tipoLabels.map(() => this.generarColorAleatorio());
+      const estatusColors = estatusLabels.map(() => this.generarColorAleatorio());
 
-      new Chart(document.getElementById('tipoCirugiaChart'), {
+      this.estatusCirugiaChart = new Chart(document.getElementById('estatusCirugiaChart'), {
         type: 'bar',
         data: {
-          labels: tipoLabels,
+          labels: estatusLabels,
           datasets: [{
-            label: 'Número de Cirugías por Tipo',
-            data: tipoValues,
-            backgroundColor: tipoColors, // Colores diferentes para cada barra
-            borderColor: tipoColors, // Colores del borde de las barras
+            label: 'Número de Cirugías por Estatus',
+            data: estatusValues,
+            backgroundColor: estatusColors,
+            borderColor: estatusColors,
             borderWidth: 1
           }]
         },
@@ -88,7 +92,7 @@ export default {
           }
         }
       });
-      
+
       // Preparar datos para el gráfico de nivel de urgencia
       const urgencias = {};
       this.cirugias.forEach(cirugia => {
@@ -100,15 +104,15 @@ export default {
       // Generar colores aleatorios para cada barra
       const urgenciaColors = urgenciaLabels.map(() => this.generarColorAleatorio());
 
-      new Chart(document.getElementById('nivelUrgenciaChart'), {
+      this.nivelUrgenciaChart = new Chart(document.getElementById('nivelUrgenciaChart'), {
         type: 'bar',
         data: {
           labels: urgenciaLabels,
           datasets: [{
             label: 'Número de Cirugías por Nivel de Urgencia',
             data: urgenciaValues,
-            backgroundColor: urgenciaColors, // Colores diferentes para cada barra
-            borderColor: urgenciaColors, // Colores del borde de las barras
+            backgroundColor: urgenciaColors,
+            borderColor: urgenciaColors,
             borderWidth: 1
           }]
         },
@@ -128,6 +132,16 @@ export default {
           }
         }
       });
+    },
+    actualizarGraficos() {
+      this.obtenerCirugias();
+      if (this.estatusCirugiaChart) {
+        this.estatusCirugiaChart.destroy();
+      }
+      if (this.nivelUrgenciaChart) {
+        this.nivelUrgenciaChart.destroy();
+      }
+      this.crearGraficos();
     },
     generarColorAleatorio() {
       // Genera un color aleatorio en formato RGB

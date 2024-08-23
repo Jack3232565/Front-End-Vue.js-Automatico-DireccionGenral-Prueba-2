@@ -19,13 +19,13 @@ import UsuarioRolesModal from '@/components/DireccionGeneral/UsuarioRolesModal.v
 import GraficosDireccionG from '../components/DireccionGeneral/GraficosDireccionG.vue';
 import GrficoApro from '@/components/DireccionGeneral/GraficosDG/GrficoApro.vue';
 import GrficoRoles from '@/components/DireccionGeneral/GraficosDG/GrficoRoles.vue'
-import Calendar from '@/components/ProgramacionQuirugica/calendar.vue'
 
 //import del area programacion quirurgica
-import tablaC from '@/components/ProgramacionQuirugica/tablaC.vue'
-import GraficasC from '@/components/ProgramacionQuirugica/graficasC.vue'
-import CrearC from '@/components/ProgramacionQuirugica/CrearC.vue'
-import editarC from '@/components/ProgramacionQuirugica/editarC.vue';
+import tablaC from '@/components/ProgramacionQuirugica/tablaC.vue';
+import GraficasC from '@/components/ProgramacionQuirugica/graficasC.vue';
+import CrearC from '@/components/ProgramacionQuirugica/CrearC.vue';
+import EditCirugia from '@/components/ProgramacionQuirugica/editarC.vue';
+import Registros from '@/components/ProgramacionQuirugica/AgendaC.vue';
 
 //Espacios
 import CrearEspacio from '@/components/ProgramacionQuirugica/Espacios/CrearEspacio.vue';
@@ -179,9 +179,9 @@ const router = createRouter({
         },
       
 
-        {path:'/calendar',
-        name:'calendar',
-        component : Calendar,
+        {path:'/registros',
+        name:'registros',
+        component : Registros,
         meta: { requiresRole: ['Direccion General'] }
         },
 
@@ -203,8 +203,8 @@ const router = createRouter({
         meta: { requiresRole: ['Direccion General'] }
         },
         {path:"/editarC/:id",
-        name:"editarC",
-        component: editarC,  
+        name:"EditCirugia",
+        component: EditCirugia,  
         meta: { requiresRole: ['Direccion General'] }
         },
         {path:"/CrearEspacio",
