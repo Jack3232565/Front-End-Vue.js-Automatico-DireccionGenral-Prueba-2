@@ -161,54 +161,54 @@ const router = createRouter({
           meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
 
-        
+        //Farmacia
         {
           path: '/tablamedic',
           name: 'tablamedicamentos',
           component: tablaMedic,
-          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
+          meta: { requiresRole: ['Farmacia'] }
         },
         {
           path: '/medicament',
           name: 'medicamentos',
           component: medicamentos,
-          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
+          meta: { requiresRole: ['Farmacia'] }
         },
         {
           path: '/lotes',
           name: 'lotesmed',
           component: LotesMed,
-          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
+          meta: { requiresRole: ['Farmacia'] }
         },
         {
           path: '/tablalot',
           name: 'tablalotes',
           component: tablaLotes,
-          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
+          meta: { requiresRole: ['Farmacia'] }
         },
         {
           path: '/consumibles',
           name: 'consumibles',
           component: ConsumiblesView,
-          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
+          meta: { requiresRole: ['Farmacia'] }
         },
         {
           path: '/tablacon',
           name: 'tablaconsumibles',
           component: tablaCon,
-          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
+          meta: { requiresRole: ['Farmacia'] }
         },
         {
           path: '/dispensation',
           name: 'dispensacion',
           component: dispensacionView,
-          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
+          meta: { requiresRole: ['Farmacia'] }
         },
         {
           path: '/tabladis',
           name: 'tabladis',
           component: tablaDis,
-          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
+          meta: { requiresRole: ['Farmacia'] }
         },
         {
           path: '/graficos',
