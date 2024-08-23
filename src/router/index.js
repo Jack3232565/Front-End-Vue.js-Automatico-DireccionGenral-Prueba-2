@@ -27,12 +27,18 @@ import CrearC from '@/components/ProgramacionQuirugica/CrearC.vue';
 import EditCirugia from '@/components/ProgramacionQuirugica/editarC.vue';
 import Registros from '@/components/ProgramacionQuirugica/AgendaC.vue';
 
+
 //Espacios
 import CrearEspacio from '@/components/ProgramacionQuirugica/Espacios/CrearEspacio.vue';
 import EditarEspacio from '@/components/ProgramacionQuirugica/Espacios/EditarEspacio.vue';
 import EspaciosList from '@/components/ProgramacionQuirugica/Espacios/EspaciosList.vue';
 import espaciosGraficas from '@/components/ProgramacionQuirugica/Espacios/espaciosGraficas.vue';
 
+//Horarios
+import edithorario from '@/components/ProgramacionQuirugica/Horarios/edithorario.vue';
+import horarios from '@/components/ProgramacionQuirugica/Horarios/horarios.vue';
+import listahorarios from '@/components/ProgramacionQuirugica/Horarios/listahorarios.vue';
+import Edithorario from '@/components/ProgramacionQuirugica/Horarios/edithorario.vue';
 
 
 
@@ -226,6 +232,21 @@ const router = createRouter({
         {path:"/espaciosGraficas",
           name:"espaciosGraficas",
           component: espaciosGraficas,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {path:"/horarios",
+          name:"horarios",
+          component: horarios,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {path:"/edithorario/:id",
+          name:"edithorario",
+          component: edithorario,
+          meta: { requiresRole: ['Direccion General'] }
+        },
+        {path:"/listahorarios",
+          name:"listahorarios",
+          component: listahorarios,
           meta: { requiresRole: ['Direccion General'] }
         }
       ]
