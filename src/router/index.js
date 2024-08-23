@@ -36,6 +36,7 @@ import TableRView from '@/components/Transplantes/TableRequest.vue';
 import UpdateRView from '@/components/Transplantes/UpdateRequest.vue';
 import OrgansView from '@/components/Transplantes/Organs.vue';
 
+
 // Radiologia
 import ResultadosEstudioView from '@/components/Radiologia/resultadosEstudio.vue';
 import EstudioView from '@/components/Radiologia/estudio.vue';
