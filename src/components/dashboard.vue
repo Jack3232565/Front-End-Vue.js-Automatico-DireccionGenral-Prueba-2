@@ -272,21 +272,25 @@
                <ul id="dropdown-example5" class="hidden py-2 space-y-2">
 
                   <li>
-                     <a href="#"
+                     <a href="tablacon"
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Consumilbles</a>
                   </li>
                   <li>
-                     <a href="#"
+                     <a href="/tablalotes"
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Lote
                         Medicamentos</a>
                   </li>
                   <li>
-                     <a href="#"
+                     <a href="/tablamedic"
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Medicamentos</a>
                   </li>
                   <li>
-                     <a href="#"
+                     <a href="/tabladis"
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Dispensación</a>
+                  </li>
+                  <li>
+                     <a href="/graficos"
+                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Graficos</a>
                   </li>
                </ul>
             </li>
