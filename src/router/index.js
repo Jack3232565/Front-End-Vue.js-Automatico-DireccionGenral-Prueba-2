@@ -28,7 +28,7 @@ import ConsumiblesView from '@/components/Farmacia/consumibles.vue';
 import tablaCon from '@/components/Farmacia/tablaconsumibles.vue';
 import dispensacionView from '@/components/Farmacia/dispensacion.vue'
 import tablaDis from '@/components/Farmacia/tabladispensacion.vue'
-
+import graficos from '@/components/Farmacia/graficos.vue';
 
 const roleMap = {
   1: 'Administrativo',
@@ -207,6 +207,12 @@ const router = createRouter({
           path: '/tabladis',
           name: 'tabladis',
           component: tablaDis,
+          meta: { requiresRole: ['Farmacia'] }
+        },
+        {
+          path: '/graficos',
+          name: 'graficas',
+          component: graficos,
           meta: { requiresRole: ['Farmacia'] }
         },
 
