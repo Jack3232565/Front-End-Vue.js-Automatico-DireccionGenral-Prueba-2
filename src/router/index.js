@@ -28,24 +28,6 @@ import tablaCon from '@/components/Farmacia/tablaconsumibles.vue';
 import dispensacionView from '@/components/Farmacia/dispensacion.vue'
 import tablaDis from '@/components/Farmacia/tabladispensacion.vue'
 
-// Recursos humano
-// import rescursos from  
-
-// Transplantes
-import OrganForm from '@/components/Transplantes/OrganForm.vue'
-import OrgansView from '@/components/Transplantes/Organs.vue'
-import RequestView from '@/components/Transplantes/RequestTransplant.vue'
-import TableRView from '@/components/Transplantes/TableRequest.vue'
-import UpdateRView from '@/components/Transplantes/UpdateRequest.vue'
-
-//Radiologia 
-import ResultadosEstudioView from '@/components/Radiologia/resultadosEstudio.vue'
-import EstudioView from '@/components/Radiologia/estudio.vue'
-import dashboardRadiologiaView from '@/components/Radiologia/dashboardRadiologia.vue'
-
-
-
-
 
 const roleMap = {
   1: 'Administrativo',
@@ -221,6 +203,12 @@ const router = createRouter({
           name: 'tabladis',
           component: tablaDis,
           meta: { requiresRole: ['Administrativo', 'Farmacia'] }
+        },
+        {
+          path: '/graficos',
+          name: 'graficas',
+          component: graficos,
+          meta: { requiresRole: ['Farmacia'] }
         },
 
         

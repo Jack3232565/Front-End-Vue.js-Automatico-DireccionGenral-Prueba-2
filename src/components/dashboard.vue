@@ -271,57 +271,23 @@
                </button>
                <ul id="dropdown-example5" class="hidden py-2 space-y-2">
 
-                  <RouterLink to="/consumibles">
-                     <li>
-                        <a href="#"
-                           class="flex items-center px-4 py-2 text-gray-900 mt transition-transform transform hover:scale-110">
-                           Consumilbles
-                        </a>
-                     </li>
-                  </RouterLink>
-
-                  <RouterLink to="/medicament">
-                     <li>
-                        <a href="#"
-                           class="flex items-center px-4 py-2 text-gray-900 mt transition-transform transform hover:scale-110">
-                           Medicamentos
-                        </a>
-                     </li>
-                  </RouterLink>
-                  <RouterLink to="/lotes">
-                     <li>
-                        <a href="#"
-                           class="flex items-center px-4 py-2 text-gray-900 mt transition-transform transform hover:scale-110">
-                           Lote
-                        </a>
-                     </li>
-                  </RouterLink>
-                  <RouterLink to="/tablalot">
-                     <li>
-                        <a href="#"
-                           class="flex items-center px-4 py-2 text-gray-900 mt transition-transform transform hover:scale-110">
-                           Tabla Lotes
-                        </a>
-                     </li>
-                  </RouterLink>
-                  <RouterLink to="/dispensation">
-                     <li>
-                        <a href="#"
-                           class="flex items-center px-4 py-2 text-gray-900 mt transition-transform transform hover:scale-110">
-                           Dispensación
-                        </a>
-                     </li>
-                  </RouterLink>
-                  <RouterLink to="/tabladis">
-                     <li>
-                        <a href="#"
-                           class="flex items-center px-4 py-2 text-gray-900 mt transition-transform transform hover:scale-110">
-                           Tabla Estadísticas
-                        </a>
-                     </li>
-                  </RouterLink>
-
-
+                  <li>
+                     <a href="#"
+                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Consumilbles</a>
+                  </li>
+                  <li>
+                     <a href="#"
+                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Lote
+                        Medicamentos</a>
+                  </li>
+                  <li>
+                     <a href="#"
+                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Medicamentos</a>
+                  </li>
+                  <li>
+                     <a href="#"
+                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Dispensación</a>
+                  </li>
                </ul>
             </li>
 

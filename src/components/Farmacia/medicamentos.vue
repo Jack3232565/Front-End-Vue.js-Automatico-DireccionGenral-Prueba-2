@@ -156,7 +156,7 @@ export default {
   methods: {
     async submitForm() {
       try {
-        await axios.post('http://127.0.0.1:8000/medicamentos/', this.form);
+        await axios.post('https://privilegecare-deploy-gqmt.onrender.com/medicamentos/', this.form);
         alert('Medicamento registrado con éxito');
         // Reiniciar el formulario
         this.resetForm();
@@ -164,7 +164,8 @@ export default {
         console.error('Error al registrar medicamento:', error.response ? error.response.data : error.message);
         alert('Error al registrar medicamento');
       }
-    },
+    }
+    ,
     resetForm() {
       // Reiniciar los campos del formulario a sus valores iniciales
       this.form = {

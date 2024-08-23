@@ -84,7 +84,7 @@
         <div class="mt-6 text-center">
           <button type="submit"
             class="bg-indigo-600 text-white font-semibold py-2 px-4 w-full rounded-lg hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-            Crear
+            Registrar
           </button>
         </div>
       </form>
@@ -120,7 +120,12 @@ export default {
   methods: {
     async fetchMedicamentos() {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/medicamentos/');
+        const response = await axios.get('https://privilegecare-deploy-gqmt.onrender.com/medicamentos/', {
+          headers: {
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkZhcm1hY2lhIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJDb250cmFzZW5hIjoiZGFuaWFndWlsYXIiLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6Ijc3NjEwMjY0ODgifQ.z0nRgC5_-cAke7T59x3jhCxFER_TdVmeIkigbS4qlmA'
+          }
+        });
+
         this.medicamentos = response.data.map(medicamento => ({
           id: medicamento.ID,
           nombreGenerico: medicamento.Nombre_generico
@@ -134,21 +139,42 @@ export default {
       } catch (error) {
         console.error('Error al obtener los medicamentos:', error);
       }
-    },
+    }
+    ,
     updateMedicamentoId() {
       const id = this.medicamentoIdMap[this.selectedMedicamento];
-      console.log('Nombre genérico seleccionado:', this.selectedMedicamento);
-      console.log('ID del medicamento:', id);
       this.form.Medicamento_ID = id !== undefined ? id : '';
     },
     async submitForm() {
-      console.log('Datos del formulario:', this.form);  // Agrega esto para depuración
       try {
-        const response = await axios.post('http://127.0.0.1:8000/lotes/', this.form);
+        const response = await axios.post('https://privilegecare-deploy-gqmt.onrender.com/lotes/', this.form, {
+          headers: {
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkZhcm1hY2lhIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJDb250cmFzZW5hIjoiZGFuaWFndWlsYXIiLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6Ijc3NjEwMjY0ODgifQ.z0nRgC5_-cAke7T59x3jhCxFER_TdVmeIkigbS4qlmA'
+          }
+        });
+
         console.log('Lote creado:', response.data);
+        alert('Lote registrado con éxito');
+        this.resetForm();  // Reiniciar el formulario después de enviar
       } catch (error) {
-        console.error('Error al crear el lote:', error.response ? error.response.data : error.message);
+        console.error('Error al registrar el lote:', error.response ? error.response.data : error.message);
+        alert('Error al registrar el lote');
       }
+    }
+,
+    resetForm() {
+      this.form = {
+        Medicamento_ID: '',
+        Personal_Medico_ID: '',
+        Clave: '',
+        Estatus: '',
+        Costo_Total: null,
+        Cantidad: null,
+        Ubicacion: '',
+        Fecha_Registro: new Date().toISOString(),
+        Fecha_Actualizacion: new Date().toISOString()
+      };
+      this.selectedMedicamento = '';
     }
   }
 };
