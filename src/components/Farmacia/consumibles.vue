@@ -15,7 +15,8 @@
             <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white" for="nombre">
               Nombre
             </label>
-            <input v-model="form.Nombre" class="w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white dark:bg-gray-700 dark:border-gray-600"
+            <input v-model="form.Nombre"
+              class="w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white dark:bg-gray-700 dark:border-gray-600"
               id="nombre" type="text" placeholder="" required />
           </div>
 
@@ -24,7 +25,8 @@
             <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white" for="descripcion">
               Descripción
             </label>
-            <textarea v-model="form.Descripcion" class="w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white dark:bg-gray-700 dark:border-gray-600"
+            <textarea v-model="form.Descripcion"
+              class="w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white dark:bg-gray-700 dark:border-gray-600"
               id="descripcion" placeholder=""></textarea>
           </div>
 
@@ -33,7 +35,8 @@
             <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white" for="cantidad">
               Cantidad
             </label>
-            <input v-model.number="form.Cantidad" class="w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white dark:bg-gray-700 dark:border-gray-600"
+            <input v-model.number="form.Cantidad"
+              class="w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white dark:bg-gray-700 dark:border-gray-600"
               id="cantidad" type="number" placeholder="" required />
           </div>
 
@@ -56,7 +59,8 @@
             <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white" for="departamento">
               Departamento
             </label>
-            <input v-model.number="form.Departamento_ID" class="w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white dark:bg-gray-700 dark:border-gray-600"
+            <input v-model.number="form.Departamento_ID"
+              class="w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white dark:bg-gray-700 dark:border-gray-600"
               id="departamento" type="number" placeholder="" min="0" required />
           </div>
 
@@ -70,8 +74,18 @@
               <option value="" disabled>Selecciona estatus</option>
               <option value="Activo">Activo</option>
               <option value="Inactivo">Inactivo</option>
-              <!-- <option value="En Revisión">En Revisión</option> -->
+              <!-- <option value="En Revision">En Revision</option> -->
             </select>
+          </div>
+
+          <!-- Observaciones -->
+          <div>
+            <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white" for="observaciones">
+              Observaciones
+            </label>
+            <textarea v-model="form.Observaciones"
+              class="w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white dark:bg-gray-700 dark:border-gray-600"
+              id="observaciones" placeholder=""></textarea>
           </div>
 
           <!-- Espacio Médico -->
@@ -79,7 +93,8 @@
             <label class="block mb-2 text-sm font-semibold text-gray-700 dark:text-white" for="espacioMedico">
               Espacio Médico
             </label>
-            <input v-model="form.Espacio_Medico" class="w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white dark:bg-gray-700 dark:border-gray-600"
+            <input v-model="form.Espacio_Medico"
+              class="w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white dark:bg-gray-700 dark:border-gray-600"
               id="espacioMedico" type="text" placeholder="" required />
           </div>
         </div>
@@ -108,6 +123,7 @@ export default {
         Tipo: '',
         Departamento_ID: null,
         Estatus: '',
+        Observaciones: '',
         Espacio_Medico: '',
       },
       searchQuery: ''
@@ -117,7 +133,11 @@ export default {
     async submitForm() {
       try {
         // Envía los datos del formulario al backend
-        await axios.post('http://127.0.0.1:8000/consumibles/', this.form);
+        await axios.post('https://privilegecare-deploy-gqmt.onrender.com/consumibles/', this.form, {
+          headers: {
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkZhcm1hY2lhIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJDb250cmFzZW5hIjoiZGFuaWFndWlsYXIiLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6Ijc3NjEwMjY0ODgifQ.z0nRgC5_-cAke7T59x3jhCxFER_TdVmeIkigbS4qlmA'
+          }
+        });
 
         // Muestra una alerta de éxito
         alert('Consumible registrado con éxito');
@@ -129,7 +149,8 @@ export default {
         console.error('Error al registrar consumible:', error.response ? error.response.data : error.message);
         alert('Error al registrar consumible');
       }
-    },
+    }
+    ,
     resetForm() {
       // Reinicia los campos del formulario a sus valores iniciales
       this.form = {
@@ -139,6 +160,7 @@ export default {
         Tipo: '',
         Departamento_ID: null,
         Estatus: '',
+        Observaciones: '',
         Espacio_Medico: '',
       };
     },
