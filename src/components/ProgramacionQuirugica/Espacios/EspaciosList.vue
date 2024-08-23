@@ -11,7 +11,7 @@
         />
         <button @click="irACrearEspacio" class="btn btn-primary">Crear Espacio</button>
       </div>
-      <div class="table-responsive" style="max-height: 500px;">
+      <div>
         <table class="table table-bordered">
           <thead class="table-dark">
             <tr>
@@ -24,7 +24,7 @@
               <th>Fecha Actualización</th>
               <th>Capacidad</th>
               <th>Espacio Superior ID</th>
-              <th>Columna</th>
+              <th>Espacio Colaboración</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -50,70 +50,65 @@
       </div>
     </div>
   </template>
-<script>
-import axios from 'axios';
-
-export default {
-  data() {
-    return {
-      espacios: [],
-      filtro: '',
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkJydW5vIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoic3RyaW5nIiwiQ29udHJhc2VuYSI6ImJydW5vIiwiTnVtZXJvX1RlbGVmb25pY29fTW92aWwiOiJzdHJpbmcifQ.x2mprKqz7Af2HLrWycpWLlYqI9xtG9SWJOQ8Pgn4qqg'
-    };
-  },
-  computed: {
-    espaciosFiltrados() {
-      return this.espacios.filter(espacio => {
-        return espacio.Nombre.toLowerCase().includes(this.filtro.toLowerCase());
-      });
+  
+  <script>
+  import axios from 'axios';
+  
+  export default {
+    data() {
+      return {
+        espacios: [],
+        filtro: '',
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkJydW5vIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoic3RyaW5nIiwiQ29udHJhc2VuYSI6ImJydW5vIiwiTnVtZXJvX1RlbGVmb25pY29fTW92aWwiOiJzdHJpbmcifQ.x2mprKqz7Af2HLrWycpWLlYqI9xtG9SWJOQ8Pgn4qqg'
+      };
+    },
+    computed: {
+      espaciosFiltrados() {
+        return this.espacios.filter(espacio => {
+          return espacio.Nombre.toLowerCase().includes(this.filtro.toLowerCase());
+        });
+      }
+    },
+    created() {
+      this.obtenerEspacios();
+    },
+    methods: {
+      obtenerEspacios() {
+        axios.get('http://127.0.0.1:8000/espacios/', {
+          headers: {
+            'Authorization': `Bearer ${this.token}`
+          }
+        })
+        .then(response => {
+          this.espacios = response.data;
+        })
+        .catch(error => {
+          console.error('Error al obtener los espacios:', error);
+        });
+      },
+      buscarEspacios() {
+        // Este método se invoca automáticamente con v-model y @input en la barra de búsqueda
+      },
+      irACrearEspacio() {
+        this.$router.push({ name: 'CrearEspacio' });
+      },
+      editarEspacio(id) {
+        this.$router.push({ name: 'EditarEspacio', params: { id } });
+      },
+      eliminarEspacio(id) {
+        axios.delete(`http://127.0.0.1:8000/espacios/${id}/`, {
+          headers: {
+            'Authorization': `Bearer ${this.token}`
+          }
+        })
+        .then(() => {
+          this.obtenerEspacios();
+        })
+        .catch(error => {
+          console.error('Error al eliminar el espacio:', error);
+        });
+      }
     }
-  },
-  created() {
-    this.obtenerEspacios();
-  },
-  methods: {
-    obtenerEspacios() {
-      axios.get('http://127.0.0.1:8000/espacios/', {
-        headers: {
-          'Authorization': `Bearer ${this.token}`
-        }
-      })
-      .then(response => {
-        this.espacios = response.data;
-      })
-      .catch(error => {
-        console.error('Error al obtener los espacios:', error);
-      });
-    },
-    buscarEspacios() {
-      // Este método se invoca automáticamente con v-model y @input en la barra de búsqueda
-    },
-    irACrearEspacio() {
-      this.$router.push({ name: 'CrearEspacio' });
-    },
-    editarEspacio(id) {
-      this.$router.push({ name: 'EditarEspacio', params: { id } });
-    },
-    eliminarEspacio(id) {
-      axios.delete(`http://127.0.0.1:8000/espacios/${id}/`, {
-        headers: {
-          'Authorization': `Bearer ${this.token}`
-        }
-      })
-      .then(() => {
-        this.obtenerEspacios();
-      })
-      .catch(error => {
-        console.error('Error al eliminar el espacio:', error);
-      });
-    }
-  }
-};
-</script>
-<style scoped>
-.table-responsive {
-  overflow-y: auto;
-  max-height: 500px; /* Ajusta la altura según sea necesario */
-}
-</style>
+  };
+  </script>
   

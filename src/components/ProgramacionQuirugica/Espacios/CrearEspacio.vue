@@ -39,7 +39,7 @@
           <label for="tbcEspacioscol" class="form-label">Espacio Colaboración</label>
           <input v-model="espacio.tbc_espacioscol" type="text" class="form-control" id="tbcEspacioscol">
         </div>
-        <!-- Botones separados con un margen -->
+       
         <button type="submit" class="btn btn-success me-2">Crear</button>
         <button type="button" @click="cancelar" class="btn btn-secondary">Cancelar</button>
       </form>

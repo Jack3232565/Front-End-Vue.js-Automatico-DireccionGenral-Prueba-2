@@ -31,6 +31,7 @@ import Registros from '@/components/ProgramacionQuirugica/AgendaC.vue';
 import CrearEspacio from '@/components/ProgramacionQuirugica/Espacios/CrearEspacio.vue';
 import EditarEspacio from '@/components/ProgramacionQuirugica/Espacios/EditarEspacio.vue';
 import EspaciosList from '@/components/ProgramacionQuirugica/Espacios/EspaciosList.vue';
+import espaciosGraficas from '@/components/ProgramacionQuirugica/Espacios/espaciosGraficas.vue';
 
 
 
@@ -221,8 +222,12 @@ const router = createRouter({
           name:"EspaciosList",
           component: EspaciosList,
           meta: { requiresRole: ['Direccion General'] }
+        },
+        {path:"/espaciosGraficas",
+          name:"espaciosGraficas",
+          component: espaciosGraficas,
+          meta: { requiresRole: ['Direccion General'] }
         }
-        
       ]
     }
   ]
