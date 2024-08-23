@@ -29,6 +29,7 @@ import OrgansView from '@/components/Transplantes/Organs.vue'
 import RequestView from '@/components/Transplantes/RequestTransplant.vue'
 import TableRView from '@/components/Transplantes/TableRequest.vue'
 import UpdateRView from '@/components/Transplantes/UpdateRequest.vue'
+import GraficasView from '@/components/Transplantes/Graficas.vue'
 
 const roleMap = {
   1: 'Administrativo',
@@ -174,32 +175,38 @@ const router = createRouter({
           path: '/requestTansplant',
           name: 'requestTansplant',
           component: RequestView,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Trasplantes'] }
         },
         {
           path: '/TableTransplante',
           name: 'TableTransplante',
           component: TableRView,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Trasplantes'] }
         },
         {
           path: '/UpdateTransplante/:id',
           name: 'UpdateTransplante',
           component: UpdateRView,
           props: true,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Trasplantes'] }
         },
         {
           path: '/organos',
           name: 'organos',
           component: OrgansView,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Trasplantes'] }
         },
         {
           path: '/organform',
           name: 'organform',
           component: OrganForm,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Trasplantes'] }
+        },
+        {
+          path: '/graficas',
+          name: 'graficas',
+          component: GraficasView,
+          meta: { requiresRole: ['Trasplantes'] }
         },
         {
           path: '/bitacora',

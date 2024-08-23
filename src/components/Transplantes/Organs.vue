@@ -240,7 +240,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-    baseURL: 'http://127.0.0.1:8000/',
+    baseURL: 'https://privilegecare-deploy-gqmt.onrender.com/',
 });
 
 export default {
@@ -299,7 +299,7 @@ export default {
                     console.error("ID del órgano no definido.");
                     return;
                 }
-                await apiClient.put(`http://127.0.0.1:8000/organo/${organoId}`, this.selectedOrgano);
+                await apiClient.put(`https://privilegecare-deploy-gqmt.onrender.com/organo/${organoId}`, this.selectedOrgano);
                 console.log("Órgano actualizado con éxito");
 
                 this.fetchOrganos();  // Refresca la lista de órganos después de la actualización
@@ -331,7 +331,7 @@ export default {
                     console.error("ID del órgano no definido.");
                     return;
                 }
-                const response = await axios.delete(`http://127.0.0.1:8000/organo/${organoId}`);
+                const response = await axios.delete(`https://privilegecare-deploy-gqmt.onrender.com/${organoId}`);
                 console.log("Órgano eliminado con éxito", response.data);
                 this.fetchOrganos(); // Refrescar la lista después de eliminar
                 this.closeModal(); // Cerrar el modal después de eliminar

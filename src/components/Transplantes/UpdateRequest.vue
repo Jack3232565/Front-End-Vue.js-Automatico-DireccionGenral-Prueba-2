@@ -19,7 +19,7 @@
         <select v-model="formData.Medico_ID"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center">
           <option v-for="medico in medicos" :key="medico.ID" :value="medico.ID">
-            {{ medico.Titulo }} {{ medico.Nombre }} {{ medico.Primer_Apellido }} {{ medico.Segundo_Apellido }}
+            {{ medico.Titulo_Cortesia }} {{ medico.Nombre }} {{ medico.Primer_Apellido }} {{ medico.Segundo_Apellido }}
           </option>
         </select>
       </div>
@@ -117,8 +117,8 @@ export default {
 
       // Cargar listas de personas, médicos y servicios
       const personas = await obtenerPersonas();
-      this.personas = personas.filter(persona => persona.Titulo !== 'Dr.' && persona.Titulo !== 'Dra.');
-      this.medicos = personas.filter(persona => persona.Titulo === 'Dr.' || persona.Titulo === 'Dra.');
+        this.personas = personas.filter(persona => persona.Titulo_Cortesia !== 'Doctor' && persona.Titulo_Cortesia !== 'Doctora' && persona.Titulo_Cortesia !== 'Dr.' && persona.Titulo_Cortesia !== 'Dra.');
+        this.medicos = personas.filter(persona => persona.Titulo_Cortesia === 'Doctor' || persona.Titulo_Cortesia === 'Doctora' || persona.Titulo_Cortesia === 'Dr.' || persona.Titulo_Cortesia === 'Dra.');
       this.servicios = await obtenerServiciosMedicos();
     } catch (error) {
       console.error('Error al obtener los datos:', error.message);
@@ -128,7 +128,7 @@ export default {
     async actualizarSolicitud() {
       const id = this.$route.params.id;
       try {
-        const response = await fetch(`http://127.0.0.1:8000/solicitudes/${id}`, {
+        const response = await fetch(`https://privilegecare-deploy-gqmt.onrender.com/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

@@ -1,6 +1,6 @@
 async function obtenerPersonas() {
     return new Promise((resolve, reject) => {
-        fetch("http://127.0.0.1:8000/persons/")
+        fetch("https://privilegecare-deploy-gqmt.onrender.com/persons/")
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Error al obtener las personas");

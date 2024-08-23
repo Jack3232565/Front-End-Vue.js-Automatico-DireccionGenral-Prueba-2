@@ -23,7 +23,7 @@
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center">
                 <option value="">-- Selecciona una Opción --</option>
                 <option v-for="medico in medicos" :key="medico.ID" :value="medico.ID">
-                    {{ medico.Titulo }} {{ medico.Nombre }} {{ medico.Primer_Apellido }} {{ medico.Segundo_Apellido }}
+                    {{ medico.Titulo_Cortesia }} {{ medico.Nombre }} {{ medico.Primer_Apellido }} {{ medico.Segundo_Apellido }}
                 </option>
             </select>
         </div>
@@ -128,8 +128,8 @@ export default {
             try {
                 const personas = await obtenerPersonas();
                 // Filtra personas para pacientes y médicos basados en el título
-                this.personas = personas.filter(persona => persona.Titulo !== 'Dr.' && persona.Titulo !== 'Dra.');
-                this.medicos = personas.filter(persona => persona.Titulo === 'Dr.' || persona.Titulo === 'Dra.');
+        this.personas = personas.filter(persona => persona.Titulo_Cortesia !== 'Doctor' && persona.Titulo_Cortesia !== 'Doctora' && persona.Titulo_Cortesia !== 'Dr.' && persona.Titulo_Cortesia !== 'Dra.');
+        this.medicos = personas.filter(persona => persona.Titulo_Cortesia === 'Doctor' || persona.Titulo_Cortesia === 'Doctora' || persona.Titulo_Cortesia === 'Dr.' || persona.Titulo_Cortesia === 'Dra.');
                 console.log('Personas:', this.personas);
                 console.log('Médicos:', this.medicos);
             } catch (error) {

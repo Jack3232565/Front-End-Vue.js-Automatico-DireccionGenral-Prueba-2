@@ -1,6 +1,6 @@
 async function obtenerPersonalMedico() {
     return new Promise((resolve, reject) => {
-        fetch("http://127.0.0.1:8000/personal_medico/")
+        fetch("https://privilegecare-deploy-gqmt.onrender.com/personal_medico/")
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Error al obtener el personal médico");

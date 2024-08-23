@@ -1,6 +1,6 @@
 async function registrarSolicitud(data) {
     try {
-        const response = await fetch('http://127.0.0.1:8000/solicitudes/', {
+        const response = await fetch('https://privilegecare-deploy-gqmt.onrender.com/solicitudes/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ async function registrarSolicitud(data) {
 
 async function obtenerSolicitudes() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/solicitudes/', {
+        const response = await fetch('https://privilegecare-deploy-gqmt.onrender.com/solicitudes/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ async function obtenerSolicitudes() {
 
 async function obtenerSolicitudPorId(id) {
     try {
-        const response = await fetch(`http://127.0.0.1:8000/solicitudes/${id}`, {
+        const response = await fetch(`https://privilegecare-deploy-gqmt.onrender.com/solicitudes/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ async function obtenerSolicitudPorId(id) {
 
 async function actualizarSolicitud(id, solicitudData) {
     try {
-        const response = await fetch(`http://127.0.0.1:8000/solicitudes/${id}`, {
+        const response = await fetch(`https://privilegecare-deploy-gqmt.onrender.com/solicitudes/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

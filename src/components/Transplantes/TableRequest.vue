@@ -117,8 +117,8 @@ export default {
         this.solicitudes = await obtenerSolicitudes();
         this.filteredSolicitudes = this.solicitudes;
         const personas = await obtenerPersonas();
-        this.personas = personas.filter(persona => persona.Titulo !== 'Dr.' && persona.Titulo !== 'Dra.');
-        this.medicos = personas.filter(persona => persona.Titulo === 'Dr.' || persona.Titulo === 'Dra.');
+        this.personas = personas.filter(persona => persona.Titulo_Cortesia !== 'Doctor' && persona.Titulo_Cortesia !== 'Doctora' && persona.Titulo_Cortesia !== 'Dr.' && persona.Titulo_Cortesia !== 'Dra.');
+        this.medicos = personas.filter(persona => persona.Titulo_Cortesia === 'Doctor' || persona.Titulo_Cortesia === 'Doctora' || persona.Titulo_Cortesia === 'Dr.' || persona.Titulo_Cortesia === 'Dra.');
         this.servicios = await obtenerServiciosMedicos();
       } catch (error) {
         console.error('Error al obtener datos:', error.message);
@@ -126,7 +126,7 @@ export default {
     },
     async borrarSolicitud(id) {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/solicitudes/${id}/`, {
+        const response = await fetch(`https://privilegecare-deploy-gqmt.onrender.com/${id}/`, {
           method: 'DELETE',
         });
 
@@ -161,7 +161,7 @@ export default {
     },
     getMedicoNombre(id) {
       const medico = this.medicos.find(m => m.ID === id);
-      return medico ? `${medico.Titulo} ${medico.Nombre} ${medico.Primer_Apellido} ${medico.Segundo_Apellido}` : 'Desconocido';
+      return medico ? `${medico.Titulo_Cortesia} ${medico.Nombre} ${medico.Primer_Apellido} ${medico.Segundo_Apellido}` : 'Desconocido';
     },
     getServicioNombre(id) {
       const servicio = this.servicios.find(s => s.ID === id);
