@@ -39,7 +39,9 @@
           <label for="tbcEspacioscol" class="form-label">Espacio Colaboración</label>
           <input v-model="espacio.tbc_espacioscol" type="text" class="form-control" id="tbcEspacioscol">
         </div>
-        <button type="submit" class="btn btn-success">Crear</button>
+        <!-- Botones separados con un margen -->
+        <button type="submit" class="btn btn-success me-2">Crear</button>
+        <button type="button" @click="cancelar" class="btn btn-secondary">Cancelar</button>
       </form>
     </div>
   </template>
@@ -86,6 +88,9 @@
         .catch(error => {
           console.error('Error al crear el espacio:', error.response ? error.response.data : error.message);
         });
+      },
+      cancelar() {
+        this.$router.push({ name: 'EspaciosList' });
       }
     }
   };
