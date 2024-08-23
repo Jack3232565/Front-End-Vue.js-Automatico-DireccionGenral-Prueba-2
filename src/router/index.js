@@ -4,10 +4,9 @@ import LoginView from '@/components/login.vue';
 import DashboardView from '@/components/dashboard.vue';
 import PersonasView from '@/components/personas.vue';
 import UsuarioView from '@/components/usuario.vue';
-import ResultadosEstudioView from '@/components/Radiologia/resultadosEstudio.vue'
-import EstudioView from '@/components/Radiologia/estudio.vue'
-import dashboardRadiologiaView from '@/components/Radiologia/dashboardRadiologia.vue'
 import PiePaginaView from '@/components/pie-pagina.vue';
+
+//Direccion General
 import AprobacionSM from '../components/DireccionGeneral/AprobacionSM.vue';
 import UsuarioRoles from '@/components/DireccionGeneral/UsuarioRoles.vue';
 import Roles from '@/components/DireccionGeneral/Roles.vue';
@@ -38,6 +37,14 @@ import OrgansView from '@/components/Transplantes/Organs.vue'
 import RequestView from '@/components/Transplantes/RequestTransplant.vue'
 import TableRView from '@/components/Transplantes/TableRequest.vue'
 import UpdateRView from '@/components/Transplantes/UpdateRequest.vue'
+
+//Radiologia 
+import ResultadosEstudioView from '@/components/Radiologia/resultadosEstudio.vue'
+import EstudioView from '@/components/Radiologia/estudio.vue'
+import dashboardRadiologiaView from '@/components/Radiologia/dashboardRadiologia.vue'
+
+
+
 
 
 const roleMap = {
