@@ -20,6 +20,7 @@ import GraficosDireccionG from '../components/DireccionGeneral/GraficosDireccion
 import GrficoApro from '@/components/DireccionGeneral/GraficosDG/GrficoApro.vue';
 import GrficoRoles from '@/components/DireccionGeneral/GraficosDG/GrficoRoles.vue'
 
+// Farmacia
 import tablaMedic from '@/components/Farmacia/tablamedicamentos.vue';
 import medicamentos from '@/components/Farmacia/medicamentos.vue';
 import LotesMed from '@/components/Farmacia/LotesMed.vue';
@@ -28,7 +29,6 @@ import ConsumiblesView from '@/components/Farmacia/consumibles.vue';
 import tablaCon from '@/components/Farmacia/tablaconsumibles.vue';
 import dispensacionView from '@/components/Farmacia/dispensacion.vue'
 import tablaDis from '@/components/Farmacia/tabladispensacion.vue'
-
 
 // Recursos humano
 // import rescursos from  
@@ -39,6 +39,7 @@ import OrgansView from '@/components/Transplantes/Organs.vue'
 import RequestView from '@/components/Transplantes/RequestTransplant.vue'
 import TableRView from '@/components/Transplantes/TableRequest.vue'
 import UpdateRView from '@/components/Transplantes/UpdateRequest.vue'
+
 
 const roleMap = {
   1: 'Administrativo',
