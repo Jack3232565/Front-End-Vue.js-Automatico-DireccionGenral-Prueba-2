@@ -159,14 +159,6 @@ export default {
   background-color: #4b5563;
 }
 
-.bg-[#0F6466] {
-  background-color: #0F6466;
-}
-
-.text-[#0F6466] {
-  color: #0F6466;
-}
-
 .text-white {
   color: #ffffff;
 }
