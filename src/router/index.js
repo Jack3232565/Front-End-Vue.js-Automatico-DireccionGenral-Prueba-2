@@ -97,18 +97,8 @@ const router = createRouter({
           component: UsuarioView,
           meta: { requiresRole: ['Direccion General','Administrativo' ] }
         },
-        {
-          path: '/resultadosEstudio',
-          name: 'resultadosEstudio',
-          component: ResultadosEstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
-        },
-        {
-          path: 'tablaResultadoEstudio',
-          name: 'tablaResultadoEstudio',
-          component: TablaResutadoEstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
-        },
+
+
         {
           path: '/estudio',
           name: 'estudio',
@@ -116,16 +106,12 @@ const router = createRouter({
           meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
         },
         {
-          path: 'tablaEstudios',
-          name: 'tablaEstudios',
-          component: TablaEstudiosView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
-        },
-        {
           path: 'pie-pagina',
           name: 'piePagina',
           component: PiePaginaView
         },
+
+        // Direccion General
         {
           path: '/aprobacionSM',
           name: 'aprobacionSM',
@@ -186,6 +172,8 @@ const router = createRouter({
           component: Bitacora,
           meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
+
+        
         {
           path: '/tablamedic',
           name: 'tablamedicamentos',
@@ -268,6 +256,29 @@ const router = createRouter({
           component: OrganForm,
           meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
+
+        // Radiologia
+        {
+          path: '/resultadosEstudio',
+          name: 'resultadosEstudio',
+          component: ResultadosEstudioView,
+          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
+        },
+        {
+          path: '/estudio',
+          name: 'estudio',
+          component: EstudioView,
+          meta: { requiresRole: ['Administrativo','Radiologia','Medico General', 'Medico Especialista'] }
+        },
+        {
+          path: '/dashboardRadiologia',
+          name: 'dashboardRadiologia',
+          component: dashboardRadiologiaView,
+          meta: { requiresRole: ['Administrativo','Radiologia','Medico General', 'Medico Especialista'] }
+        },
+
+
+
         {
           path: '/bitacora',
           name: 'bitacora',
