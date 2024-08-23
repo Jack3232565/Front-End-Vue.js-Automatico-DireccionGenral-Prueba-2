@@ -88,31 +88,31 @@ const router = createRouter({
           path: 'usuario',
           name: 'usuario',
           component: UsuarioView,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Direccion General','Administrativo' ] }
         },
         {
           path: 'resultadosEstudio',
           name: 'resultadosEstudio',
           component: ResultadosEstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
+          meta: { requiresRole: ['Administrativo', 'Medico General', 'Medico Especialista'] }
         },
         {
           path: 'tablaResultadoEstudio',
           name: 'tablaResultadoEstudio',
           component: TablaResutadoEstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
+          meta: { requiresRole: ['Administrativo', 'Medico General', 'Medico Especialista'] }
         },
         {
           path: 'estudio',
           name: 'estudio',
           component: EstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
+          meta: { requiresRole: ['Administrativo', 'Medico General', 'Medico Especialista'] }
         },
         {
           path: 'tablaEstudios',
           name: 'tablaEstudios',
           component: TablaEstudiosView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
+          meta: { requiresRole: ['Administrativo', 'Medico General', 'Medico Especialista'] }
         },
         {
           path: 'pie-pagina',
@@ -123,109 +123,109 @@ const router = createRouter({
           path: '/aprobacionSM',
           name: 'aprobacionSM',
           component: AprobacionSM,
-          meta: { requiresRole: ['Direccion General', 'Recursos Humanos'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General', 'Recursos Humanos'] }
         },
         {
           path: '/usuarioRoles',
           name: 'usuarioRoles',
           component: UsuarioRoles,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/roles',
           name: 'roles',
           component: Roles,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/rolesModal',
           name: 'rolesModal',
           component: RolesModal,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/aprobacionModal',
           name: 'aprobacionModal',
           component: AprobacionModal,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/usuarioRolesModal',
           name: 'usuarioRolesModal',
           component: UsuarioRolesModal,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/gradicosDG',
           name: 'graficosDG',
           component: GraficosDireccionG,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/grafApro',
           name: 'grafApro',
           component: GrficoApro,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/grafRoles',
           name: 'grafRoles',
           component: GrficoRoles,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/bitacora',
           name: 'bitacora',
           component: Bitacora,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/tablamedic',
           name: 'tablamedicamentos',
           component: tablaMedic,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
         },
         {
           path: '/medicament',
           name: 'medicamentos',
           component: medicamentos,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
         },
         {
           path: '/lotes',
           name: 'lotesmed',
           component: LotesMed,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
         },
         {
           path: '/tablalot',
           name: 'tablalotes',
           component: tablaLotes,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
         },
         {
           path: '/consumibles',
           name: 'consumibles',
           component: ConsumiblesView,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
         },
         {
           path: '/tablacon',
           name: 'tablaconsumibles',
           component: tablaCon,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
         },
         {
           path: '/dispensation',
           name: 'dispensacion',
           component: dispensacionView,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
         },
         {
           path: '/tabladis',
           name: 'tabladis',
           component: tablaDis,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo', 'Farmacia'] }
         },
 
         
@@ -234,38 +234,38 @@ const router = createRouter({
           path: '/requestTansplant',
           name: 'requestTansplant',
           component: RequestView,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/TableTransplante',
           name: 'TableTransplante',
           component: TableRView,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/UpdateTransplante/:id',
           name: 'UpdateTransplante',
           component: UpdateRView,
           props: true,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/organos',
           name: 'organos',
           component: OrgansView,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/organform',
           name: 'organform',
           component: OrganForm,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/bitacora',
           name: 'bitacora',
           component: Bitacora,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
       ]
     }
