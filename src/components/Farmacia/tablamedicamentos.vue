@@ -32,7 +32,8 @@
             </div>
             <button type="button" @click="clearSearch"
                 class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
@@ -65,11 +66,13 @@
                         </td>
                         <td class="px-6 py-4">
                             <span v-if="!item.editing">{{ item.Nombre_comercial }}</span>
-                            <input v-else v-model="item.Nombre_comercial" type="text" class="w-full border p-1 rounded" />
+                            <input v-else v-model="item.Nombre_comercial" type="text"
+                                class="w-full border p-1 rounded" />
                         </td>
                         <td class="px-6 py-4">
                             <span v-if="!item.editing">{{ item.Nombre_generico }}</span>
-                            <input v-else v-model="item.Nombre_generico" type="text" class="w-full border p-1 rounded" />
+                            <input v-else v-model="item.Nombre_generico" type="text"
+                                class="w-full border p-1 rounded" />
                         </td>
                         <td class="px-6 py-4">
                             <span v-if="!item.editing">{{ item.Via_administracion }}</span>
@@ -188,14 +191,26 @@ export default {
     methods: {
         async fetchMedicamentos() {
             try {
-                const response = await fetch('http://localhost:8000/medicamentos');
+                const response = await fetch('https://privilegecare-deploy-gqmt.onrender.com/medicamentos', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkZhcm1hY2lhIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJDb250cmFzZW5hIjoiZGFuaWFndWlsYXIiLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6Ijc3NjEwMjY0ODgifQ.z0nRgC5_-cAke7T59x3jhCxFER_TdVmeIkigbS4qlmA'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
                 const data = await response.json();
                 this.medicamentos = data;
                 this.originalData = JSON.parse(JSON.stringify(data)); // Guardar una copia para cancelar ediciones
             } catch (error) {
                 console.error('Error fetching medicamentos:', error);
             }
-        },
+        }
+        ,
         async editItem(item) {
             item.editing = true;
         },
@@ -207,32 +222,35 @@ export default {
         },
         async saveItem(item) {
             try {
-                const response = await fetch(`http://localhost:8000/medicamento/${item.ID}`, {
+                const response = await fetch(`https://privilegecare-deploy-gqmt.onrender.com/medicamento/${item.ID}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkZhcm1hY2lhIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJDb250cmFzZW5hIjoiZGFuaWFndWlsYXIiLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6Ijc3NjEwMjY0ODgifQ.z0nRgC5_-cAke7T59x3jhCxFER_TdVmeIkigbS4qlmA'
                     },
                     body: JSON.stringify(item),
                 });
 
                 if (response.ok) {
                     item.editing = false;
-                    this.fetchMedicamentos(); // Recargar datos para reflejar los cambios
+                    await this.fetchMedicamentos(); // Recargar datos para reflejar los cambios
                 } else {
                     console.error('Error saving item');
                 }
             } catch (error) {
                 console.error('Error saving item:', error);
             }
-        },
+        }
+        ,
         async deleteItem(id) {
             try {
-                const url = `http://localhost:8000/medicamento/${id}`; // Actualiza la ruta aquí
+                const url = `https://privilegecare-deploy-gqmt.onrender.com/medicamento/${id}`;
                 const response = await fetch(url, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
-                    },
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkZhcm1hY2lhIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoiZGFuaWVsYUBnbWFpbC5jb20iLCJDb250cmFzZW5hIjoiZGFuaWFndWlsYXIiLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6Ijc3NjEwMjY0ODgifQ.z0nRgC5_-cAke7T59x3jhCxFER_TdVmeIkigbS4qlmA'
+                    }
                 });
 
                 if (response.ok) {
@@ -245,7 +263,8 @@ export default {
             } catch (error) {
                 console.error('Error deleting item:', error);
             }
-        },
+        }
+        ,
         changeValue(item, field, delta) {
             item[field] = Math.max((item[field] || 0) + delta, 0); // Evitar valores negativos
         },
@@ -268,4 +287,6 @@ export default {
 };
 </script>
 
-<style scoped>/* Puedes añadir estilos personalizados aquí */</style>
+<style scoped>
+/* Puedes añadir estilos personalizados aquí */
+</style>
