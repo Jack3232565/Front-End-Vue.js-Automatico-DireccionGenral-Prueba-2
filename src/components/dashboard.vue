@@ -288,7 +288,7 @@
                         </a>
                      </li>
                   </RouterLink>
-                  <RouterLink to="/medicament">
+                  <RouterLink to="/tablamedic">
                      <li>
                         <a href="#"
                            class="flex items-center px-4 py-2 text-gray-900 transition-transform transform hover:scale-110">
@@ -296,7 +296,7 @@
                         </a>
                      </li>
                   </RouterLink>
-                  <RouterLink to="/dispensation">
+                  <RouterLink to="/tabladis">
                      <li>
                         <a href="#"
                            class="flex items-center px-4 py-2 text-gray-900 transition-transform transform hover:scale-110">
