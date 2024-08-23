@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-300 rounded-2xl p-10 flex flex-col items-center max-w-6xl w-full">
+  <div class="bg-gray-300 min-h-screen p-10 flex flex-col max-w-full mx-auto">
     <h1 class="font-bold text-3xl text-[#0F6466] mb-4">Registros de Cirugías</h1>
 
     <div class="w-full mb-4 flex justify-between items-center">
@@ -7,31 +7,35 @@
         Crear Cirugía
       </button>
 
-      <div class="relative w-full max-w-md">
-        <input v-model="busqueda" type="text" class="p-2 rounded-xl border border-gray-300 w-full pr-10" placeholder="Buscar cirugía..." />
+      <div class="relative w-full max-w-md flex-grow ml-4">
+        <input 
+          v-model="busqueda" 
+          @input="buscarCirugias" 
+          type="text" 
+          class="p-2 rounded-xl border border-gray-300 w-full pr-10" 
+          placeholder="Buscar Cirugías..."
+        />
         <span class="absolute inset-y-0 right-0 flex items-center px-3 bg-[#0F6466] text-white rounded-r-xl">
           <i class="fas fa-search"></i>
         </span>
       </div>
     </div>
 
-    <div class="w-full overflow-x-auto">
+    <div class="w-full flex-grow overflow-x-auto">
       <table class="w-full table-auto border-collapse border border-gray-300">
         <thead class="bg-gray-200">
           <tr>
-            
             <th class="p-2 border-b">Nombre</th>
             <th class="p-2 border-b">Descripción</th>
             <th class="p-2 border-b">Nivel de Urgencia</th>
             <th class="p-2 border-b">Horario</th>
             <th class="p-2 border-b">Observaciones</th>
             <th class="p-2 border-b">Consumible</th>
-            <th class="p-2 border-b">Acciones</th> <!-- Columna para botones -->
+            <th class="p-2 border-b">Acciones</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="cirugia in cirugiasFiltradas" :key="cirugia.ID">
-            
             <td class="p-2 border-b">{{ cirugia.Nombre }}</td>
             <td class="p-2 border-b">{{ cirugia.Descripcion }}</td>
             <td class="p-2 border-b">{{ cirugia.Nivel_Urgencia }}</td>
@@ -39,12 +43,14 @@
             <td class="p-2 border-b">{{ cirugia.Observaciones }}</td>
             <td class="p-2 border-b">{{ cirugia.Consumible }}</td>
             <td class="p-2 border-b text-center">
-              <button @click="eliminarCirugia(cirugia.ID)" class="bg-red-500 text-white py-1 px-2 rounded-xl hover:scale-105 duration-300 hover:bg-red-600">
-                <i class="fas fa-trash-alt"></i> Eliminar
-              </button>
-              <button @click="editarCirugia(cirugia.ID)" class="bg-yellow-500 text-white py-1 px-2 rounded-xl hover:scale-105 duration-300 hover:bg-yellow-600">
-                <i class="fas fa-edit"></i> Editar
-              </button>
+              <div class="flex space-x-2 justify-center">
+                <button @click="editarCirugia(cirugia.ID)" class="bg-yellow-500 text-white py-1 px-2 rounded-xl hover:scale-105 duration-300 hover:bg-yellow-600">
+                  <i class="fas fa-edit"></i> Editar
+                </button>
+                <button @click="eliminarCirugia(cirugia.ID)" class="bg-red-500 text-white py-1 px-2 rounded-xl hover:scale-105 duration-300 hover:bg-red-600">
+                  <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -67,64 +73,55 @@ export default {
   computed: {
     cirugiasFiltradas() {
       const searchTerm = this.busqueda.toLowerCase();
-
       return this.cirugias.filter(cirugia => {
-        const tipo = (cirugia.Tipo || '').toString().toLowerCase();
-        const nombre = (cirugia.Nombre || '').toString().toLowerCase();
-        const descripcion = (cirugia.Descripcion || '').toString().toLowerCase();
-        const nivelUrgencia = (cirugia.Nivel_Urgencia || '').toString().toLowerCase();
-        const horario = (cirugia.Horario || '').toString().toLowerCase();
-        const observaciones = (cirugia.Observaciones || '').toString().toLowerCase();
-        const consumible = (cirugia.Consumible || '').toString().toLowerCase();
-
         return (
-          tipo.includes(searchTerm) ||
-          nombre.includes(searchTerm) ||
-          descripcion.includes(searchTerm) ||
-          nivelUrgencia.includes(searchTerm) ||
-          horario.includes(searchTerm) ||
-          observaciones.includes(searchTerm) ||
-          consumible.includes(searchTerm)
+          (cirugia.Nombre || '').toLowerCase().includes(searchTerm) ||
+          (cirugia.Descripcion || '').toLowerCase().includes(searchTerm) ||
+          (cirugia.Nivel_Urgencia || '').toLowerCase().includes(searchTerm) ||
+          (cirugia.Horario || '').toLowerCase().includes(searchTerm) ||
+          (cirugia.Observaciones || '').toLowerCase().includes(searchTerm) ||
+          (cirugia.Consumible || '').toLowerCase().includes(searchTerm)
         );
       });
     }
   },
-  mounted() {
+  created() {
     this.obtenerCirugias();
   },
   methods: {
-    irACrearCirugia() {
-      this.$router.push({ name: 'crearC' }); // Redirecciona a la vista CrearCirugias
-    },
-    eliminarCirugia(id) {
-      axios.delete(`http://127.0.0.1:8000/cirugia/${id}/`, {
-        headers: {
-          'Authorization': `Bearer ${this.token}`,
-        }
-      })
-      .then(response => {
-        console.log('Response status:', response.status); // Imprime el estado de la respuesta
-        // Si la eliminación es exitosa, actualizar la lista de cirugías
-        this.obtenerCirugias();
-      })
-      .catch(error => {
-        console.error('Error al eliminar la cirugía:', error.response ? error.response.data : error.message);
-      });
-    },
-    editarCirugia(id) {
-      this.$router.push({ name: 'EditCirugia', params: { id: id } });
-    },
     obtenerCirugias() {
       axios.get('http://127.0.0.1:8000/cirugias/', {
         headers: {
-          'Authorization': `Bearer ${this.token}`,
+          'Authorization': `Bearer ${this.token}`
         }
       })
       .then(response => {
-        this.cirugias = response.data; // Asignar los datos a la variable cirugias
+        this.cirugias = response.data;
       })
       .catch(error => {
-        console.error('Error al obtener los datos:', error.response ? error.response.data : error.message);
+        console.error('Error al obtener las cirugías:', error);
+      });
+    },
+    buscarCirugias() {
+      // Método para buscar cirugías; se invoca automáticamente con v-model y @input en la barra de búsqueda
+    },
+    irACrearCirugia() {
+      this.$router.push({ name: 'CrearCirugia' });
+    },
+    editarCirugia(id) {
+      this.$router.push({ name: 'EditarCirugia', params: { id } });
+    },
+    eliminarCirugia(id) {
+      axios.delete(`http://127.0.0.1:8000/cirugias/${id}/`, {
+        headers: {
+          'Authorization': `Bearer ${this.token}`
+        }
+      })
+      .then(() => {
+        this.obtenerCirugias();
+      })
+      .catch(error => {
+        console.error('Error al eliminar la cirugía:', error);
       });
     }
   }
@@ -139,7 +136,7 @@ export default {
 }
 
 .table thead th {
-  background-color: #4a4c4d; /* Gris claro */
+  background-color: #e5e7eb; /* Gris claro */
   color: #495057; /* Color del texto para mejor contraste */
 }
 
