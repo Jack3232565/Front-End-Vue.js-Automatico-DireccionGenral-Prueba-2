@@ -21,7 +21,7 @@ export default defineComponent({
   setup() {
     const chartOptions = ref({
       title: {
-        text: 'Distribución de Estatus de Estudios',
+        text: 'Distribución de Estatus de ResultadosEstudios',
         left: 'center',
       },
       tooltip: {

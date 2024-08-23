@@ -14,13 +14,21 @@
     </div>
 
     <!-- Contenedor flexible para los gráficos -->
-    <div class="flex justify-center gap-4">
-      <!-- Componente de gráfico -->
-      <div class="w-full lg:w-1/2">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Gráficos de la fila superior -->
+      <div class="w-full">
         <dashCostos />
       </div>
-      <div class="w-full  lg:w-1/2">
+      <div class="w-full">
         <dashEstatus />
+      </div>
+      
+      <!-- Gráficos de la fila inferior -->
+      <div class="w-full">
+        <dasCostos2 />
+      </div>
+      <div class="w-full">
+        <dasEstatus2 />
       </div>
     </div>
   </div>
@@ -30,11 +38,15 @@
 // Importación del componente de gráfico
 import dashCostos from './GraficosRD/dashCostos.vue';
 import dashEstatus from './GraficosRD/dashEstatus.vue';
+import dasCostos2 from './GraficosRD/dasCostos2.vue';
+import dasEstatus2 from './GraficosRD/dasEstatus2.vue';
 
 export default {
   components: {
     dashCostos,
     dashEstatus,
+    dasCostos2,
+    dasEstatus2,
   },
 };
 </script>
