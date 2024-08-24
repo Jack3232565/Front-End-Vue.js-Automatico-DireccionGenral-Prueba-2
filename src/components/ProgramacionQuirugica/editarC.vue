@@ -82,7 +82,7 @@ export default {
   methods: {
     obtenerCirugia() {
       const id = this.$route.params.id; // Suponiendo que el ID está en los parámetros de la ruta
-      axios.get(`https://renderbackend-dwke.onrender.com/cirugias/${id}`, {
+      axios.get(`https://renderbackend-dwke.onrender.com/cirugia/${id}`, {
         headers: {
           'Authorization': `Bearer ${this.token}`
         }
@@ -102,7 +102,7 @@ export default {
         Fecha_Actualizacion: fechaActual
       };
 
-      axios.put(`https://renderbackend-dwke.onrender.com/cirugias/${id}`, cirugiaActualizada, {
+      axios.put(`https://renderbackend-dwke.onrender.com/cirugia/${id}`, cirugiaActualizada, {
         headers: {
           'Authorization': `Bearer ${this.token}`,
           'Content-Type': 'application/json'

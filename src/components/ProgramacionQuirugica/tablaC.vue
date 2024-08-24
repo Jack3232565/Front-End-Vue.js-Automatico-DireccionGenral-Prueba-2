@@ -112,7 +112,7 @@ export default {
       this.$router.push({ name: 'EditCirugia', params: { id } });
     },
     eliminarCirugia(id) {
-      axios.delete(`https://renderbackend-dwke.onrender.com/cirugias/${id}`, {
+      axios.delete(`https://renderbackend-dwke.onrender.com/cirugia/${id}`, {
         headers: {
           'Authorization': `Bearer ${this.token}`
         }
