@@ -43,7 +43,7 @@ import EstudioView from '@/components/Radiologia/estudio.vue';
 import dashboardRadiologiaView from '@/components/Radiologia/dashboardRadiologia.vue';
 
 // // Recursos Humanos
-// import PersonalMedico from '@/components/RecursosHumanos/PersonalMedico.vue';
+import PersonalMedico from '@/components/RecursosHumanos/PersonalMedico.vue';
 import GraficasRH from  '@/components/RecursosHumanos/Graficas.vue';
 import AreasMedicas from '@/components/RecursosHumanos/AreasMedicas.vue'
 // import Puestos from '@/components/RecursosHumanos/Puesto.vue'
@@ -287,12 +287,12 @@ const router = createRouter({
 
         
         // Recursos Humanos
-        // {
-        //   path: '/personalMedico',
-        //   name: 'personalMedico',
-        //   component: PersonalMedico,
-        //   // meta: { requiresRole: ['Direccion General, Administrativo'] }
-        // },
+        {
+          path: '/personalMedico',
+          name: 'personalMedico',
+          component: PersonalMedico,
+          meta: { requiresRole: ['Direccion General, Administrativo'] }
+        },
         {
           path: '/GraficasRH',
           name: 'GraficasRH',
@@ -303,7 +303,7 @@ const router = createRouter({
           path: '/areasMedicas',
           name: 'areasMedicas',
           component: AreasMedicas,
-          // meta: { requiresRole: ['Direccion General, Administrativo'] }
+          meta: { requiresRole: ['Direccion General, Administrativo'] }
         },
         // {
         //   path: '/puestos',
