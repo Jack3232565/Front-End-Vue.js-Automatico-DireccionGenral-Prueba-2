@@ -541,6 +541,7 @@
 <script>
 import PiePaginaView from './pie-pagina.vue';
 import axios from 'axios';
+import { RouterLink } from 'vue-router';
 
 const apiClient = axios.create({
    baseURL: "https://back-end-hospital2-0.onrender.com/",
@@ -550,6 +551,11 @@ const apiClient = axios.create({
 });
 
 export default {
+
+   components: {
+     RouterLink,
+  },
+
    data() {
       return {
          usuario: {
