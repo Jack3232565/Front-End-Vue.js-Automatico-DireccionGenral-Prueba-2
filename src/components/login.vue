@@ -11,9 +11,10 @@
       ></div>
       <div class="w-full p-8 lg:w-1/2">
         <h2 class="text-2xl font-semibold text-gray-700 text-center">
-          PRIVILAGE CARE
+          <div class="flex items-center justify-center h-16" style="padding-bottom: 16px;">
+            <img src="../assets/img/Logo propuesto Hospital 1.png" alt="Descripción de la imagen" width="350" height="100" class="mr-2">
+        </div>        
         </h2>
-        <p class="text-xl text-gray-600 text-center">HOSPITAL</p>
         <a
           href="#"
           class="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100"
@@ -37,7 +38,7 @@
         <form @submit.prevent="login">
           <div class="mt-4">
             <label class="block text-gray-700 text-sm font-bold mb-2"
-              >Rol</label
+              >Área</label
             >
             <select
               v-model="selectedRole"

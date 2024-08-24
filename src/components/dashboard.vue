@@ -16,22 +16,10 @@
       aria-label="Sidebar">
       <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
          <ul class="space-y-2 font-medium">
-            <li>
-               <a href="#"
-                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                  <svg
-                     class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                     <path
-                        d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-                     <path
-                        d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
-                  </svg>
-                  <span class="ms-3">Dashboard</span>
 
-               </a>
-
-            </li>
+            <div class="flex items-center justify-center h-16" style="padding-bottom: 16px;">
+               <img src="../assets/img/Logo propuesto Hospital 1.png" alt="Privilege Care" width="170" height="100" class="mr-2">
+           </div>
             <li>
 
                <div class="flex items-center justify-center">
@@ -60,7 +48,7 @@
 
             <!-- Direccion General -->
             <li v-if="userRole === 'Administrativo' || userRole === 'Direccion General'">
-               <button type="button"
+               <a href="" @click.prevent="toggleMenu('general')" 
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example8" data-collapse-toggle="dropdown-example8">
                   <span class="material-symbols-outlined">
@@ -72,8 +60,8 @@
                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 4 4 4-4" />
                   </svg>
-               </button>
-               <ul id="dropdown-example8" class="hidden py-2 space-y-2">
+               </a>
+               <ul v-show="menus.general" class="submenu ml-8">
 
                   <RouterLink to="/aprobacionSM">
                      <li>
@@ -155,7 +143,7 @@
 
             <!-- Recursos Humanos -->
             <li v-if="userRole === 'Recursos Humanos' || userRole === 'Enfermero' || userRole === 'Medico General' || userRole === 'Administrativo' || userRole === 'Direccion General'">
-               <button type="button"
+               <a href="" @click.prevent="toggleMenu('hr')" 
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-personal_medico" data-collapse-toggle="dropdown-personal_medico">
                   <span class="material-symbols-outlined">
@@ -167,8 +155,8 @@
                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 4 4 4-4" />
                   </svg>
-               </button>
-               <ul id="dropdown-personal_medico" class="hidden py-2 space-y-2">
+               </a>
+               <ul v-show="menus.hr" class="submenu ml-8">
 
                   <RouterLink to="/personalMedico">
                      <li>
@@ -215,7 +203,7 @@
                         Areas Medicas
                      </a>
                   </li>
-               </RouterLink>
+                  </RouterLink>
 
                   <RouterLink to="/puestos">
                      <li>
@@ -237,6 +225,7 @@
                         </a>
                      </li>
                   </RouterLink>
+
                   <RouterLink to="/puestosDepartamentos">
                      <li>
                         <a href="#"
@@ -262,7 +251,7 @@
 
             <!-- Registros Medicos -->
             <li v-if="userRole === 'Registros Médicos' || userRole === 'Medico Especialista' || userRole === 'Direccion General' || userRole === 'Administrativo'|| userRole === 'Administrativo' ">
-               <button type="button"
+               <a href="#" @click.prevent="toggleMenu('rmedicos')"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example7" data-collapse-toggle="dropdown-example7">
                   <span class="material-symbols-outlined">
@@ -274,8 +263,8 @@
                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 4 4 4-4" />
                   </svg>
-               </button>
-               <ul id="dropdown-example7" class="hidden py-2 space-y-2">
+               </a>
+               <ul v-show="menus.rmedicos" class="submenu ml-8">
 
                   <li>
                      <a href="#"
@@ -296,7 +285,7 @@
 
             <!-- Pediatria - -->
             <li v-if="userRole === 'Pediatría' || userRole === 'Medico Especialista' || userRole === 'Enfermero' || userRole === 'Administrativo' || userRole === 'Direccion General'">
-               <button type="button"
+               <a href="#" @click.prevent="toggleMenu('pediatria')"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example4" data-collapse-toggle="dropdown-example4">
                   <span class="material-symbols-outlined">
@@ -308,8 +297,8 @@
                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 4 4 4-4" />
                   </svg>
-               </button>
-               <ul id="dropdown-example4" class="hidden py-2 space-y-2">
+               </a>
+               <ul v-show="menus.pediatria" class="submenu ml-8">
 
                   <li>
                      <a href="#"
@@ -325,7 +314,7 @@
 
             <!-- Farmacia - Medicamentos - -->
             <li v-if="userRole === 'Medico General' || userRole === 'Enfermero' || userRole === 'Medico Especialista' || userRole === 'Administrativo' || userRole === 'Farmacia'">
-               <button type="button"
+               <a href="#" @click.prevent="toggleMenu('farmacia')"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example5" data-collapse-toggle="dropdown-example5">
                   <span class="material-symbols-outlined">
@@ -337,8 +326,8 @@
                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 4 4 4-4" />
                   </svg>
-               </button>
-               <ul id="dropdown-example5" class="hidden py-2 space-y-2">
+               </a>
+               <ul v-show="menus.farmacia" class="submenu ml-8">
 
                   <RouterLink to="/tablacon">
                      <li>
@@ -387,7 +376,7 @@
 
             <!-- Estudios - -->
             <li v-if="userRole === 'Radiologia' || userRole === 'Medico General' || userRole === 'Paciente' || userRole === 'Medico Especialista' || userRole === 'Administrativo' ">
-               <button type="button"
+               <a href="#" @click.prevent="toggleMenu('eclinico')"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example3" data-collapse-toggle="dropdown-example3">
                   <span class="material-symbols-outlined">
@@ -399,8 +388,8 @@
                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 4 4 4-4" />
                   </svg>
-               </button>
-               <ul id="dropdown-example3" class="hidden py-2 space-y-2">
+               </a>
+               <ul v-show="menus.eclinico" class="submenu ml-8">
 
                   <li>
                      <RouterLink to="/estudio">
@@ -422,9 +411,10 @@
                   </li>
                </ul>
             </li>
+
             <!-- Transplante - -->
             <li v-if="userRole === 'Trasplantes' || userRole === 'Médico Especialista' || userRole === 'Médico General' || userRole === 'Administrativo' || userRole === 'Direccion General'">
-               <button type="button"
+               <a href="#" @click.prevent="toggleMenu('transplante')"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example6" data-collapse-toggle="dropdown-example6">
                   <span class="material-symbols-outlined">
@@ -436,8 +426,8 @@
                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 4 4 4-4" />
                   </svg>
-               </button>
-               <ul id="dropdown-example6" class="hidden py-2 space-y-2">
+               </a>
+               <ul v-show="menus.transplante" class="submenu ml-8">
 
                   <li>
                      <RouterLink to="/requestTansplant">
@@ -479,7 +469,7 @@
 
             <!-- Cirugias - -->
             <li v-if="userRole === 'Programacion Quirurgica' || userRole === 'Médico Especialista' || userRole === 'Direccion General' || userRole === 'Administrativo'">
-               <button type="button"
+               <a href="#" @click.prevent="toggleMenu('cirugia')"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example2" data-collapse-toggle="dropdown-example2">
                   <span class="material-symbols-outlined">
@@ -491,8 +481,8 @@
                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 1 4 4 4-4" />
                   </svg>
-               </button>
-               <ul id="dropdown-example2" class="hidden py-2 space-y-2">
+               </a>
+               <ul v-show="menus.cirugia" class="submenu ml-8">
                   <li>
                      <a href="#"
                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Cirugias</a>
@@ -558,6 +548,20 @@ export default {
 
    data() {
       return {
+
+         menus: {
+        general: false,
+        hr: false,
+        rmedicos: false,
+        pediatria: false,
+        farmacia: false,
+        eclinico: false,
+        transplante: false,
+        cirugia: false,
+        // Agrega más estados de menú según sea necesario
+      },
+
+
          usuario: {
             Usuario: "",
             Contrasena: "",
@@ -670,7 +674,19 @@ export default {
          this.$router.push('/');
       },
 
+      toggleMenu(menu) {
+      // Cerrar todas las secciones del menú
+      for (let menuName in this.menus) {
+        if (menuName !== menu) {
+          this.menus[menuName] = false;
+        }
+      }
+      // Abrir o cerrar la sección clicada
+      this.menus[menu] = !this.menus[menu];
+    }
+
    },
+
    mounted() {
       // Si los roles no están en localStorage, obténlos
       if (!this.roles.length) {
