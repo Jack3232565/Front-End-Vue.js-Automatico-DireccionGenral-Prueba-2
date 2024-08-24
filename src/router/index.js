@@ -340,46 +340,46 @@ const router = createRouter({
           path: '/registroNacimiento',
           name: 'RegistroNacimiento',
           component: RegistroNacimiento,
-          meta: { requiresRole: ['Administrativo','Pediatría'] }
+          meta: { requiresRole: ['Pediatría'] }
         },
         {
           path: '/nacimientos',
           name: 'Nacimientos',
           component: Nacimientos,
-          meta: { requiresRole: ['Administrativo','Pediatría'] }
+          meta: { requiresRole: ['Pediatría'] }
         },
         {
           path: '/editar/:id',  // Define la ruta con el parámetro `id`
           name: 'editar',
           component: EditPediatria,
           props: true, // Permite pasar el parámetro `id` como prop al componente
-          meta: { requiresRole: ['Administrativo','Pediatría'] }
+          meta: { requiresRole: ['Pediatría'] }
         },
         {
           path: '/vacunas/:id',
           name: 'VacunasForm',
           component: VacunasForm,
           props: true,
-          meta: { requiresRole: ['Administrativo','Pediatría'] }// Componente de error 404
+          meta: { requiresRole: ['Pediatría'] }// Componente de error 404
         },
         {
           path: '/tvacunas/:id',
           name: 'TablaVacunas',
           component: TablaVacunas,
           props: true,
-          meta: { requiresRole: ['Administrativo','Pediatría'] }
+          meta: { requiresRole: ['Pediatría'] }
         },
         {
           path: '/grafica1',
           name: 'Grafica1',
           component: Grafica1,
-          meta: { requiresRole: ['Administrativo','Pediatría'] }
+          meta: { requiresRole: ['Pediatría'] }
         },
         {
           path: '/grafica2',
           name: 'Grafica2',
           component: Grafica2,
-          meta: { requiresRole: ['Administrativo','Pediatría'] }
+          meta: { requiresRole: ['Pediatría'] }
         },
       ]
     }
