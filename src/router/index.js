@@ -49,12 +49,21 @@ import AreasMedicas from '@/components/RecursosHumanos/AreasMedicas.vue'
 import Puestos from '@/components/RecursosHumanos/Puesto.vue'
 import PuestosDepartamentos from '@/components/RecursosHumanos/PuestosDepartamentos.vue'
 
+// Pediatria
+import Nacimientos from '@/components/Pediatria/Nacimientos.vue'
+import RegistroNacimiento from '@/components/Pediatria/RegistroNacimiento.vue'
+import EditPediatria from '@/components/Pediatria/EditPediatria.vue';
+import TablaVacunas from '@/components/Pediatria/TablaVacunas.vue'
+import VacunasForm from '@/components/Pediatria/VacunasForm.vue'
+import Grafica1 from '@/components/Pediatria/Grafica1.vue';
+import Grafica2 from '@/components/Pediatria/Grafica2.vue';
+
 
 
 const roleMap = {
   1: 'Administrativo',
   8: 'Direccion General',
-  9: 'Paciente',
+  //9: 'Paciente',
   10: 'Médico General',
   11: 'Médico Especialista',
   12: 'Enfermero',
@@ -324,6 +333,53 @@ const router = createRouter({
           name: 'bitacora',
           component: Bitacora,
           meta: { requiresRole: ['Administrativo', 'Direccion General'] }
+        },
+
+        // Pediatria
+        {
+          path: '/registroNacimiento',
+          name: 'RegistroNacimiento',
+          component: RegistroNacimiento,
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
+        },
+        {
+          path: '/nacimientos',
+          name: 'Nacimientos',
+          component: Nacimientos,
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
+        },
+        {
+          path: '/editar/:id',  // Define la ruta con el parámetro `id`
+          name: 'editar',
+          component: EditPediatria,
+          props: true, // Permite pasar el parámetro `id` como prop al componente
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
+        },
+        {
+          path: '/vacunas/:id',
+          name: 'VacunasForm',
+          component: VacunasForm,
+          props: true,
+          meta: { requiresRole: ['Administrativo','Pediatría'] }// Componente de error 404
+        },
+        {
+          path: '/tvacunas/:id',
+          name: 'TablaVacunas',
+          component: TablaVacunas,
+          props: true,
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
+        },
+        {
+          path: '/grafica1',
+          name: 'Grafica1',
+          component: Grafica1,
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
+        },
+        {
+          path: '/grafica2',
+          name: 'Grafica2',
+          component: Grafica2,
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
       ]
     }
