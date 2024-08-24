@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       cirugias: [], // Datos de las cirugías
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkJydW5vIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoic3RyaW5nIiwiQ29udHJhc2VuYSI6ImJydW5vIiwiTnVtZXJvX1RlbGVmb25pY29fTW92aWwiOiJzdHJpbmcifQ.x2mprKqz7Af2HLrWycpWLlYqI9xtG9SWJOQ8Pgn4qqg', // Reemplaza con tu token real
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IlByb2dyYW1hY2lvblEiLCJDb3JyZW9fRWxlY3Ryb25pY28iOiJwcm9ncmFtYWNpb25ALmdtYWlsIiwiQ29udHJhc2VuYSI6IlByb2dyYW1hY2lvblEiLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6IjEyMzQ1Njc4OTkifQ.HgqCAey90hU2klU90K8yRs5HpyzFsCjXrK3CTx2oIjc', // Reemplaza con tu token real
       estatusCirugiaChart: null,
       nivelUrgenciaChart: null,
     };
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     obtenerCirugias() {
-      fetch('http://127.0.0.1:8000/cirugias/', {
+      fetch('https://renderbackend-dwke.onrender.com/cirugias/', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${this.token}`, // Incluye el token en el encabezado

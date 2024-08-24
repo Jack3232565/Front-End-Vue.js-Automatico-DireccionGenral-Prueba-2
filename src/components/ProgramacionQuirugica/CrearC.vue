@@ -98,7 +98,7 @@ export default {
       };
 
       try {
-        const response = await axios.post('http://127.0.0.1:8000/cirugias/', nuevaCirugia);
+        const response = await axios.post('https://renderbackend-dwke.onrender.com/cirugias/', nuevaCirugia);
         console.log("Cirugía registrada:", response.data);
         // Limpia los campos después de registrar la cirugía
         this.paciente_id = '',

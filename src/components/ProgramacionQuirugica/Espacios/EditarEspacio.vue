@@ -72,7 +72,7 @@ export default {
       estatuses: [
         'Activo', 'Inactivo', 'En remodelación', 'Clausurado', 'Reubicado', 'Temporal'
       ],
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkJydW5vIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoic3RyaW5nIiwiQ29udHJhc2VuYSI6ImJydW5vIiwiTnVtZXJvX1RlbGVmb25pY29fTW92aWwiOiJzdHJpbmcifQ.x2mprKqz7Af2HLrWycpWLlYqI9xtG9SWJOQ8Pgn4qqg' // Asegúrate de usar un token válido
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IlByb2dyYW1hY2lvblEiLCJDb3JyZW9fRWxlY3Ryb25pY28iOiJwcm9ncmFtYWNpb25ALmdtYWlsIiwiQ29udHJhc2VuYSI6IlByb2dyYW1hY2lvblEiLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6IjEyMzQ1Njc4OTkifQ.HgqCAey90hU2klU90K8yRs5HpyzFsCjXrK3CTx2oIjc' // Asegúrate de usar un token válido
     };
   },
   mounted() {
@@ -81,7 +81,7 @@ export default {
   methods: {
     obtenerEspacio() {
       const id = this.$route.params.id; // Suponiendo que el ID está en los parámetros de la ruta
-      axios.get(`http://127.0.0.1:8000/espacios/${id}`, {
+      axios.get(`https://renderbackend-dwke.onrender.com/espacios/${id}`, {
         headers: {
           'Authorization': `Bearer ${this.token}`
         }
@@ -95,7 +95,7 @@ export default {
     },
     editarEspacio() {
       const id = this.$route.params.id; // Suponiendo que el ID está en los parámetros de la ruta
-      axios.put(`http://127.0.0.1:8000/espacios/${id}`, this.espacio, {
+      axios.put(`https://renderbackend-dwke.onrender.com/espacios/${id}`, this.espacio, {
         headers: {
           'Authorization': `Bearer ${this.token}`,
           'Content-Type': 'application/json'

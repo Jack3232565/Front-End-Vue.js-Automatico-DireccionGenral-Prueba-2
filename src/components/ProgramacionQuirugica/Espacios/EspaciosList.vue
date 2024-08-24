@@ -75,7 +75,7 @@ export default {
     return {
       espacios: [],
       filtro: '',
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IkJydW5vIiwiQ29ycmVvX0VsZWN0cm9uaWNvIjoic3RyaW5nIiwiQ29udHJhc2VuYSI6ImJydW5vIiwiTnVtZXJvX1RlbGVmb25pY29fTW92aWwiOiJzdHJpbmcifQ.x2mprKqz7Af2HLrWycpWLlYqI9xtG9SWJOQ8Pgn4qqg'
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IlByb2dyYW1hY2lvblEiLCJDb3JyZW9fRWxlY3Ryb25pY28iOiJwcm9ncmFtYWNpb25ALmdtYWlsIiwiQ29udHJhc2VuYSI6IlByb2dyYW1hY2lvblEiLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6IjEyMzQ1Njc4OTkifQ.HgqCAey90hU2klU90K8yRs5HpyzFsCjXrK3CTx2oIjc'
     };
   },
   computed: {
@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     obtenerEspacios() {
-      axios.get('http://127.0.0.1:8000/espacios/', {
+      axios.get('https://renderbackend-dwke.onrender.com/espacios/', {
         headers: {
           'Authorization': `Bearer ${this.token}`
         }
@@ -112,7 +112,7 @@ export default {
       this.$router.push({ name: 'EditarEspacio', params: { id } });
     },
     eliminarEspacio(id) {
-      axios.delete(`http://127.0.0.1:8000/espacios/${id}/`, {
+      axios.delete(`https://renderbackend-dwke.onrender.com/espacios/${id}/`, {
         headers: {
           'Authorization': `Bearer ${this.token}`
         }
