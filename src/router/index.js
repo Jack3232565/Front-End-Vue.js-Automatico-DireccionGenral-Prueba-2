@@ -35,6 +35,7 @@ import RequestView from '@/components/Transplantes/RequestTransplant.vue';
 import TableRView from '@/components/Transplantes/TableRequest.vue';
 import UpdateRView from '@/components/Transplantes/UpdateRequest.vue';
 import OrgansView from '@/components/Transplantes/Organs.vue';
+import GraficasView from '@/components/Transplantes/Graficas.vue'
 
 
 // Radiologia
@@ -249,6 +250,12 @@ const router = createRouter({
           path: '/organform',
           name: 'organform',
           component: OrganForm,
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
+        },
+        {
+          path: '/graficosOr',
+          name: 'graficosOr',
+          component: GraficasView,
           meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
 

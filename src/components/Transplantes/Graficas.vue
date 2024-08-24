@@ -190,54 +190,7 @@ organAvailabilityChartOptions: {
     },
     async created() {
         try {
-            const response = await fetch('https://privilegecare-deploy-gqmt.onrender.com/solicitudes');
-            const solicitudes = await response.json();
-
-            const priorityCounts = {
-                Urgente: 0,
-                Alta: 0,
-                Moderada: 0,
-                Emergente: 0,
-                Normal: 0,
-            };
-
-            const statusCounts = {
-                Registrada: 0,
-                Programada: 0,
-                Cancelada: 0,
-                Reprogramada: 0,
-                En_Proceso: 0,
-                Realizada: 0,
-            };
-
-            solicitudes.forEach(solicitud => {
-                if (priorityCounts[solicitud.Prioridad] !== undefined) {
-                    priorityCounts[solicitud.Prioridad]++;
-                }
-
-                if (statusCounts[solicitud.Estatus] !== undefined) {
-                    statusCounts[solicitud.Estatus]++;
-                }
-            });
-
-            this.priorityChartSeries = [
-                priorityCounts.Urgente,
-                priorityCounts.Alta,
-                priorityCounts.Moderada,
-                priorityCounts.Emergente,
-                priorityCounts.Normal,
-            ];
-
-            this.statusChartSeries[0].data = [
-                statusCounts.Registrada,
-                statusCounts.Programada,
-                statusCounts.Cancelada,
-                statusCounts.Reprogramada,
-                statusCounts.En_Proceso,
-                statusCounts.Realizada,
-            ];
-
-            const result = await fetch('https://privilegecare-deploy-gqmt.onrender.com/organos/');
+            const result = await fetch('https://back-end-hospital2-0.onrender.com/organos/');
             const organs = await result.json();
             console.log('Órganos:', organs); 
 
@@ -290,6 +243,53 @@ organAvailabilityChartOptions: {
             // console.error('Error al obtener solicitudes:', error);
             console.error('Error al obtener órganos:', error);
         }
+        const response = await fetch('https://privilegecare-deploy-gqmt.onrender.com/solicitudes');
+            const solicitudes = await response.json();
+
+            const priorityCounts = {
+                Urgente: 0,
+                Alta: 0,
+                Moderada: 0,
+                Emergente: 0,
+                Normal: 0,
+            };
+
+            const statusCounts = {
+                Registrada: 0,
+                Programada: 0,
+                Cancelada: 0,
+                Reprogramada: 0,
+                En_Proceso: 0,
+                Realizada: 0,
+            };
+
+            solicitudes.forEach(solicitud => {
+                if (priorityCounts[solicitud.Prioridad] !== undefined) {
+                    priorityCounts[solicitud.Prioridad]++;
+                }
+
+                if (statusCounts[solicitud.Estatus] !== undefined) {
+                    statusCounts[solicitud.Estatus]++;
+                }
+            });
+
+            this.priorityChartSeries = [
+                priorityCounts.Urgente,
+                priorityCounts.Alta,
+                priorityCounts.Moderada,
+                priorityCounts.Emergente,
+                priorityCounts.Normal,
+            ];
+
+            this.statusChartSeries[0].data = [
+                statusCounts.Registrada,
+                statusCounts.Programada,
+                statusCounts.Cancelada,
+                statusCounts.Reprogramada,
+                statusCounts.En_Proceso,
+                statusCounts.Realizada,
+            ];
+
     },
 };
 </script>
