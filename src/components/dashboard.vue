@@ -308,13 +308,17 @@
                <ul v-show="menus.pediatria" class="submenu ml-8">
 
                   <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Nacimientos</a>
+                     <RouterLink to="RegistroNacimiento">
+                        <a href=""
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Registrar
+                           Nacimiento</a>
+                     </RouterLink>
                   </li>
                   <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Desarrollo
-                        Infantil</a>
+                     <RouterLink to="Nacimientos">
+                        <a href=""
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Nacimientos</a>
+                     </RouterLink>
                   </li>
                </ul>
             </li>
