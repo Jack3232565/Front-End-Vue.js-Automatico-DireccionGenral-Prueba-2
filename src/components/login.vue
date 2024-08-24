@@ -96,14 +96,16 @@
           </RouterLink>
           <span class="border-b w-1/5 md:w-1/4"></span>
         </div>
-        <p v-if="mensaje" class="mt-4 text-center text-red-500">
+        <!-- Alerta de Tailwind CSS -->
+        <div v-if="mensaje" class="alert alert-error">
           {{ mensaje }}
-        </p>
+        </div>
         <p v-if="token" class="mt-4 text-center text-green-500">
           Token: {{ token }}
         </p>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -141,7 +143,7 @@ export default {
       const response = await apiClient.get("https://back-end-hospital2-0.onrender.com/roles/");
       this.roles = response.data; // Guarda la lista de roles en el estado
     } catch (error) {
-      this.mensaje = "Error al cargar los roles";
+      this.mensaje = "Error al cargar las Áreas";
     }
   },
   methods: {
@@ -198,5 +200,15 @@ export default {
 </script>
 
 <style scoped>
-/* Estilos adicionales aquí */
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: white;
+  background-color: #EF4444;
+  border-radius: 0.25rem;
+}
+
+.alert-error {
+  background-color: #EF4444;
+}
 </style>
