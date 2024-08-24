@@ -23,11 +23,18 @@
             <li>
 
                <div class="flex items-center justify-center">
+                  <!-- Mostrar un spinner mientras la imagen se está cargando o no se encuentra la fotografía -->
+                  <div v-if="isLoadingPhoto || !userPhoto1" class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+               
                   <!-- Mostrar la imagen del usuario si está disponible -->
-                  <img v-if="userPhoto1" :src="userPhoto1" alt="Fotografía del usuario"
-                     class="w-24 h-24 rounded-full object-cover border-2 border-gray-300 shadow-md" />
-                  <!-- Mostrar un mensaje alternativo si no hay fotografía -->
-                  <p v-else class="text-gray-500">No se encontró la fotografía del usuario.</p>
+                  <img v-if="userPhoto1 && !isLoadingPhoto"
+                       :src="userPhoto1"
+                       alt="Fotografía del usuario"
+                       class="w-24 h-24 rounded-full object-cover border-2 border-gray-300 shadow-md"
+                       @load="handleImageLoad"
+                       @error="handleImageError" />
+               
+                  <!-- No se mostrará el mensaje alternativo si no se encuentra la fotografía -->
                </div>
 
 
@@ -683,7 +690,18 @@ export default {
       }
       // Abrir o cerrar la sección clicada
       this.menus[menu] = !this.menus[menu];
-    }
+    },
+
+
+    handleImageLoad() {
+      this.isLoadingPhoto = false; // La imagen ha cargado
+   },
+   handleImageError() {
+      this.isLoadingPhoto = false; // La imagen no cargó correctamente
+   },
+
+
+
 
    },
 
@@ -698,3 +716,14 @@ export default {
    }
 };
 </script>
+
+<style>
+@keyframes spin {
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+   animation: spin 1s linear infinite;
+}
+</style>
