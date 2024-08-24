@@ -291,31 +291,31 @@ const router = createRouter({
           path: '/personalMedico',
           name: 'personalMedico',
           component: PersonalMedico,
-          meta: { requiresRole: ['Direccion General, Administrativo'] }
+          meta: { requiresRole: ['Direccion General', 'Administrativo'] }
         },
         {
           path: '/GraficasRH',
           name: 'GraficasRH',
           component: GraficasRH,
-          meta: { requiresRole: ['Direccion General, Administrativo'] }
+          meta: { requiresRole: ['Direccion General', 'Administrativo'] }
         },
         {
           path: '/areasMedicas',
           name: 'areasMedicas',
           component: AreasMedicas,
-          meta: { requiresRole: ['Direccion General, Administrativo'] }
+          meta: { requiresRole: ['Direccion General', 'Administrativo'] }
         },
         {
           path: '/puestos',
           name: 'puestos',
           component: Puestos,
-          meta: { requiresRole: ['Direccion General, Administrativo'] }
+          meta: { requiresRole: ['Direccion General', 'Administrativo'] }
         },
         {
           path: '/puestosDepartamentos',
           name: 'puestosDepartamentos',
           component: PuestosDepartamentos,
-          meta: { requiresRole: ['Direccion General, Administrativo'] }
+          meta: { requiresRole: ['Direccion General', 'Administrativo'] }
         },
               
 
