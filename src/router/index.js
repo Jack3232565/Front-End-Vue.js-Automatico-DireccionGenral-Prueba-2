@@ -63,7 +63,7 @@ import Grafica2 from '@/components/Pediatria/Grafica2.vue';
 const roleMap = {
   1: 'Administrativo',
   8: 'Direccion General',
-  //9: 'Paciente',
+  9: 'Paciente',
   10: 'Médico General',
   11: 'Médico Especialista',
   12: 'Enfermero',
