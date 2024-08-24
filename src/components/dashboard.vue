@@ -261,7 +261,7 @@
             </li>
 
             <!-- Registros Medicos -->
-            <li v-if="userRole === 'Registros Médicos' || userRole === 'Medico Especialista' || userRole === 'Direccion General' || userRole === 'Administrativo'">
+            <li v-if="userRole === 'Registros Médicos' || userRole === 'Medico Especialista' || userRole === 'Direccion General' || userRole === 'Administrativo'|| userRole === 'Administrativo' ">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example7" data-collapse-toggle="dropdown-example7">
@@ -386,7 +386,7 @@
             </li>
 
             <!-- Estudios - -->
-            <li v-if="userRole === 'Radiologia' || userRole === 'Medico General' || userRole === 'Paciente' || userRole === 'Medico Especialista'">
+            <li v-if="userRole === 'Radiologia' || userRole === 'Medico General' || userRole === 'Paciente' || userRole === 'Medico Especialista' || userRole === 'Administrativo' ">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   aria-controls="dropdown-example3" data-collapse-toggle="dropdown-example3">
