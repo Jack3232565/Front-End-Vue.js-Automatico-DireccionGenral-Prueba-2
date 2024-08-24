@@ -174,55 +174,55 @@ const router = createRouter({
           path: '/tablamedic',
           name: 'tablamedicamentos',
           component: tablaMedic,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
         },
         {
           path: '/medicament',
           name: 'medicamentos',
           component: medicamentos,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
         },
         {
           path: '/lotes',
           name: 'lotesmed',
           component: LotesMed,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
         },
         {
           path: '/tablalot',
           name: 'tablalotes',
           component: tablaLotes,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
         },
         {
           path: '/consumibles',
           name: 'consumibles',
           component: ConsumiblesView,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
         },
         {
           path: '/tablacon',
           name: 'tablaconsumibles',
           component: tablaCon,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
         },
         {
           path: '/dispensation',
           name: 'dispensacion',
           component: dispensacionView,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
         },
         {
           path: '/tabladis',
           name: 'tabladis',
           component: tablaDis,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
         },
         {
           path: '/graficos',
           name: 'graficas',
           component: graficos,
-          meta: { requiresRole: ['Farmacia'] }
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
         },
 
         
