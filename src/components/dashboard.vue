@@ -271,7 +271,7 @@
                </button>
                <ul id="dropdown-example5" class="hidden py-2 space-y-2">
 
-                  <RouterLink to="/consumibles">
+                  <RouterLink to="/tablacon">
                      <li>
                         <a href="#"
                            class="flex items-center px-4 py-2 text-gray-900 transition-transform transform hover:scale-110">
