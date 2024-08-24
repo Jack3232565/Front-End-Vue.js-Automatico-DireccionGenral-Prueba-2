@@ -37,11 +37,17 @@ import UpdateRView from '@/components/Transplantes/UpdateRequest.vue';
 import OrgansView from '@/components/Transplantes/Organs.vue';
 import GraficasView from '@/components/Transplantes/Graficas.vue'
 
-
 // Radiologia
 import ResultadosEstudioView from '@/components/Radiologia/resultadosEstudio.vue';
 import EstudioView from '@/components/Radiologia/estudio.vue';
 import dashboardRadiologiaView from '@/components/Radiologia/dashboardRadiologia.vue';
+
+// // Recursos Humanos
+// import PersonalMedico from '@/components/RecursosHumanos/PersonalMedico.vue';
+// import GraficasRH from  '@/components/RecursosHumanos/Graficas.vue';
+// import AreasMedicas from '@/components/RecursosHumanos/AreasMedicas.vue'
+// import Puestos from '@/components/RecursosHumanos/Puesto.vue'
+// import PuestosDepartamentos from '@/components/RecursosHumanos/PuestosDepartamentos.vue'
 
 
 
@@ -278,7 +284,40 @@ const router = createRouter({
           component: dashboardRadiologiaView,
           meta: { requiresRole: ['Administrativo','Radiologia','Medico General', 'Medico Especialista'] }
         },
+
         
+        // Recursos Humanos
+        {
+          path: '/personalMedico',
+          name: 'personalMedico',
+          component: PersonalMedico,
+          // meta: { requiresRole: ['Direccion General, Administrativo'] }
+        },
+        {
+          path: '/GraficasRH',
+          name: 'GraficasRH',
+          component: GraficasRH,
+          // meta: { requiresRole: ['Direccion General, Administrativo'] }
+        },
+        {
+          path: '/areasMedicas',
+          name: 'areasMedicas',
+          component: AreasMedicas,
+          // meta: { requiresRole: ['Direccion General, Administrativo'] }
+        },
+        {
+          path: '/puestos',
+          name: 'puestos',
+          component: Puestos,
+          // meta: { requiresRole: ['Direccion General, Administrativo'] }
+        },
+        {
+          path: '/puestosDepartamentos',
+          name: 'puestosDepartamentos',
+          component: PuestosDepartamentos,
+          // meta: { requiresRole: ['Direccion General, Administrativo'] }
+        },
+              
 
         {
           path: '/bitacora',
