@@ -45,7 +45,7 @@ import dashboardRadiologiaView from '@/components/Radiologia/dashboardRadiologia
 // // Recursos Humanos
 // import PersonalMedico from '@/components/RecursosHumanos/PersonalMedico.vue';
 // import GraficasRH from  '@/components/RecursosHumanos/Graficas.vue';
-// import AreasMedicas from '@/components/RecursosHumanos/AreasMedicas.vue'
+import AreasMedicas from '@/components/RecursosHumanos/AreasMedicas.vue'
 // import Puestos from '@/components/RecursosHumanos/Puesto.vue'
 // import PuestosDepartamentos from '@/components/RecursosHumanos/PuestosDepartamentos.vue'
 
@@ -299,12 +299,12 @@ const router = createRouter({
         //   component: GraficasRH,
         //   // meta: { requiresRole: ['Direccion General, Administrativo'] }
         // },
-        // {
-        //   path: '/areasMedicas',
-        //   name: 'areasMedicas',
-        //   component: AreasMedicas,
-        //   // meta: { requiresRole: ['Direccion General, Administrativo'] }
-        // },
+        {
+          path: '/areasMedicas',
+          name: 'areasMedicas',
+          component: AreasMedicas,
+          // meta: { requiresRole: ['Direccion General, Administrativo'] }
+        },
         // {
         //   path: '/puestos',
         //   name: 'puestos',
