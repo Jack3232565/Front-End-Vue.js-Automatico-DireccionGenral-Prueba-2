@@ -154,12 +154,12 @@
             </li>
 
             <!-- Recursos Humanos -->
-            <li v-if="userRole === 'Recursos Humanos' || userRole === 'Medico Especialista' || userRole === 'Medico General' || userRole === 'Administrativo' || userRole === 'Direccion General'">
+            <li v-if="userRole === 'Recursos Humanos' || userRole === 'Enfermero' || userRole === 'Medico General' || userRole === 'Administrativo' || userRole === 'Direccion General'">
                <button type="button"
                   class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  aria-controls="dropdown-example0" data-collapse-toggle="dropdown-example0">
+                  aria-controls="dropdown-personal_medico" data-collapse-toggle="dropdown-personal_medico">
                   <span class="material-symbols-outlined">
-                     badge
+                     group
                   </span>
                   <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Recursos Humanos</span>
                   <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -168,26 +168,95 @@
                         d="m1 1 4 4 4-4" />
                   </svg>
                </button>
-               <ul id="dropdown-example0" class="hidden py-2 space-y-2">
-                  <li>
-                     <RouterLink to="/personas">
+               <ul id="dropdown-personal_medico" class="hidden py-2 space-y-2">
+
+                  <RouterLink to="/personalMedico">
+                     <li>
                         <a href="#"
-                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Personas</a>
-                     </RouterLink>
-                  </li>
+                           class="flex items-center px-4 py-2 text-gray-900 mt transition-transform transform hover:scale-110">
+                           <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon mr-3" version="1.1"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path d="M601.5 531.8h278.8v16H601.5zM639.3 657.4h224v16h-224zM686.8 779h160.8v16H686.8z"
+                                 fill="#F73737" />
+                              <path
+                                 d="M216.3 927.8H62.2V425.6h155.4l-1.3 502.2z m-110.1-44h66.2l1.1-414.2h-67.3v414.2zM822.1 927.8H268.9l-0.4-502L633.3 96.2l85.2 91.5-66.8 196.7h310L822.1 927.8z m-509.3-44H788l117-455.4H655.8l-65.5-0.1 78.1-229.9-37.8-40.5-318.1 287.4 0.3 438.5z"
+                                 fill="#353535" />
+                           </svg>
+                           <span class="material-symbols-outlined">
+                              person
+                           </span>
+                           Personal Médico
+                        </a>
+                     </li>
+                  </RouterLink>
+
+                  <RouterLink to="/GraficasRH">
+                     <li>
+                        <a href="#"
+                           class="flex items-center px-4 py-2 text-gray-900 transition-transform transform hover:scale-110">
+                           
+                           Dashboard Personal
+                        </a>
+                     </li>
+                  </RouterLink>
+
+                  <RouterLink to="/areasMedicas">
                   <li>
                      <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Puestos</a>
+                        class="flex items-center px-4 py-2 text-gray-900 transition-transform transform hover:scale-110">
+                        <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon mr-3" version="1.1"
+                           xmlns="http://www.w3.org/2000/svg">
+                           <path d="M928.1 881v44H95.9V99h44v782z" fill="#39393A" />
+                           <path
+                              d="M352 435.7v403.4H204V435.7h148m22-22H182v447.4h192V413.7zM608 307.9v531.2H460V307.9h148m22-22H438v575.2h192V285.9z"
+                              fill="#39393A" />
+                           <path d="M866.1 177.3v663.9H714V177.3h152.1m20-20H694v703.9h192V157.3h0.1z" fill="#E73B37" />
+                        </svg>
+                        Areas Medicas
+                     </a>
                   </li>
-                  <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Personal
-                        Médico</a>
-                  </li>
-                  <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Horarios</a>
-                  </li>
+               </RouterLink>
+
+                  <RouterLink to="/puestos">
+                     <li>
+                        <a href="#"
+                           class="flex items-center px-4 py-2 text-gray-900 transition-transform transform hover:scale-110">
+                           <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon mr-3 " version="1.1"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path d="M719.8 651.8m-10 0a10 10 0 1 0 20 0 10 10 0 1 0-20 0Z" fill="#E73B37" />
+                              <path
+                                 d="M512.1 64H172v896h680V385.6L512.1 64z m278.8 324.3h-280v-265l280 265zM808 916H216V108h278.6l0.2 0.2v296.2h312.9l0.2 0.2V916z"
+                                 fill="#39393A" />
+                              <path d="M280.5 530h325.9v16H280.5z" fill="#39393A" />
+                              <path d="M639.5 530h90.2v16h-90.2z" fill="#E73B37" />
+                              <path d="M403.5 641.8h277v16h-277z" fill="#39393A" />
+                              <path d="M280.6 641.8h91.2v16h-91.2z" fill="#E73B37" />
+                              <path d="M279.9 753.7h326.5v16H279.9z" fill="#39393A" />
+                              <path d="M655.8 753.7h73.9v16h-73.9z" fill="#E73B37" />
+                           </svg> Puestos
+                        </a>
+                     </li>
+                  </RouterLink>
+                  <RouterLink to="/puestosDepartamentos">
+                     <li>
+                        <a href="#"
+                           class="flex items-center px-4 py-2 text-gray-900 transition-transform transform hover:scale-110">
+                           <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon mr-3 " version="1.1"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path d="M719.8 651.8m-10 0a10 10 0 1 0 20 0 10 10 0 1 0-20 0Z" fill="#E73B37" />
+                              <path
+                                 d="M512.1 64H172v896h680V385.6L512.1 64z m278.8 324.3h-280v-265l280 265zM808 916H216V108h278.6l0.2 0.2v296.2h312.9l0.2 0.2V916z"
+                                 fill="#39393A" />
+                              <path d="M280.5 530h325.9v16H280.5z" fill="#39393A" />
+                              <path d="M639.5 530h90.2v16h-90.2z" fill="#E73B37" />
+                              <path d="M403.5 641.8h277v16h-277z" fill="#39393A" />
+                              <path d="M280.6 641.8h91.2v16h-91.2z" fill="#E73B37" />
+                              <path d="M279.9 753.7h326.5v16H279.9z" fill="#39393A" />
+                              <path d="M655.8 753.7h73.9v16h-73.9z" fill="#E73B37" />
+                           </svg> Puestos-Departamentos
+                        </a>
+                     </li>
+                  </RouterLink>
                </ul>
             </li>
 
