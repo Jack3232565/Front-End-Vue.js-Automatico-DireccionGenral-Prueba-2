@@ -59,7 +59,7 @@
               <div class="overflow-x-auto">
                 <table class="min-w-full bg-white border border-gray-300 table-hover">
                   <thead>
-                    <tr class="bg-gray-200 text-black-600 uppercase text-xs leading-normal ">
+                    <tr class="bg-gray-200 text-black uppercase text-xs leading-normal">
                       <th class="py-3 px-6 text-left text-black">No°</th>
                       <th class="py-3 px-6 text-left text-black">Personal Médico</th>
                       <th class="py-3 px-6 text-left text-black">N° Solicitud</th>
