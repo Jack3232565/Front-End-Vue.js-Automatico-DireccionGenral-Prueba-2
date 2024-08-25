@@ -19,10 +19,10 @@ import GrficoApro from '@/components/DireccionGeneral/GraficosDG/GrficoApro.vue'
 import GrficoRoles from '@/components/DireccionGeneral/GraficosDG/GrficoRoles.vue'
 
 //import del area programacion quirurgica
-import tablaC from '@/components/ProgramacionQuirugica/tablaC.vue';
-import GraficasC from '@/components/ProgramacionQuirugica/graficasC.vue';
-import CrearC from '@/components/ProgramacionQuirugica/CrearC.vue';
-import EditCirugia from '@/components/ProgramacionQuirugica/editarC.vue';
+import tablaC from '@/components/ProgramacionQuirugica/Cirugias/tablaC.vue';
+import GraficasC from '@/components/ProgramacionQuirugica/Cirugias/graficasC.vue';
+import CrearC from '@/components/ProgramacionQuirugica/Cirugias/CrearC.vue';
+import EditCirugia from '@/components/ProgramacionQuirugica/Cirugias/editarC.vue';
 import Registros from '@/components/ProgramacionQuirugica/AgendaC.vue';
 
 
