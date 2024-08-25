@@ -18,6 +18,26 @@ import GraficosDireccionG from '../components/DireccionGeneral/GraficosDireccion
 import GrficoApro from '@/components/DireccionGeneral/GraficosDG/GrficoApro.vue';
 import GrficoRoles from '@/components/DireccionGeneral/GraficosDG/GrficoRoles.vue'
 
+//import del area programacion quirurgica
+import tablaC from '@/components/ProgramacionQuirugica/Cirugias/tablaC.vue';
+import GraficasC from '@/components/ProgramacionQuirugica/Cirugias/graficasC.vue';
+import CrearC from '@/components/ProgramacionQuirugica/Cirugias/CrearC.vue';
+import EditCirugia from '@/components/ProgramacionQuirugica/Cirugias/editarC.vue';
+
+
+//Espacios
+import CrearEspacio from '@/components/ProgramacionQuirugica/Espacios/CrearEspacio.vue';
+import EditarEspacio from '@/components/ProgramacionQuirugica/Espacios/EditarEspacio.vue';
+import EspaciosList from '@/components/ProgramacionQuirugica/Espacios/EspaciosList.vue';
+import espaciosGraficas from '@/components/ProgramacionQuirugica/Espacios/espaciosGraficas.vue';
+
+//Horarios
+import edithorario from '@/components/ProgramacionQuirugica/Horarios/edithorario.vue';
+import horarios from '@/components/ProgramacionQuirugica/Horarios/horarios.vue';
+import listahorarios from '@/components/ProgramacionQuirugica/Horarios/listahorarios.vue';
+
+
+
 // Farmacia
 import tablaMedic from '@/components/Farmacia/tablamedicamentos.vue';
 import medicamentos from '@/components/Farmacia/medicamentos.vue';
@@ -381,6 +401,66 @@ const router = createRouter({
           component: Grafica2,
           meta: { requiresRole: ['Pediatría'] }
         },
+
+
+      // Programacion quirurgica
+        {path:"/tablac",
+        name:"tablac",
+        component:tablaC,
+        meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica']}
+        },
+
+        {path:"/graficasC",
+        name:"graficasC",
+        component:GraficasC, 
+        meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
+        },
+
+        {path:"/crearC",
+        name:"crearC",
+        component:CrearC, 
+        meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
+        },
+        {path:"/editarC/:id",
+        name:"EditCirugia",
+        component: EditCirugia,  
+        meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
+        },
+        {path:"/CrearEspacio",
+        name:"CrearEspacio",
+        component: CrearEspacio,
+        meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
+        },
+        {path:"/EditarEspacio/:id",
+          name:"EditarEspacio",
+          component: EditarEspacio,
+          meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
+        }, 
+        {path:"/EspaciosList",
+          name:"EspaciosList",
+          component: EspaciosList,
+          meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
+        },
+        {path:"/espaciosGraficas",
+          name:"espaciosGraficas",
+          component: espaciosGraficas,
+          meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
+        },
+        {path:"/horarios",
+          name:"horarios",
+          component: horarios,
+          meta: { requiresRole: ['Administrativo', 'Direccion General', 'Programacion Quirurgica']}
+        },
+        {path:"/edithorario/:id",
+          name:"edithorario",
+          component: edithorario,
+          meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica']}
+        },
+        {path:"/listahorarios",
+          name:"listahorarios",
+          component: listahorarios,
+          meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
+        }
       ]
     }
   ]

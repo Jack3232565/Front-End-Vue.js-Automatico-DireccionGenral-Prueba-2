@@ -478,33 +478,89 @@
                </ul>
             </li>
 
-            <!-- Cirugias - -->
+           <!-- Cirugías - -->
             <li v-if="userRole === 'Programacion Quirurgica' || userRole === 'Médico Especialista' || userRole === 'Direccion General' || userRole === 'Administrativo'">
-               <a href="#" @click.prevent="toggleMenu('cirugia')"
-                  class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  aria-controls="dropdown-example2" data-collapse-toggle="dropdown-example2">
-                  <span class="material-symbols-outlined">
-                     surgical
-                  </span>
-                  <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Cirugías</span>
-                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                     viewBox="0 0 10 6">
-                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m1 1 4 4 4-4" />
-                  </svg>
-               </a>
-               <ul v-show="menus.cirugia" class="submenu ml-8">
-                  <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Cirugias</a>
-                  </li>
-                  <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Calendario
-                        de Cirugias</a>
-                  </li>
-               </ul>
+            <a href="#" @click.prevent="toggleMenu('cirugia')"
+               class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+               aria-controls="dropdown-example2" data-collapse-toggle="dropdown-example2">
+               <span class="material-symbols-outlined">
+                  surgical
+            </span>
+               <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Cirugías</span>
+               <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+               </svg>
+            </a>
+            <ul v-show="menus.cirugia" class="submenu ml-8">
+               
+               <li>
+                  <RouterLink to="CrearEspacio">
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                     Crear Espacios
+                     </a>
+               </RouterLink>
+               </li>
+               <li>
+                  <RouterLink to="/EspaciosList">
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                     Tabla Espacios
+                     </a>
+                  </RouterLink>
+               </li>
+               <li>
+                  <RouterLink to="/espaciosGraficas">
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                     Graficas Espacios
+                     </a>
+                  </RouterLink>
+               </li>
+               <li>
+                  <RouterLink to="/tablaC">
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                     Tabla Cirugias
+                     </a>
+                  </RouterLink>
+               </li>
+               <li>
+                  <RouterLink to="/crearC">
+                  <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                  Crear Cirugias
+                  </a>
+               </RouterLink>
+               </li>
+               <li>
+                  <RouterLink to="/graficasC">
+                  <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                  Graficas Cirugías
+                  </a>
+               </RouterLink>
+               </li>
+               
+               <li>
+                  <RouterLink to="/listahorarios">
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                     Tabla Horarios
+                     </a>
+                  </RouterLink>
+               </li>
+               <li>
+                  <RouterLink to="/CrearEspacio">
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                     Crear Horarios
+                     </a>
+               </RouterLink>
+               </li>
+               
+               <li>
+                  <RouterLink to="/espaciosGraficas">
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                     Graficas Horarios
+                     </a>
+                  </RouterLink>
+               </li>
+            </ul>
             </li>
+
 
             <li>
                <a href="/"
