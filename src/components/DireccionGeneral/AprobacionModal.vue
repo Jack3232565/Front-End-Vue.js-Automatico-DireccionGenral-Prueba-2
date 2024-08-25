@@ -59,16 +59,16 @@
               <div class="overflow-x-auto">
                 <table class="min-w-full bg-white border border-gray-300 table-hover">
                   <thead>
-                    <tr class="bg-gray-200 text-black-600 uppercase text-xs leading-normal">
-                      <th class="py-3 px-6 text-left">No°</th>
-                      <th class="py-3 px-6 text-left">Personal Médico</th>
-                      <th class="py-3 px-6 text-left">N° Solicitud</th>
-                      <th class="py-3 px-6 text-left">Comentario</th>
-                      <th class="py-3 px-6 text-left">Estatus</th>
-                      <th class="py-3 px-6 text-left">Tipo</th>
-                      <th class="py-3 px-6 text-left">Fecha de Registro</th>
-                      <th class="py-3 px-6 text-left">Fecha de Aprobación</th>
-                      <th class="py-3 px-6 text-left">Acciones</th>
+                    <tr class="bg-gray-200 text-black-600 uppercase text-xs leading-normal ">
+                      <th class="py-3 px-6 text-left text-black">No°</th>
+                      <th class="py-3 px-6 text-left text-black">Personal Médico</th>
+                      <th class="py-3 px-6 text-left text-black">N° Solicitud</th>
+                      <th class="py-3 px-6 text-left text-black">Comentario</th>
+                      <th class="py-3 px-6 text-left text-black">Estatus</th>
+                      <th class="py-3 px-6 text-left text-black">Tipo</th>
+                      <th class="py-3 px-6 text-left text-black">Fecha de Registro</th>
+                      <th class="py-3 px-6 text-left text-black">Fecha de Aprobación</th>
+                      <th class="py-3 px-6 text-left text-black">Acciones</th>
                     </tr>
                   </thead>
                   <tbody class="text-gray-600 text-xs font-light">
