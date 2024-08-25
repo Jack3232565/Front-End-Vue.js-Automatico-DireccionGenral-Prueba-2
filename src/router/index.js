@@ -351,59 +351,59 @@ const router = createRouter({
         {path:"/tablac",
         name:"tablac",
         component:tablaC,
-        meta: { requiresRole: ['Direccion General'] }
+        meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica']}
         },
 
         {path:"/graficasC",
         name:"graficasC",
         component:GraficasC, 
-        meta: { requiresRole: ['Direccion General'] }
+        meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
         },
 
         {path:"/crearC",
         name:"crearC",
         component:CrearC, 
-        meta: { requiresRole: ['Direccion General'] }
+        meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
         },
         {path:"/editarC/:id",
         name:"EditCirugia",
         component: EditCirugia,  
-        meta: { requiresRole: ['Direccion General'] }
+        meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
         },
         {path:"/CrearEspacio",
         name:"CrearEspacio",
         component: CrearEspacio,
-        meta: { requiresRole: ['Direccion General'] }
+        meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
         },
         {path:"/EditarEspacio/:id",
           name:"EditarEspacio",
           component: EditarEspacio,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
         }, 
         {path:"/EspaciosList",
           name:"EspaciosList",
           component: EspaciosList,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
         },
         {path:"/espaciosGraficas",
           name:"espaciosGraficas",
           component: espaciosGraficas,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
         },
         {path:"/horarios",
           name:"horarios",
           component: horarios,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General', 'Programacion Quirurgica']}
         },
         {path:"/edithorario/:id",
           name:"edithorario",
           component: edithorario,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica']}
         },
         {path:"/listahorarios",
           name:"listahorarios",
           component: listahorarios,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
         }
       ]
     }
