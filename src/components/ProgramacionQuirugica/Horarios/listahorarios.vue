@@ -1,179 +1,166 @@
 <template>
-  <section class="bg-gray-100 min-h-screen flex justify-center items-center">
-    <div class="bg-[#D2E8E3] rounded-2xl p-10 flex flex-col items-center max-w-6xl w-full overflow-x-auto">
-      <div class="w-full px-4">
-        <h2 class="font-bold text-3xl text-[#0F6466] mb-4">Lista de Horarios</h2>
-        <p class="text-sm mb-8 text-[#002D74]">Revisa y gestiona los horarios</p>
+  <div class="bg-gray-300 min-h-screen p-10 flex flex-col max-w-full mx-auto">
+    <h1 class="font-bold text-3xl text-[#0F6466] mb-4">Lista de Horarios</h1>
 
-        <div class="overflow-x-auto w-full">
-          <table class="w-full table-auto bg-white rounded-xl shadow-lg">
-            <thead>
-              <tr class="bg-[#0593A2] text-black">
-                <th class="py-2 px-4">ID</th>
-                <th class="py-2 px-4">Empleado ID</th>
-                <th class="py-2 px-4">Nombre</th>
-                <th class="py-2 px-4">Especialidad</th>
-                <th class="py-2 px-4">Día</th>
-                <th class="py-2 px-4">Hora Inicio</th>
-                <th class="py-2 px-4">Hora Fin</th>
-                <th class="py-2 px-4">Turno</th>
-                <th class="py-2 px-4">Departamento</th>
-                <th class="py-2 px-4">Sala</th>
-                <th class="py-2 px-4">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(horario, index) in horarios" :key="index" class="text-[#002D74] hover:bg-[#D2E8E3]">
-                <td class="border-t py-2 px-4">{{ horario.horario_id }}</td>
-                <td class="border-t py-2 px-4">{{ horario.empleado_id }}</td>
-                <td class="border-t py-2 px-4">{{ horario.nombre }}</td>
-                <td class="border-t py-2 px-4">{{ horario.especialidad }}</td>
-                <td class="border-t py-2 px-4">{{ horario.dia_semana }}</td>
-                <td class="border-t py-2 px-4">{{ horario.hora_inicio }}</td>
-                <td class="border-t py-2 px-4">{{ horario.hora_fin }}</td>
-                <td class="border-t py-2 px-4">{{ horario.turno }}</td>
-                <td class="border-t py-2 px-4">{{ horario.nombre_departamento }}</td>
-                <td class="border-t py-2 px-4">{{ horario.nombre_sala }}</td>
-                <td class="border-t py-2 px-4">
-                  <button class="bg-[#0F6466] text-white py-1 px-2 rounded-md hover:bg-[#0593A2] duration-200" @click="editHorario(horario.horario_id)">Editar</button>
-                  <button class="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-700 duration-200 ml-2" @click="confirmDelete(horario.horario_id)">Eliminar</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="w-full mb-4 flex justify-between items-center">
+      <button @click="irACrearHorario" class="bg-gray-500 text-white py-2 px-4 rounded-xl hover:scale-105 duration-300 hover:bg-[#002c7424] font-medium">
+        Crear Horario
+      </button>
 
-        <div class="w-full mt-8">
-          <button class="bg-[#0593A2] text-white py-2 rounded-xl w-full hover:scale-105 duration-300 hover:bg-[#0F6466] font-medium" @click="goToCreate">Crear Nuevo Horario</button>
-        </div>
+      <div class="relative w-full max-w-md flex-grow ml-4">
+        <input 
+          v-model="filtro" 
+          @input="buscarHorarios" 
+          type="text" 
+          class="p-2 rounded-xl border border-gray-300 w-full pr-10" 
+          placeholder="Buscar Horarios por Nombre..."
+        />
+        <span class="absolute inset-y-0 right-0 flex items-center px-3 bg-[#0F6466] text-white rounded-r-xl">
+          <i class="fas fa-search"></i>
+        </span>
       </div>
     </div>
-  </section>
+
+    <div class="w-full flex-grow overflow-x-auto">
+      <table class="w-full table-auto border-collapse border border-gray-300">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="p-2 border-b">ID</th>
+            <th class="p-2 border-b">Empleado ID</th>
+            <th class="p-2 border-b">Nombre</th>
+            <th class="p-2 border-b">Especialidad</th>
+            <th class="p-2 border-b">Día de la Semana</th>
+            <th class="p-2 border-b">Hora Inicio</th>
+            <th class="p-2 border-b">Hora Fin</th>
+            <th class="p-2 border-b">Turno</th>
+            <th class="p-2 border-b">Nombre Departamento</th>
+            <th class="p-2 border-b">Nombre Sala</th>
+            <th class="p-2 border-b">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="horario in horariosFiltrados" :key="horario.horario_id">
+            <td class="p-2 border-b">{{ horario.horario_id }}</td>
+            <td class="p-2 border-b">{{ horario.empleado_id }}</td>
+            <td class="p-2 border-b">{{ horario.nombre }}</td>
+            <td class="p-2 border-b">{{ horario.especialidad }}</td>
+            <td class="p-2 border-b">{{ horario.dia_semana }}</td>
+            <td class="p-2 border-b">{{ horario.hora_inicio }}</td>
+            <td class="p-2 border-b">{{ horario.hora_fin }}</td>
+            <td class="p-2 border-b">{{ horario.turno }}</td>
+            <td class="p-2 border-b">{{ horario.nombre_departamento }}</td>
+            <td class="p-2 border-b">{{ horario.nombre_sala }}</td>
+            <td class="p-2 border-b text-center">
+              <div class="flex space-x-2 justify-center">
+                <button @click="editarHorario(horario.horario_id)" class="bg-yellow-500 text-white py-1 px-2 rounded-xl hover:scale-105 duration-300 hover:bg-yellow-600">
+                  <i class="fas fa-edit"></i> Editar
+                </button>
+                <button @click="eliminarHorario(horario.horario_id)" class="bg-red-500 text-white py-1 px-2 rounded-xl hover:scale-105 duration-300 hover:bg-red-600">
+                  <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
-      horarios: [
-        {
-          horario_id: 1,
-          empleado_id: 101,
-          nombre: 'Mañana',
-          especialidad: 'Cardiología',
-          dia_semana: 'Lunes',
-          hora_inicio: '08:00',
-          hora_fin: '12:00',
-          turno: 'Matutino',
-          nombre_departamento: 'Cardiología',
-          nombre_sala: 'Sala 1'
-        },
-        {
-          horario_id: 2,
-          empleado_id: 102,
-          nombre: 'Tarde',
-          especialidad: 'Neurología',
-          dia_semana: 'Martes',
-          hora_inicio: '13:00',
-          hora_fin: '17:00',
-          turno: 'Vespertino',
-          nombre_departamento: 'Neurología',
-          nombre_sala: 'Sala 2'
-        },
-        {
-          horario_id: 3,
-          empleado_id: 103,
-          nombre: 'Noche',
-          especialidad: 'Pediatría',
-          dia_semana: 'Miércoles',
-          hora_inicio: '18:00',
-          hora_fin: '22:00',
-          turno: 'Nocturno',
-          nombre_departamento: 'Pediatría',
-          nombre_sala: 'Sala 3'
-        },
-        {
-          horario_id: 4,
-          empleado_id: 104,
-          nombre: 'Mañana',
-          especialidad: 'Oncología',
-          dia_semana: 'Jueves',
-          hora_inicio: '07:00',
-          hora_fin: '11:00',
-          turno: 'Matutino',
-          nombre_departamento: 'Oncología',
-          nombre_sala: 'Sala 4'
-        },
-        {
-          horario_id: 5,
-          empleado_id: 105,
-          nombre: 'Tarde',
-          especialidad: 'Gastroenterología',
-          dia_semana: 'Viernes',
-          hora_inicio: '14:00',
-          hora_fin: '18:00',
-          turno: 'Vespertino',
-          nombre_departamento: 'Gastroenterología',
-          nombre_sala: 'Sala 5'
-        },
-        {
-          horario_id: 6,
-          empleado_id: 106,
-          nombre: 'Noche',
-          especialidad: 'Dermatología',
-          dia_semana: 'Sábado',
-          hora_inicio: '19:00',
-          hora_fin: '23:00',
-          turno: 'Nocturno',
-          nombre_departamento: 'Dermatología',
-          nombre_sala: 'Sala 6'
-        },
-        {
-          horario_id: 7,
-          empleado_id: 107,
-          nombre: 'Mañana',
-          especialidad: 'Cirugía General',
-          dia_semana: 'Domingo',
-          hora_inicio: '08:00',
-          hora_fin: '12:00',
-          turno: 'Matutino',
-          nombre_departamento: 'Cirugía General',
-          nombre_sala: 'Sala 7'
-        }
-      ]
+      horarios: [],
+      filtro: '',
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6IlByb2dyYW1hY2lvblEiLCJDb3JyZW9fRWxlY3Ryb25pY28iOiJwcm9ncmFtYWNpb25ALmdtYWlsIiwiQ29udHJhc2VuYSI6IlByb2dyYW1hY2lvblEiLCJOdW1lcm9fVGVsZWZvbmljb19Nb3ZpbCI6IjEyMzQ1Njc4OTkifQ.HgqCAey90hU2klU90K8yRs5HpyzFsCjXrK3CTx2oIjc'
     };
   },
+  computed: {
+    horariosFiltrados() {
+      return this.horarios.filter(horario => {
+        return horario.nombre.toLowerCase().includes(this.filtro.toLowerCase());
+      });
+    }
+  },
+  created() {
+    this.obtenerHorarios();
+  },
   methods: {
-    editHorario(horario_id) {
-      window.location.href = `http://localhost:5173/edithorario?id=${horario_id}`;
+    obtenerHorarios() {
+      axios.get('https://renderbackend-dwke.onrender.com/horarios/', {
+        headers: {
+          'Authorization': `Bearer ${this.token}`
+        }
+      })
+      .then(response => {
+        this.horarios = response.data;
+      })
+      .catch(error => {
+        console.error('Error al obtener los horarios:', error);
+      });
     },
-    confirmDelete(horario_id) {
-      if (confirm("¿Estás seguro de que deseas eliminar este horario?")) {
-        this.deleteHorario(horario_id);
-      }
+    irACrearHorario() {
+      this.$router.push({ name: 'horarios' });
     },
-    deleteHorario(horario_id) {
-      console.log("Horario eliminado con ID:", horario_id);
-      // Aquí puedes agregar la lógica para eliminar el horario del backend y actualizar la lista de horarios
+    editarHorario(id) {
+      this.$router.push({ name: 'EditarHorario', params: { id } });
     },
-    goToCreate() {
-      window.location.href = 'http://localhost:5173/horarios';
+    eliminarHorario(id) {
+      axios.delete(`https://renderbackend-dwke.onrender.com/horario/${id}/`, {
+        headers: {
+          'Authorization': `Bearer ${this.token}`
+        }
+      })
+      .then(() => {
+        this.obtenerHorarios();
+      })
+      .catch(error => {
+        console.error('Error al eliminar el horario:', error);
+      });
     }
   }
 };
 </script>
 
 <style scoped>
-/* Estilos personalizados para el componente */
-table {
-  border-collapse: collapse;
+.table {
+  margin-bottom: 0;
 }
 
-th, td {
-  border-bottom: 1px solid #ccc;
+.table thead th {
+  background-color: #4a4c4d; /* Gris claro */
+  color: #495057; /* Color del texto para mejor contraste */
 }
 
-tbody tr:hover {
-  background-color: #D2E8E3;
+.bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.bg-gray-300 {
+  background-color: #e5e7eb;
+}
+
+.bg-gray-500 {
+  background-color: #6b7280;
+}
+
+.bg-gray-500:hover {
+  background-color: #4b5563;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-gray-300 {
+  color: #d1d5db;
+}
+
+.table td {
+  word-wrap: break-word; /* Ajustar el texto largo */
+  max-width: 200px; /* Limitar el ancho máximo de las celdas */
 }
 </style>

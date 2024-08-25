@@ -1,87 +1,104 @@
 <template>
-    <section class="bg-gray-100 min-h-screen flex justify-center items-center">
-      <div class="bg-[#D2E8E3] rounded-2xl p-10 flex flex-col items-center max-w-2xl w-full">
-        <div class="w-full px-8">
-          <h2 class="font-bold text-3xl text-[#0F6466] mb-4">Editar Horario</h2>
-          <p class="text-sm mb-8 text-[#002D74]">Actualiza los detalles del horario existente</p>
-  
-          <form @submit.prevent="editarHorario" class="flex flex-col gap-4">
-            <!-- Sección de Datos del Horario -->
-            <div class="flex flex-wrap gap-4">
-              <input class="p-2 mt-2 rounded-xl border flex-1" type="number" v-model="horario.empleado_id" placeholder="ID del Empleado" required>
-              <input class="p-2 mt-2 rounded-xl border flex-1" type="text" v-model="horario.nombre" placeholder="Nombre del Horario" required>
-            </div>
-            <div class="flex flex-wrap gap-4">
-              <input class="p-2 mt-2 rounded-xl border f  lex-1" type="text" v-model="horario.especialidad" placeholder="Especialidad" required>
-              <input class="p-2 mt-2 rounded-xl border flex-1" type="text" v-model="horario.dia_semana" placeholder="Día de la Semana" required>
-            </div>
-            <div class="flex flex-wrap gap-4">
-              <input class="p-2 mt-2 rounded-xl border flex-1" type="time" v-model="horario.hora_inicio" placeholder="Hora de Inicio" required>
-              <input class="p-2 mt-2 rounded-xl border flex-1" type="time" v-model="horario.hora_fin" placeholder="Hora de Fin" required>
-            </div>
-            <div class="flex flex-wrap gap-4">
-              <input class="p-2 mt-2 rounded-xl border flex-1" type="text" v-model="horario.turno" placeholder="Turno" required>
-              <input class="p-2 mt-2 rounded-xl border flex-1" type="text" v-model="horario.nombre_departamento" placeholder="Nombre del Departamento" required>
-            </div>
-            <div class="flex flex-wrap gap-4">
-              <input class="p-2 mt-2 rounded-xl border flex-1" type="text" v-model="horario.nombre_sala" placeholder="Nombre de la Sala" required>
-            </div>
-            <div class="w-full">
-              <button class="bg-[#0593A2] text-white py-2 rounded-xl w-full hover:scale-105 duration-300 hover:bg-[#002c7424] font-medium" type="submit">Guardar Cambios</button>
-            </div>
-            <div class="w-full">
-              <button class="bg-[#0593A2] text-white py-2 rounded-xl w-full hover:scale-105 duration-300 hover:bg-[#002c7424] font-medium" type="button" @click="goBack">Cancelar</button>
-            </div>
-          </form>
-          
-          <!-- Botón para volver a la lista de horarios -->
-          <div class="w-full mt-4">
-            <button class="bg-[#0593A2] text-white py-2 rounded-xl w-full hover:scale-105 duration-300 hover:bg-[#002c7424] font-medium" @click="goToList">Ver Lista de Horarios</button>
-          </div>
+  <section class="bg-gray-100 min-h-screen flex justify-center items-center">
+    <div class="bg-[#D2E8E3] rounded-2xl p-10 flex flex-col items-center max-w-xl w-full">
+      <h2 class="font-bold text-3xl text-[#0F6466] mb-4">Editar Horario</h2>
+      <form @submit.prevent="updateHorario" class="w-full">
+        <div class="mb-4">
+          <label class="block text-sm text-[#002D74] mb-2" for="nombre">Nombre</label>
+          <input v-model="horario.nombre" id="nombre" class="w-full px-3 py-2 rounded-lg border" type="text" required />
         </div>
-      </div>
-    </section>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        horario: {
-          empleado_id: '',
-          nombre: '',
-          especialidad: '',
-          dia_semana: '',
-          hora_inicio: '',
-          hora_fin: '',
-          turno: '',
-          nombre_departamento: '',
-          nombre_sala: ''
-        }
-      };
-    },
-    methods: {
-      editarHorario() {
-        // Lógica para enviar los datos actualizados al backend
-        console.log("Horario actualizado:", this.horario);
-        this.goBack(); // Redirigir después de guardar
-      },
-      goBack() {
-        window.location.href = 'http://localhost:5173/horarios'; // Redirige a la lista de horarios
-      },
-      goToList() {
-        window.location.href = 'http://localhost:5173/listahorarios'; // Redirige a la lista de horarios
+        <div class="mb-4">
+          <label class="block text-sm text-[#002D74] mb-2" for="especialidad">Especialidad</label>
+          <input v-model="horario.especialidad" id="especialidad" class="w-full px-3 py-2 rounded-lg border" type="text" required />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm text-[#002D74] mb-2" for="dia_semana">Día de la Semana</label>
+          <input v-model="horario.dia_semana" id="dia_semana" class="w-full px-3 py-2 rounded-lg border" type="text" required />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm text-[#002D74] mb-2" for="hora_inicio">Hora de Inicio</label>
+          <input v-model="horario.hora_inicio" id="hora_inicio" class="w-full px-3 py-2 rounded-lg border" type="time" required />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm text-[#002D74] mb-2" for="hora_fin">Hora de Fin</label>
+          <input v-model="horario.hora_fin" id="hora_fin" class="w-full px-3 py-2 rounded-lg border" type="time" required />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm text-[#002D74] mb-2" for="turno">Turno</label>
+          <input v-model="horario.turno" id="turno" class="w-full px-3 py-2 rounded-lg border" type="text" required />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm text-[#002D74] mb-2" for="nombre_departamento">Departamento</label>
+          <input v-model="horario.nombre_departamento" id="nombre_departamento" class="w-full px-3 py-2 rounded-lg border" type="text" required />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm text-[#002D74] mb-2" for="nombre_sala">Sala</label>
+          <input v-model="horario.nombre_sala" id="nombre_sala" class="w-full px-3 py-2 rounded-lg border" type="text" required />
+        </div>
+        <div class="flex justify-between">
+          <button class="bg-[#0593A2] text-white py-2 px-4 rounded-xl hover:scale-105 duration-300 hover:bg-[#0F6466]" type="submit">Guardar Cambios</button>
+          <button class="bg-gray-500 text-white py-2 px-4 rounded-xl hover:scale-105 duration-300 hover:bg-gray-700" @click="cancelEdit">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      horario: {
+        nombre: '',
+        especialidad: '',
+        dia_semana: '',
+        hora_inicio: '',
+        hora_fin: '',
+        turno: '',
+        nombre_departamento: '',
+        nombre_sala: ''
+      }
+    };
+  },
+  methods: {
+    async fetchHorario(horario_id) {
+      try {
+        const response = await axios.get(`https://renderbackend-dwke.onrender.com/horario/${horario_id}`);
+        this.horario = response.data;
+      } catch (error) {
+        console.error('Error fetching horario:', error);
       }
     },
-    async mounted() {
-      const horarioId = this.$route.params.id;
-      // Aquí cargarías los datos del horario desde tu backend
-      // Por simplicidad, asumiremos que ya tienes los datos cargados en `this.horario`
+    async updateHorario() {
+      try {
+        await axios.put(`https://renderbackend-dwke.onrender.com/horario/${this.horario.horario_id}`, this.horario);
+        alert('Horario actualizado con éxito');
+        this.$router.push('/'); // Redirige a la lista de horarios después de actualizar
+      } catch (error) {
+        console.error('Error updating horario:', error);
+      }
+    },
+    cancelEdit() {
+      this.$router.push('/'); // Redirige a la lista de horarios si se cancela la edición
     }
-  };
-  </script>
-  
-  <style scoped>
-  /* Estilos personalizados para el componente */
-  </style>
-  
+  },
+  mounted() {
+    const horario_id = new URLSearchParams(window.location.search).get('id');
+    if (horario_id) {
+      this.fetchHorario(horario_id);
+    }
+  }
+};
+</script>
+
+<style scoped>
+/* Estilos personalizados para el componente */
+input {
+  border: 1px solid #ccc;
+}
+button {
+  cursor: pointer;
+}
+</style>

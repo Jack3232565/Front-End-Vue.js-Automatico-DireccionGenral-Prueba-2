@@ -35,7 +35,6 @@ import espaciosGraficas from '@/components/ProgramacionQuirugica/Espacios/espaci
 import edithorario from '@/components/ProgramacionQuirugica/Horarios/edithorario.vue';
 import horarios from '@/components/ProgramacionQuirugica/Horarios/horarios.vue';
 import listahorarios from '@/components/ProgramacionQuirugica/Horarios/listahorarios.vue';
-import Edithorario from '@/components/ProgramacionQuirugica/Horarios/edithorario.vue';
 
 
 
@@ -346,8 +345,9 @@ const router = createRouter({
           component: Bitacora,
           meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
-      
 
+
+      // Programacion quirurgica
         {path:"/tablac",
         name:"tablac",
         component:tablaC,
