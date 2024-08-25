@@ -43,7 +43,7 @@
             <div class="overflow-x-auto">
               <table class="min-w-full bg-white border border-gray-300 table-fixed">
                 <thead>
-                  <tr class="bg-gray-200 text-gray-600 uppercase text-xs leading-normal text-center">
+                  <tr class="bg-gray-400 text-gray-600 uppercase text-xs leading-normal text-center">
                     <th class="py-3 px-6 text-left">No°</th>
                     <th class="py-3 px-6 text-left">Nombre</th>
                     <th class="py-3 px-6 text-left">Descripción</th>

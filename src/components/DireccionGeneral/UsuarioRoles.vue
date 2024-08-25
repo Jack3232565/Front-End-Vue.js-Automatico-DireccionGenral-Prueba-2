@@ -56,7 +56,7 @@
             <div class="overflow-x-auto">
               <table class="min-w-full bg-white border border-gray-300 table-hover">
                 <thead>
-                  <tr class="bg-gray-200 text-gray-600 uppercase text-xs leading-normal" >
+                  <tr class="bg-gray-400 text-gray-600 uppercase text-xs leading-normal" >
                     <th class="py-3 px-6 text-left">No°</th>
                     <th class="py-3 px-6 text-left">Usuario</th>
                     <th class="py-3 px-6 text-left">Rol Asignado</th>

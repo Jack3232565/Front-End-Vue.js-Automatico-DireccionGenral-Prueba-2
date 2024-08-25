@@ -62,7 +62,7 @@
               >
                 <thead>
                   <tr
-                    class="bg-gray-200 text-gray-600 uppercase text-xs leading-normal"
+                    class="bg-gray-400 text-gray-600 uppercase text-xs leading-normal"
                   >
                     <th class="py-3 px-6 text-left">No°</th>
                     <th class="py-3 px-6 text-left">Usuario</th>
