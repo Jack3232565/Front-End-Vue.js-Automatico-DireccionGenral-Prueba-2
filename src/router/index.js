@@ -23,7 +23,6 @@ import tablaC from '@/components/ProgramacionQuirugica/Cirugias/tablaC.vue';
 import GraficasC from '@/components/ProgramacionQuirugica/Cirugias/graficasC.vue';
 import CrearC from '@/components/ProgramacionQuirugica/Cirugias/CrearC.vue';
 import EditCirugia from '@/components/ProgramacionQuirugica/Cirugias/editarC.vue';
-import Registros from '@/components/ProgramacionQuirugica/AgendaC.vue';
 
 
 //Espacios
@@ -348,12 +347,6 @@ const router = createRouter({
           meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
       
-
-        {path:'/registros',
-        name:'registros',
-        component : Registros,
-        meta: { requiresRole: ['Direccion General'] }
-        },
 
         {path:"/tablac",
         name:"tablac",
