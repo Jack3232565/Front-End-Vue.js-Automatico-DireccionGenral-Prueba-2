@@ -1,0 +1,295 @@
+<template>
+    <!-- Gráficas en el Dashboard -->
+    <div class="p-4">
+        <div class="flex justify-center gap-4 mb-4">
+            <!-- Gráfica de Dona -->
+            <div class="flex-1 max-w-[500px] border">
+                <apexchart type="donut" :options="priorityChartOptions" :series="priorityChartSeries" width="100%">
+                </apexchart>
+            </div>
+
+            <!-- Gráfica de Barras -->
+            <div class="flex-1 max-w-[500px] border">
+                <apexchart type="bar" :options="statusChartOptions" :series="statusChartSeries" width="100%">
+                </apexchart>
+            </div>
+        </div>
+
+        <!-- Gráficas de órganos -->
+        <div class="flex justify-center gap-4 mb-4">
+            <!-- Gráfica de Columnas -->
+            <div class="flex-1 max-w-[500px] border">
+                <apexchart type="bar" :options="organAvailabilityChartOptions" :series="organAvailabilityChartSeries"
+                    width="100%"></apexchart>
+            </div>
+            <!-- Gráfica de Líneas -->
+            <div class="flex-1 max-w-[500px] border">
+                <apexchart type="line" :options="organSystemChartOptions" :series="organSystemChartSeries" width="100%">
+                </apexchart>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import ApexCharts from 'vue3-apexcharts';
+
+export default {
+    components: {
+        apexchart: ApexCharts,
+    },
+    data() {
+        return {
+            // Opciones para la gráfica de dona
+            priorityChartOptions: {
+                chart: {
+                    type: 'donut',
+                },
+                labels: ['Urgente', 'Alta', 'Moderada', 'Emergente', 'Normal'],
+                legend: {
+                    position: 'bottom',
+                },
+                responsive: [
+                    {
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 300,
+                            },
+                            legend: {
+                                position: 'bottom',
+                            },
+                        },
+                    },
+                ],
+            },
+            priorityChartSeries: [10, 10, 10, 10, 10],
+
+            // Opciones para la gráfica de barras
+            statusChartOptions: {
+                chart: {
+                    type: 'bar',
+                },
+                xaxis: {
+                    categories: ['Registrada', 'Programada', 'Cancelada', 'Reprogramada', 'En_Proceso', 'Realizada'],
+                },
+                title: {
+                    text: 'Estado de Solicitudes',
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        endingShape: 'rounded',
+                    },
+                },
+                dataLabels: {
+                    enabled: true,
+                },
+                legend: {
+                    position: 'top',
+                },
+                responsive: [
+                    {
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 300,
+                            },
+                            legend: {
+                                position: 'bottom',
+                            },
+                        },
+                    },
+                ],
+            },
+            statusChartSeries: [{
+                name: 'Número de Solicitudes',
+                data: [0, 0, 0, 0, 0, 0], // Valores iniciales
+            }],
+// Opciones para la gráfica de columnas
+organAvailabilityChartOptions: {
+                chart: {
+                    type: 'bar',
+                },
+                xaxis: {
+                    categories: ['Disponible', 'No Disponible', 'Reservado', 'En Proceso', 'Entregado'],
+                },
+                title: {
+                    text: 'Disponibilidad de Órganos',
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        endingShape: 'rounded',
+                    },
+                },
+                dataLabels: {
+                    enabled: true,
+                },
+                legend: {
+                    position: 'top',
+                },
+                responsive: [
+                    {
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 300,
+                            },
+                            legend: {
+                                position: 'bottom',
+                            },
+                        },
+                    },
+                ],
+            },
+            organAvailabilityChartSeries: [{
+                name: 'Número de Órganos',
+                data: [0, 0, 0, 0, 0], // Valores iniciales actualizados
+            }],
+
+            // Opciones para la gráfica de líneas
+            organSystemChartOptions: {
+                chart: {
+                    type: 'line',
+                },
+                xaxis: {
+                    categories: [
+                        'Circulatorio', 'Digestivo', 'Respiratorio', 'Nervioso', 'Muscular', 'Esquelético',
+                        'Endocrino', 'Linfático', 'Inmunológico', 'Reproductor', 'Urinario', 'Sensorial'
+                    ],
+                },
+                title: {
+                    text: 'Aparato/Sistema de Órganos',
+                },
+                dataLabels: {
+                    enabled: true,
+                },
+                legend: {
+                    position: 'top',
+                },
+                responsive: [
+                    {
+                        breakpoint: 480,
+                        options: {
+                            chart: {
+                                width: 300,
+                            },
+                            legend: {
+                                position: 'bottom',
+                            },
+                        },
+                    },
+                ],
+            },
+            organSystemChartSeries: [{
+                name: 'Número de Órganos',
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // Valores iniciales
+            }],
+        };
+    },
+    async created() {
+        try {
+            const result = await fetch('https://back-end-hospital2-0.onrender.com/organos/');
+            const organs = await result.json();
+            console.log('Órganos:', organs); 
+
+            const availabilityCounts = {
+                Disponible: 0,
+                'No Disponible': 0,
+                Reservado: 0,
+                'En Proceso': 0,
+                Entregado: 0
+            };
+            const systemCounts = {
+                Circulatorio: 0, Digestivo: 0, Respiratorio: 0, Nervioso: 0, Muscular: 0, Esquelético: 0,
+                Endocrino: 0, Linfático: 0, Inmunológico: 0, Reproductor: 0, Urinario: 0, Sensorial: 0
+            };
+
+            organs.forEach(organ => {
+                console.log('Órgano:', organ); // Verifica cada órgano procesado
+                if (availabilityCounts[organ.Disponibilidad] !== undefined) {
+                    availabilityCounts[organ.Disponibilidad]++;
+                }
+                if (systemCounts[organ.Aparato_Sistema] !== undefined) {
+                    systemCounts[organ.Aparato_Sistema]++;
+                }
+            });
+
+            this.organAvailabilityChartSeries[0].data = [
+                availabilityCounts.Disponible,
+                availabilityCounts['No Disponible'],
+                availabilityCounts.Reservado,
+                availabilityCounts['En Proceso'],
+                availabilityCounts.Entregado
+            ];
+
+            this.organSystemChartSeries[0].data = [
+                systemCounts.Circulatorio,
+                systemCounts.Digestivo,
+                systemCounts.Respiratorio,
+                systemCounts.Nervioso,
+                systemCounts.Muscular,
+                systemCounts.Esquelético,
+                systemCounts.Endocrino,
+                systemCounts.Linfático,
+                systemCounts.Inmunológico,
+                systemCounts.Reproductor,
+                systemCounts.Urinario,
+                systemCounts.Sensorial
+            ];
+
+        } catch (error) {
+            // console.error('Error al obtener solicitudes:', error);
+            console.error('Error al obtener órganos:', error);
+        }
+        const response = await fetch('https://privilegecare-deploy-gqmt.onrender.com/solicitudes');
+            const solicitudes = await response.json();
+
+            const priorityCounts = {
+                Urgente: 0,
+                Alta: 0,
+                Moderada: 0,
+                Emergente: 0,
+                Normal: 0,
+            };
+
+            const statusCounts = {
+                Registrada: 0,
+                Programada: 0,
+                Cancelada: 0,
+                Reprogramada: 0,
+                En_Proceso: 0,
+                Realizada: 0,
+            };
+
+            solicitudes.forEach(solicitud => {
+                if (priorityCounts[solicitud.Prioridad] !== undefined) {
+                    priorityCounts[solicitud.Prioridad]++;
+                }
+
+                if (statusCounts[solicitud.Estatus] !== undefined) {
+                    statusCounts[solicitud.Estatus]++;
+                }
+            });
+
+            this.priorityChartSeries = [
+                priorityCounts.Urgente,
+                priorityCounts.Alta,
+                priorityCounts.Moderada,
+                priorityCounts.Emergente,
+                priorityCounts.Normal,
+            ];
+
+            this.statusChartSeries[0].data = [
+                statusCounts.Registrada,
+                statusCounts.Programada,
+                statusCounts.Cancelada,
+                statusCounts.Reprogramada,
+                statusCounts.En_Proceso,
+                statusCounts.Realizada,
+            ];
+
+    },
+};
+</script>

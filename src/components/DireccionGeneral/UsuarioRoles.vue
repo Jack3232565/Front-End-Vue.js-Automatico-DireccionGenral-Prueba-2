@@ -527,7 +527,7 @@
     methods: {
 
     getSolicitudes() {
-      apiClient.get('usuario_roles/')
+      apiClient.get('https://back-end-hospital2-0.onrender.com/usuario_roles/')
         .then((response) => {
           console.log(response.data);
           this.solicitudes = response.data;
@@ -552,7 +552,7 @@ saveSolicitud() {
     return;
   }
 
-  apiClient.post('usuario_roles/', this.solicitud)
+  apiClient.post('https://back-end-hospital2-0.onrender.com/usuario_roles/', this.solicitud)
     .then((response) => {
       console.log('Aprobación creada:', response.data);
       this.getSolicitudes();
@@ -606,7 +606,7 @@ updateSolicitud() {
   console.log(`Actualizando solicitud con Usuario_ID: ${Usuario_ID} y Rol_ID: ${Rol_ID}`);
 
 
-  apiClient.put(`usuario_roles/${Usuario_ID}/${Rol_ID}/`, updatedSolicitud)
+  apiClient.put(`https://back-end-hospital2-0.onrender.com/usuario_roles/${Usuario_ID}/${Rol_ID}/`, updatedSolicitud)
     .then((response) => {
       console.log(response.data);
       this.getSolicitudes(); // Actualiza la lista de solicitudes
@@ -633,7 +633,7 @@ updateSolicitud() {
                 - Fecha de Solicitud: ${this.formatearFecha(solicitud.Fecha_Registro)}
                 - Fecha de Aprobación: ${this.formatearFecha(solicitud.Fecha_Actualizacion)}`)
     ) {
-      apiClient.delete(`usuario_roles/${Usuario_ID}/${Rol_ID}/`)
+      apiClient.delete(`https://back-end-hospital2-0.onrender.com/usuario_roles/${Usuario_ID}/${Rol_ID}/`)
         .then((response) => {
           console.log(response.data);
           this.getSolicitudes();
@@ -714,8 +714,8 @@ updateSolicitud() {
     async fetchData1() {
       try {
         const [tableDataResponse, rolesResponse] = await Promise.all([
-          apiClient.get('usuario_roles/'),
-          apiClient.get('roles/')
+          apiClient.get('https://back-end-hospital2-0.onrender.com/usuario_roles/'),
+          apiClient.get('https://back-end-hospital2-0.onrender.com/roles/')
         ]);
         this.dataTable1 = tableDataResponse.data;
         this.roles = rolesResponse.data;
@@ -767,15 +767,15 @@ updateSolicitud() {
 
 
 
-  async fetchData1() {
+      async fetchData1() {
       try {
         const [tableDataResponse, rolesResponse] = await Promise.all([
-          fetch('https://back-end-hospital2-0.onrender.com/usuario_roles/'),
-          fetch('https://back-end-hospital2-0.onrender.com/roles/')
+          apiClient.get('https://back-end-hospital2-0.onrender.com/usuario_roles/'),
+          apiClient.get('roles/')
         ]);
-        this.dataTable1 = await tableDataResponse.json();
-        this.roles = await rolesResponse.json();
-  
+        this.dataTable1 = tableDataResponse.data;
+        this.roles = rolesResponse.data;
+
         console.log('DataTable:', this.dataTable1);
         console.log('Roles:', this.roles);
       } catch (error) {

@@ -4,11 +4,9 @@ import LoginView from '@/components/login.vue';
 import DashboardView from '@/components/dashboard.vue';
 import PersonasView from '@/components/personas.vue';
 import UsuarioView from '@/components/usuario.vue';
-import ResultadosEstudioView from '@/components/resultadosEstudio.vue';
-import EstudioView from '@/components/estudio.vue';
-import TablaResutadoEstudioView from '@/components/tablaResultadoEstudio.vue';
-import TablaEstudiosView from '@/components/tablaEstudios.vue';
 import PiePaginaView from '@/components/pie-pagina.vue';
+
+//Direccion General
 import AprobacionSM from '../components/DireccionGeneral/AprobacionSM.vue';
 import UsuarioRoles from '@/components/DireccionGeneral/UsuarioRoles.vue';
 import Roles from '@/components/DireccionGeneral/Roles.vue';
@@ -42,8 +40,38 @@ import Edithorario from '@/components/ProgramacionQuirugica/Horarios/edithorario
 
 
 
-// Recursos humano
-// import rescursos from  
+// Farmacia
+import tablaMedic from '@/components/Farmacia/tablamedicamentos.vue';
+import medicamentos from '@/components/Farmacia/medicamentos.vue';
+import LotesMed from '@/components/Farmacia/LotesMed.vue';
+import tablaLotes from '@/components/Farmacia/tablalotes.vue';
+import ConsumiblesView from '@/components/Farmacia/consumibles.vue';
+import tablaCon from '@/components/Farmacia/tablaconsumibles.vue';
+import dispensacionView from '@/components/Farmacia/dispensacion.vue'
+import tablaDis from '@/components/Farmacia/tabladispensacion.vue'
+import graficos from '@/components/Farmacia/graficos.vue'
+
+// Transplantes
+import OrganForm from '@/components/Transplantes/OrganForm.vue';
+import RequestView from '@/components/Transplantes/RequestTransplant.vue';
+import TableRView from '@/components/Transplantes/TableRequest.vue';
+import UpdateRView from '@/components/Transplantes/UpdateRequest.vue';
+import OrgansView from '@/components/Transplantes/Organs.vue';
+import GraficasView from '@/components/Transplantes/Graficas.vue'
+
+// Radiologia
+import ResultadosEstudioView from '@/components/Radiologia/resultadosEstudio.vue';
+import EstudioView from '@/components/Radiologia/estudio.vue';
+import dashboardRadiologiaView from '@/components/Radiologia/dashboardRadiologia.vue';
+
+// // Recursos Humanos
+import PersonalMedico from '@/components/RecursosHumanos/PersonalMedico.vue';
+import GraficasRH from  '@/components/RecursosHumanos/Graficas.vue';
+import AreasMedicas from '@/components/RecursosHumanos/AreasMedicas.vue'
+import Puestos from '@/components/RecursosHumanos/Puesto.vue'
+import PuestosDepartamentos from '@/components/RecursosHumanos/PuestosDepartamentos.vue'
+
+
 
 const roleMap = {
   1: 'Administrativo',
@@ -93,96 +121,231 @@ const router = createRouter({
           path: 'usuario',
           name: 'usuario',
           component: UsuarioView,
-          meta: { requiresRole: ['Direccion General'] }
-        },
-        {
-          path: 'resultadosEstudio',
-          name: 'resultadosEstudio',
-          component: ResultadosEstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
-        },
-        {
-          path: 'tablaResultadoEstudio',
-          name: 'tablaResultadoEstudio',
-          component: TablaResutadoEstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
-        },
-        {
-          path: 'estudio',
-          name: 'estudio',
-          component: EstudioView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
-        },
-        {
-          path: 'tablaEstudios',
-          name: 'tablaEstudios',
-          component: TablaEstudiosView,
-          meta: { requiresRole: ['Medico General', 'Medico Especialista'] }
+          meta: { requiresRole: ['Direccion General','Administrativo' ] }
         },
         {
           path: 'pie-pagina',
           name: 'piePagina',
           component: PiePaginaView
         },
+
+        // Direccion General
         {
           path: '/aprobacionSM',
           name: 'aprobacionSM',
           component: AprobacionSM,
-          meta: { requiresRole: ['Direccion General', 'Recursos Humanos'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General', 'Recursos Humanos'] }
         },
         {
           path: '/usuarioRoles',
           name: 'usuarioRoles',
           component: UsuarioRoles,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/roles',
           name: 'roles',
           component: Roles,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/rolesModal',
           name: 'rolesModal',
           component: RolesModal,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/aprobacionModal',
           name: 'aprobacionModal',
           component: AprobacionModal,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/usuarioRolesModal',
           name: 'usuarioRolesModal',
           component: UsuarioRolesModal,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/gradicosDG',
           name: 'graficosDG',
           component: GraficosDireccionG,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/grafApro',
           name: 'grafApro',
           component: GrficoApro,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/grafRoles',
           name: 'grafRoles',
           component: GrficoRoles,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
         {
           path: '/bitacora',
           name: 'bitacora',
           component: Bitacora,
-          meta: { requiresRole: ['Direccion General'] }
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
+        },
+
+        //Farmacia
+        {
+          path: '/tablamedic',
+          name: 'tablamedicamentos',
+          component: tablaMedic,
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
+        },
+        {
+          path: '/medicament',
+          name: 'medicamentos',
+          component: medicamentos,
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
+        },
+        {
+          path: '/lotes',
+          name: 'lotesmed',
+          component: LotesMed,
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
+        },
+        {
+          path: '/tablalot',
+          name: 'tablalotes',
+          component: tablaLotes,
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
+        },
+        {
+          path: '/consumibles',
+          name: 'consumibles',
+          component: ConsumiblesView,
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
+        },
+        {
+          path: '/tablacon',
+          name: 'tablaconsumibles',
+          component: tablaCon,
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
+        },
+        {
+          path: '/dispensation',
+          name: 'dispensacion',
+          component: dispensacionView,
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
+        },
+        {
+          path: '/tabladis',
+          name: 'tabladis',
+          component: tablaDis,
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
+        },
+        {
+          path: '/graficos',
+          name: 'graficas',
+          component: graficos,
+          meta: { requiresRole: ['Administrativo','Farmacia'] }
+        },
+
+        
+        // Transplantes
+        {
+          path: '/requestTansplant',
+          name: 'requestTansplant',
+          component: RequestView,
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
+        },
+        {
+          path: '/TableTransplante',
+          name: 'TableTransplante',
+          component: TableRView,
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
+        },
+        {
+          path: '/UpdateTransplante/:id',
+          name: 'UpdateTransplante',
+          component: UpdateRView,
+          props: true,
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
+        },
+        {
+          path: '/organos',
+          name: 'organos',
+          component: OrgansView,
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
+        },
+        {
+          path: '/organform',
+          name: 'organform',
+          component: OrganForm,
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
+        },
+        {
+          path: '/graficosOr',
+          name: 'graficosOr',
+          component: GraficasView,
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
+        },
+
+        // Radiologia
+        {
+          path: '/resultadosEstudio',
+          name: 'resultadosEstudio',
+          component: ResultadosEstudioView,
+          meta: { requiresRole: ['Administrativo','Medico General', 'Medico Especialista'] }
+        },
+        {
+          path: '/estudio',
+          name: 'estudio',
+          component: EstudioView,
+          meta: { requiresRole: ['Administrativo','Radiologia','Medico General', 'Medico Especialista'] }
+        },
+        {
+          path: '/dashboardRadiologia',
+          name: 'dashboardRadiologia',
+          component: dashboardRadiologiaView,
+          meta: { requiresRole: ['Administrativo','Radiologia','Medico General', 'Medico Especialista'] }
+        },
+
+        
+        // Recursos Humanos
+        {
+          path: '/personalMedico',
+          name: 'personalMedico',
+          component: PersonalMedico,
+          meta: { requiresRole: ['Direccion General', 'Administrativo'] }
+        },
+        {
+          path: '/GraficasRH',
+          name: 'GraficasRH',
+          component: GraficasRH,
+          meta: { requiresRole: ['Direccion General', 'Administrativo'] }
+        },
+        {
+          path: '/areasMedicas',
+          name: 'areasMedicas',
+          component: AreasMedicas,
+          meta: { requiresRole: ['Direccion General', 'Administrativo'] }
+        },
+        {
+          path: '/puestos',
+          name: 'puestos',
+          component: Puestos,
+          meta: { requiresRole: ['Direccion General', 'Administrativo'] }
+        },
+        {
+          path: '/puestosDepartamentos',
+          name: 'puestosDepartamentos',
+          component: PuestosDepartamentos,
+          meta: { requiresRole: ['Direccion General', 'Administrativo'] }
+        },
+              
+
+        {
+          path: '/bitacora',
+          name: 'bitacora',
+          component: Bitacora,
+          meta: { requiresRole: ['Administrativo', 'Direccion General'] }
         },
       
 

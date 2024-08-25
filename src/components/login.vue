@@ -11,9 +11,10 @@
       ></div>
       <div class="w-full p-8 lg:w-1/2">
         <h2 class="text-2xl font-semibold text-gray-700 text-center">
-          PRIVILAGE CARE
+          <div class="flex items-center justify-center h-16" style="padding-bottom: 16px;">
+            <img src="../assets/img/Logo propuesto Hospital 1.png" alt="Descripción de la imagen" width="350" height="100" class="mr-2">
+        </div>        
         </h2>
-        <p class="text-xl text-gray-600 text-center">HOSPITAL</p>
         <a
           href="#"
           class="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100"
@@ -37,7 +38,7 @@
         <form @submit.prevent="login">
           <div class="mt-4">
             <label class="block text-gray-700 text-sm font-bold mb-2"
-              >Rol</label
+              >Área</label
             >
             <select
               v-model="selectedRole"
@@ -95,14 +96,16 @@
           </RouterLink>
           <span class="border-b w-1/5 md:w-1/4"></span>
         </div>
-        <p v-if="mensaje" class="mt-4 text-center text-red-500">
+        <!-- Alerta de Tailwind CSS -->
+        <div v-if="mensaje" class="alert alert-error">
           {{ mensaje }}
-        </p>
+        </div>
         <p v-if="token" class="mt-4 text-center text-green-500">
           Token: {{ token }}
         </p>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -140,7 +143,7 @@ export default {
       const response = await apiClient.get("https://back-end-hospital2-0.onrender.com/roles/");
       this.roles = response.data; // Guarda la lista de roles en el estado
     } catch (error) {
-      this.mensaje = "Error al cargar los roles";
+      this.mensaje = "Error al cargar las Áreas";
     }
   },
   methods: {
@@ -197,5 +200,15 @@ export default {
 </script>
 
 <style scoped>
-/* Estilos adicionales aquí */
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: white;
+  background-color: #EF4444;
+  border-radius: 0.25rem;
+}
+
+.alert-error {
+  background-color: #EF4444;
+}
 </style>
