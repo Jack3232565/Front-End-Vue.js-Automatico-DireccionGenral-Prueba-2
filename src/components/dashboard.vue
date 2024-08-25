@@ -487,7 +487,7 @@
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                </svg>
             </a>
-            <ul id="dropdown-example2" class="hidden py-2 space-y-2">
+            <ul v-show="menus.cirugia" class="submenu ml-8">
                
                <li>
                   <RouterLink to="CrearEspacio">
@@ -533,19 +533,20 @@
                </li>
                
                <li>
+                  <RouterLink to="/listahorarios">
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                     Tabla Horarios
+                     </a>
+                  </RouterLink>
+               </li>
+               <li>
                   <RouterLink to="/CrearEspacio">
                      <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                      Crear Horarios
                      </a>
                </RouterLink>
                </li>
-               <li>
-                  <RouterLink to="/EspaciosList">
-                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                     Tabla Horarios
-                     </a>
-                  </RouterLink>
-               </li>
+               
                <li>
                   <RouterLink to="/espaciosGraficas">
                      <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
