@@ -59,19 +59,19 @@
               <div class="overflow-x-auto">
                 <table class="min-w-full bg-white border border-gray-300 table-hover">
                   <thead>
-                    <tr class="bg-gray-600 text-black uppercase text-xs leading-normal">
-                      <th class="py-3 px-6 text-left text-black">No°</th>
-                      <th class="py-3 px-6 text-left text-black">Personal Médico</th>
-                      <th class="py-3 px-6 text-left text-black">N° Solicitud</th>
-                      <th class="py-3 px-6 text-left text-black">Comentario</th>
-                      <th class="py-3 px-6 text-left text-black">Estatus</th>
-                      <th class="py-3 px-6 text-left text-black">Tipo</th>
-                      <th class="py-3 px-6 text-left text-black">Fecha de Registro</th>
-                      <th class="py-3 px-6 text-left text-black">Fecha de Aprobación</th>
-                      <th class="py-3 px-6 text-left text-black">Acciones</th>
+                    <tr class="bg-gray-800 text-black uppercase text-xs leading-normal">
+                      <th class="py-3 px-6 text-left ">No°</th>
+                      <th class="py-3 px-6 text-left ">Personal Médico</th>
+                      <th class="py-3 px-6 text-left ">N° Solicitud</th>
+                      <th class="py-3 px-6 text-left ">Comentario</th>
+                      <th class="py-3 px-6 text-left ">Estatus</th>
+                      <th class="py-3 px-6 text-left ">Tipo</th>
+                      <th class="py-3 px-6 text-left ">Fecha de Registro</th>
+                      <th class="py-3 px-6 text-left ">Fecha de Aprobación</th>
+                      <th class="py-3 px-6 text-left ">Acciones</th>
                     </tr>
                   </thead>
-                  <tbody class="text-gray-600 text-xs font-light">
+                  <tbody class="text-gray-800 text-xs font-light">
                     <tr v-for="(solicitud, id) in paginatedData" :key="id" class="text-center">
                       <td class="py-3 px-6 text-left whitespace-nowrap truncate">
                         {{ solicitud.id }}
