@@ -1,77 +1,70 @@
 <template>
-  <div>
-    <div v-if="message" style="margin-top: 10px;">
+  <div class="p-6">
+    <div v-if="message" class="my-4 text-center text-red-500">
       {{ message }}
     </div>
 
-    <h1 class="titulo">Listado de Bebés</h1>
+    <h1 class="text-2xl font-bold text-gray-700 text-center mb-6">Listado de Bebés</h1>
 
-    <div class="container text-center">
-      <!-- Barra de búsqueda -->
-
-
-      <div class="row align-items-center stats-container">
-        <div class="col stat-box" style="background-color: aliceblue; color: gray;">
-          <p>Total de registros en <br> la base de datos:</p>
-
-          <h3 v-if="totalpSql !== null"><b>{{ totalpSql }}</b></h3>
-          <p v-else>Cargando...</p>
-        </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <br>
-        <div class="col stat-box" style="background-color: aliceblue; color: gray;">
-          <p>Total de registros <br> Femeninos:</p>
-          <h3 v-if="totalFemenino !== null"><b>{{ totalFemenino }}</b></h3>
-          <p v-else>Cargando...</p>
-        </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="col stat-box" style="background-color: aliceblue; color: gray;">
-          <p>Total de registros <br> Masculinos:</p>
-          <h3 v-if="totalMasculino !== null"><b>{{ totalMasculino }}</b></h3>
-          <p v-else>Cargando...</p>
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div class="bg-blue-50 text-gray-600 p-4 rounded-lg shadow-md text-center">
+        <p>Total de registros en la base de datos:</p>
+        <h3 v-if="totalpSql !== null" class="text-xl font-semibold">{{ totalpSql }}</h3>
+        <p v-else>Cargando...</p>
+      </div>
+      <div class="bg-blue-50 text-gray-600 p-4 rounded-lg shadow-md text-center">
+        <p>Total de registros Femeninos:</p>
+        <h3 v-if="totalFemenino !== null" class="text-xl font-semibold">{{ totalFemenino }}</h3>
+        <p v-else>Cargando...</p>
+      </div>
+      <div class="bg-blue-50 text-gray-600 p-4 rounded-lg shadow-md text-center">
+        <p>Total de registros Masculinos:</p>
+        <h3 v-if="totalMasculino !== null" class="text-xl font-semibold">{{ totalMasculino }}</h3>
+        <p v-else>Cargando...</p>
       </div>
     </div>
-    <br>
 
-    <div class="search-bar">
-      <input type="text" v-model="textoBusqueda" @input="buscarBebes"
-        placeholder="Buscar por nombre del padre o madre...">
+    <div class="mb-6">
+      <input 
+        type="text" 
+        v-model="textoBusqueda" 
+        @input="buscarBebes" 
+        placeholder="Buscar por nombre del padre o madre..." 
+        class="w-full p-3 rounded-lg border-gray-300 shadow-sm"
+      >
     </div>
-    <div class="table-container">
-      <table class="styled-table">
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white rounded-lg shadow-lg">
         <thead>
-          <tr>
-            <th>Id del Bebé</th>
-            <th>Sexo del Bebé</th>
-            <th>Nombre del Padre</th>
-            <th>Nombre de la Madre</th>
-            <th>Correo electrónico del contacto</th>
-            <th>Fecha de nacimiento</th>
-            <th>Acciones</th>
+          <tr class="bg-gray-800 text-white text-left">
+            <th class="py-3 px-4">Id del Bebé</th>
+            <th class="py-3 px-4">Sexo del Bebé</th>
+            <th class="py-3 px-4">Nombre del Padre</th>
+            <th class="py-3 px-4">Nombre de la Madre</th>
+            <th class="py-3 px-4">Correo electrónico del contacto</th>
+            <th class="py-3 px-4">Fecha de nacimiento</th>
+            <th class="py-3 px-4">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(bebe, index) in bebesFiltrados" :key="index">
-            <td>{{ bebe.id }}</td>
-            <td>{{ bebe.sexo }}</td>
-            <td>{{ bebe.nombre_padre }}</td>
-            <td>{{ bebe.nombre_madre }}</td>
-            <td>{{ bebe.email_contacto }}</td>
-            <td>{{ bebe.fecha_nacimiento }}</td>
-            <td id="buttons-actions">
-              <button @click="eliminarBebe(bebe.id)" id="btndelete" class="action-btn delete-btn">
+          <tr v-for="(bebe, index) in bebesFiltrados" :key="index" class="border-b border-gray-200">
+            <td class="py-3 px-4">{{ bebe.id }}</td>
+            <td class="py-3 px-4">{{ bebe.sexo }}</td>
+            <td class="py-3 px-4">{{ bebe.nombre_padre }}</td>
+            <td class="py-3 px-4">{{ bebe.nombre_madre }}</td>
+            <td class="py-3 px-4">{{ bebe.email_contacto }}</td>
+            <td class="py-3 px-4">{{ bebe.fecha_nacimiento }}</td>
+            <td class="py-3 px-4 flex items-center gap-2">
+              <button @click="eliminarBebe(bebe.id)" class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-700">
                 <i class="fas fa-trash-alt"></i> Eliminar
               </button>
-              &nbsp;&nbsp;&nbsp;&nbsp;
-
-              <router-link :to="{ name: 'editar', params: { id: bebe.id } }" id="btnupdate" class="action-btn">
+              <router-link :to="{ name: 'editar', params: { id: bebe.id } }" class="bg-orange-500 text-white px-3 py-1 rounded-lg hover:bg-orange-700">
                 <button>
                   <i class="fas fa-edit"></i> Editar Bebé
                 </button>
               </router-link>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <router-link :to="{ name: 'TablaVacunas', params: { id: bebe.id } }" id="btnvacunas" class="action-btn">
+              <router-link :to="{ name: 'TablaVacunas', params: { id: bebe.id } }" class="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-700">
                 <button>
                   <i class="fas fa-syringe"></i> Ver Vacunas
                 </button>
@@ -82,42 +75,36 @@
       </table>
     </div>
 
-    <div class="pagination-controls">
-      <button @click="paginar('anterior')" :disabled="paginaActual === 1" class="pagination-btn">
+    <div class="flex justify-center items-center my-6">
+      <button 
+        @click="paginar('anterior')" 
+        :disabled="paginaActual === 1" 
+        class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
         Anterior
       </button>
-      &nbsp;
-      <button @click="paginar('siguiente')" :disabled="bebes.length < itemsPorPagina" class="pagination-btn">
+      <span class="mx-4">Página {{ paginaActual }}</span>
+      <button 
+        @click="paginar('siguiente')" 
+        :disabled="bebes.length < itemsPorPagina" 
+        class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
         Siguiente
       </button>
     </div>
 
-    <div style="margin-top: 10px;">
-      Página {{ paginaActual }}
-    </div>
-
-<br><br>
-    <div class="chart-container">
-      <div class="grafica-container" style="background-color: aliceblue; color: gray;">
+    <div class="flex  gap-4 items-center justify-center p-6  rounded-lg ">
+      <div class="bg-aliceblue text-gray-600 rounded-lg  w-100 max-w-sm">
         <Grafica1></Grafica1>
       </div>
-      <br>
-      <div class="grafica-container1" style="background-color: aliceblue; color: gray;">
+      <div class="">
         <Grafica2></Grafica2>
-
       </div>
     </div>
-
-
-
-
-
-
-
   </div>
 </template>
 
-<style >
+<style>
 /* Estilos generales */
 
 .chart-container {
