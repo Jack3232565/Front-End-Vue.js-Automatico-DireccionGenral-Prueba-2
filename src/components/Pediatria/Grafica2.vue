@@ -1,17 +1,16 @@
 <template>
-    <div>
-
-        <div class="chart-container">
-    <div class="chart-box">
-        <canvas id="partoNaturalChart" width="400" height="400"></canvas>
+    <div class="flex flex-col items-center justify-center p-6 bg-gray-100 rounded-lg shadow-lg">
+    <div class="flex flex-row gap-6 items-center justify-center w-full max-w-screen-lg">
+      <div class="bg-white p-4 rounded-lg  w-full max-w-xl">
+        <canvas id="partoNaturalChart" class="w-full h-70"></canvas>
+      </div>
+      <div class="bg-white p-4 rounded-lg  flex-shrink-0">
+        <canvas id="cesareaChart" class="w-full h-70"></canvas>
+      </div>
     </div>
-    <div class="chart-box">
-        <canvas id="cesareaChart" width="400" height="400"></canvas>
-    </div>
-</div>
-
-    </div>
-</template>
+  </div>
+  </template>
+  
 
 <script>
 import Chart from 'chart.js/auto';
@@ -195,7 +194,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<!-- <style scoped>
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -230,4 +229,4 @@ export default {
         /* Hace que cada columna ocupe todo el ancho disponible */
     }
 }
-</style>
+</style> -->
