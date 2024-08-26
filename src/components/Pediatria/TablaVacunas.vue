@@ -1,62 +1,67 @@
 <template>
-    <div>
-        <div v-if="message" class="error-message">
+    <div class="p-6 bg-gray-100 min-h-screen">
+        <div v-if="message" class="text-red-600 font-bold mb-4">
             {{ message }}
         </div>
 
-        <h1 class="text-2xl font-bold mb-6">Listado de Vacunas</h1>
+        <h1 class="text-2xl font-bold mb-6 text-gray-800">Listado de Vacunas</h1>
 
-        <div class="tabla1">
-            <table>
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+            <table class="min-w-full bg-white border border-gray-200">
                 <thead>
-                    <tr>
-                        <th>Id del Bebé</th>
-                        <th>Vacuna administrada</th>
-                        <th>Dosis(ml)</th>
-                        <th>Vía de Administración</th>
-                        <th>Lote</th>
-                        <th>Fecha de Aplicación</th>
+                    <tr class="bg-gray-800 text-white">
+                        <th class="py-3 px-4 text-left">Id del Bebé</th>
+                        <th class="py-3 px-4 text-left">Vacuna administrada</th>
+                        <th class="py-3 px-4 text-left">Dosis(ml)</th>
+                        <th class="py-3 px-4 text-left">Vía de Administración</th>
+                        <th class="py-3 px-4 text-left">Lote</th>
+                        <th class="py-3 px-4 text-left">Fecha de Aplicación</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(vacuna, index) in vacunas" :key="index">
-                        <td>{{ vacuna.nacimientos_id }}</td>
-                        <td>{{ vacuna.vacuna_administrada }}</td>
-                        <td>{{ vacuna.dosis }}</td>
-                        <td>{{ vacuna.via_administracion }}</td>
-                        <td>{{ vacuna.numero_lote }}</td>
-                        <td>{{ vacuna.fecha_administracion }}</td>
+                    <tr v-for="(vacuna, index) in vacunas" :key="index" class="border-b">
+                        <td class="py-3 px-4">{{ vacuna.nacimientos_id }}</td>
+                        <td class="py-3 px-4">{{ vacuna.vacuna_administrada }}</td>
+                        <td class="py-3 px-4">{{ vacuna.dosis }}</td>
+                        <td class="py-3 px-4">{{ vacuna.via_administracion }}</td>
+                        <td class="py-3 px-4">{{ vacuna.numero_lote }}</td>
+                        <td class="py-3 px-4">{{ vacuna.fecha_administracion }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <br>
-        <router-link :to="{ name: 'Nacimientos'}">
-            <button class="nav-button">
-                <i class="fas fa-syringe"></i> Home
-            </button>
-        </router-link>
-        &nbsp;
-        <router-link :to="{ name: 'VacunasForm'}">
-            <button class="nav-button">
-                <i class="fas fa-syringe"></i> Registrar Vacuna
-            </button>
-        </router-link>
 
-        <div class="pagination">
-            <button @click="paginar('anterior')" :disabled="paginaActual === 1" class="pagination-button">
-                Anterior
-            </button>&nbsp;
-            <button @click="paginar('siguiente')" :disabled="vacunas.length < itemsPorPagina" class="pagination-button">
-                Siguiente
-            </button>
+        <div class="mt-6 flex justify-start space-x-4">
+            <router-link :to="{ name: 'Nacimientos'}">
+                <button class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
+                    <i class="fas fa-syringe"></i> Home
+                </button>
+            </router-link>
+            <router-link :to="{ name: 'VacunasForm'}">
+                <button class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
+                    <i class="fas fa-syringe"></i> Registrar Vacuna
+                </button>
+            </router-link>
         </div>
 
-        <div class="pagination-info">
-            Página {{ paginaActual }}
+        <div class="mt-4 flex justify-between items-center">
+            <div class="flex space-x-4">
+                <button @click="paginar('anterior')" :disabled="paginaActual === 1"
+                    class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 disabled:bg-gray-400">
+                    Anterior
+                </button>
+                <button @click="paginar('siguiente')" :disabled="vacunas.length < itemsPorPagina"
+                    class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 disabled:bg-gray-400">
+                    Siguiente
+                </button>
+            </div>
+            <div class="text-gray-700 font-bold">
+                Página {{ paginaActual }}
+            </div>
         </div>
     </div>
 </template>
+
 
 <script>
 export default {
