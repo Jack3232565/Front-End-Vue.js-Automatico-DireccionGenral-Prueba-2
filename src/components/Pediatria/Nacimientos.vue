@@ -86,12 +86,14 @@
     </div>
 
     <div class="flex flex-col items-center space-y-4">
-      <div class="">
+      <div class="flex justify-center w-full space-x-4">
         <Grafica2></Grafica2>
       </div>
-
-      <div class="bg-aliceblue text-gray-600 rounded-lg w-full max-w-sm p-4 shadow-lg">
-        <Grafica1></Grafica1>
+      <br>
+      <div class="space-y-4">
+        <div class="bg-aliceblue text-gray-600 rounded-lg w-full max-w-sm p-4 shadow-lg">
+          <Grafica1></Grafica1>
+        </div>
       </div>
     </div>
 
