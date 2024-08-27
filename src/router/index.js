@@ -369,46 +369,46 @@ const router = createRouter({
           path: '/registroNacimiento',
           name: 'RegistroNacimiento',
           component: RegistroNacimiento,
-          meta: { requiresRole: ['Pediatría'] }
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
         {
           path: '/nacimientos',
           name: 'Nacimientos',
           component: Nacimientos,
-          meta: { requiresRole: ['Pediatría'] }
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
         {
           path: '/editar/:id',  
           name: 'editar',
           component: EditPediatria,
           props: true, 
-          meta: { requiresRole: ['Pediatría'] }
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
         {
           path: '/vacunas/:id',
           name: 'VacunasForm',
           component: VacunasForm,
           props: true,
-          meta: { requiresRole: ['Pediatría'] }// Componente de error 404
+          meta: { requiresRole: ['Administrativo','Pediatría'] }// Componente de error 404
         },
         {
           path: '/tvacunas/:id',
           name: 'TablaVacunas',
           component: TablaVacunas,
           props: true,
-          meta: { requiresRole: ['Pediatría'] }
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
         {
           path: '/grafica1',
           name: 'Grafica1',
           component: Grafica1,
-          meta: { requiresRole: ['Pediatría'] }
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
         {
           path: '/grafica2',
           name: 'Grafica2',
           component: Grafica2,
-          meta: { requiresRole: ['Pediatría'] }
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
 
 
