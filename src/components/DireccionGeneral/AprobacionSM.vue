@@ -108,30 +108,21 @@
                           <span style="color: #cfae0c; font-weight: bold;">En Proceso</span>
                         </a>
                       </div>
-                      <div v-else-if="solicitud.Estatus === 'Reprogramado'" class="text-center">
+                      <div v-else-if="solicitud.Estatus === 'Reprogramada'" class="text-center">
                         <a class="iq-icons-list" target="_self">
-                          <div class="icon" style="color: #f38b16">
-                            <i class="fa fa-retweet" aria-hidden="true"></i>
+                          <div class="icon" style="color: blue">
+                            <i class="fa fa-pause" aria-hidden="true"></i>
                           </div>
                           <span style="color: #f38b16; font-weight: bold; font-size: 11px;"
-                            class="text-sm">Reprogramado</span>
+                            class="text-sm">Reprogramada</span>
                         </a>
                       </div>
-                      <div v-else-if="solicitud.Estatus === 'Cancelado'" class="text-center">
+                      <div v-else-if="solicitud.Estatus === 'Cancelada'" class="text-center">
                         <a class="iq-icons-list" target="_self">
                           <div class="icon" style="color: red">
                             <i class="fa fa-ban"></i>
                           </div>
-                          <span style="color: red; font-weight: bold; font-size: 11px;" class="text-sm">Cancelado</span>
-                        </a>
-                      </div>
-                      <div v-else-if="solicitud.Estatus === 'Pausado'" class="text-center">
-                        <a class="iq-icons-list" target="_self">
-                          <div class="icon" style="color: #3f4152">
-                            <i class="fa fa-pause" aria-hidden="true"></i>
-                          </div>
-                          <span style="color: #3f4152; font-weight: bold; font-size: 12px;"
-                            class="text-sm">Pausado</span>
+                          <span style="color: red; font-weight: bold; font-size: 11px;" class="text-sm">Cancelada</span>
                         </a>
                       </div>
                       <div v-else-if="solicitud.Estatus === 'Registrada'" class="text-center">
@@ -140,7 +131,7 @@
                             <i class="fa fa-pause" aria-hidden="true"></i>
                           </div>
                           <span style="color: #3f4152; font-weight: bold; font-size: 12px;"
-                            class="text-sm">Pausado</span>
+                            class="text-sm">Registrada</span>
                         </a>
                       </div>
                       <div v-else-if="solicitud.Estatus === 'Programada'" class="text-center">
@@ -149,16 +140,16 @@
                             <i class="fa fa-pause" aria-hidden="true"></i>
                           </div>
                           <span style="color: #3f4152; font-weight: bold; font-size: 12px;"
-                            class="text-sm">Pausado</span>
+                            class="text-sm">Programada</span>
                         </a>
                       </div>
                       <div v-else-if="solicitud.Estatus === 'Realizada'" class="text-center">
                         <a class="iq-icons-list" target="_self">
-                          <div class="icon" style="color: #3f4152">
-                            <i class="fa fa-pause" aria-hidden="true"></i>
+                          <div class="icon" style="color: green">
+                            <i class="fa fa-check"></i>
                           </div>
-                          <span style="color: #3f4152; font-weight: bold; font-size: 12px;"
-                            class="text-sm">Pausado</span>
+                          <span style="color: green; font-weight: bold; font-size: 12px;"
+                            class="text-sm">Aprobada</span>
                         </a>
                       </div>
                       <div v-else class="col-12 col-md-6 col-lg-3">
@@ -300,16 +291,17 @@
                 </div>
 
                 <div class="mb-4">
-                  <!-- --'Registrada', 'Programada', 'Cancelada', 'Reprogramada', 'En_Proceso', 'Realizada', 'Aprobado' -->
+                 
+        <!-- "expected": "'Registrada', 'Programada', 'Cancelada', 'Reprogramada', 'En Proceso', 'Realizada' or 'Aprobado'" -->
                   <label for="Estatus" class="form-label float-left ml-2">Estatus</label>
                   <select class="form-control" v-model="currentSolicitud.Estatus">
-                    <option value="Aprobado">Aprobado</option>
+                    <!-- <option value="Aprobado">Aprobado</option> -->
                     <option value="En Proceso">En Proceso</option>
-                    <option value="En Proceso">Realizada</option>
-                    <option value="Reprogramado">Reprogramado</option>
-                    <option value="Pausado">Pausado</option>
-                    <option value="Reprogramado">Registrada</option>
-                    <option value="Cancelado">Cancelado</option>
+                    <option value="Realizada">Aprobado</option>
+                    <option value="Reprogramada">Reprogramada</option>
+                    <option value="Programada">Programada</option>
+                    <option value="Registrada">Registrada</option>
+                    <option value="Cancelada">Cancelada</option>
                   </select>
                 </div>
 
