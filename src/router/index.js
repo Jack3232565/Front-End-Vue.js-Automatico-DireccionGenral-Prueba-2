@@ -92,7 +92,7 @@ import Graficas from '@/components/RegistroMedico/graficas.vue'
 const roleMap = {
   1: 'Administrativo',
   8: 'Direccion General',
-  9: 'Paciente',
+  9: 'Pediatría',
   10: 'Médico General',
   11: 'Médico Especialista',
   12: 'Enfermero',
@@ -104,7 +104,7 @@ const roleMap = {
   18: 'Programacion Quirurgica',
   19: 'Estudios',
   20: 'Registros Médicos',
-  21: 'Pediatría',
+  21: 'Paciente',
   22: 'Radiologia',
   // Añade más roles según sea necesario
 };
