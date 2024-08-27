@@ -88,9 +88,10 @@
     <div class="flex flex-col items-center space-y-4">
       <div class="">
         <Grafica2></Grafica2>
+        <Grafica1></Grafica1>
       </div>
-
-      <div class="bg-aliceblue text-gray-600 rounded-lg w-full max-w-sm p-4 shadow-lg">
+        <br>
+      <div class="flex flex-col bg-aliceblue text-gray-600 rounded-lg w-full max-w-sm p-4 shadow-lg">
         <Grafica1></Grafica1>
       </div>
     </div>
