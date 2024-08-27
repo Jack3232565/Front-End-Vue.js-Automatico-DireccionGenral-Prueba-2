@@ -25,13 +25,8 @@
     </div>
 
     <div class="mb-6">
-      <input 
-        type="text" 
-        v-model="textoBusqueda" 
-        @input="buscarBebes" 
-        placeholder="Buscar por nombre del padre o madre..." 
-        class="w-full p-3 rounded-lg border-gray-300 shadow-sm"
-      >
+      <input type="text" v-model="textoBusqueda" @input="buscarBebes"
+        placeholder="Buscar por nombre del padre o madre..." class="w-full p-3 rounded-lg border-gray-300 shadow-sm">
     </div>
 
     <div class="overflow-x-auto">
@@ -56,15 +51,18 @@
             <td class="py-3 px-4">{{ bebe.email_contacto }}</td>
             <td class="py-3 px-4">{{ bebe.fecha_nacimiento }}</td>
             <td class="py-3 px-4 flex items-center gap-2">
-              <button @click="eliminarBebe(bebe.id)" class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-700">
+              <button @click="eliminarBebe(bebe.id)"
+                class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-700">
                 <i class="fas fa-trash-alt"></i> Eliminar
               </button>
-              <router-link :to="{ name: 'editar', params: { id: bebe.id } }" class="bg-orange-500 text-white px-3 py-1 rounded-lg hover:bg-orange-700">
+              <router-link :to="{ name: 'editar', params: { id: bebe.id } }"
+                class="bg-orange-500 text-white px-3 py-1 rounded-lg hover:bg-orange-700">
                 <button>
                   <i class="fas fa-edit"></i> Editar Bebé
                 </button>
               </router-link>
-              <router-link :to="{ name: 'TablaVacunas', params: { id: bebe.id } }" class="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-700">
+              <router-link :to="{ name: 'TablaVacunas', params: { id: bebe.id } }"
+                class="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-700">
                 <button>
                   <i class="fas fa-syringe"></i> Ver Vacunas
                 </button>
@@ -76,31 +74,28 @@
     </div>
 
     <div class="flex justify-center items-center my-6">
-      <button 
-        @click="paginar('anterior')" 
-        :disabled="paginaActual === 1" 
-        class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
+      <button @click="paginar('anterior')" :disabled="paginaActual === 1"
+        class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
         Anterior
       </button>
       <span class="mx-4">Página {{ paginaActual }}</span>
-      <button 
-        @click="paginar('siguiente')" 
-        :disabled="bebes.length < itemsPorPagina" 
-        class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
+      <button @click="paginar('siguiente')" :disabled="bebes.length < itemsPorPagina"
+        class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
         Siguiente
       </button>
     </div>
 
-    <div class="flex  gap-4 items-center justify-center p-6  rounded-lg ">
-      <div class="bg-aliceblue text-gray-600 rounded-lg  w-100 max-w-sm">
-        <Grafica1></Grafica1>
-      </div>
+    <div class="flex flex-col items-center space-y-4">
       <div class="">
         <Grafica2></Grafica2>
       </div>
+
+      <div class="bg-aliceblue text-gray-600 rounded-lg w-full max-w-sm p-4 shadow-lg">
+        <Grafica1></Grafica1>
+      </div>
     </div>
+
+
   </div>
 </template>
 
