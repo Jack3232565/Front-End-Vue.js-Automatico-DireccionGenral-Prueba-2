@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center justify-center p-6 bg-gray-100 rounded-lg shadow-lg">
-    <div class="bg-white p-4 rounded-lg  w-full max-w-xl">
-      <canvas id="chartSql1" class="w-full h-70"></canvas>
+    <div class="">
+      <canvas id="chartSql1" class=""></canvas>
     </div>
   </div>
 </template>

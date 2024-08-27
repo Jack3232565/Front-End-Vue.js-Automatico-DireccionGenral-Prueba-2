@@ -1,16 +1,17 @@
 <template>
     <div class="flex flex-col items-center justify-center p-6 bg-gray-100 rounded-lg shadow-lg">
-    <div class="flex flex-row gap-6 items-center justify-center w-full max-w-screen-lg">
-      <div class="bg-white p-4 rounded-lg  w-full max-w-xl">
-        <canvas id="partoNaturalChart" class="w-full h-70"></canvas>
-      </div>
-      <div class="bg-white p-4 rounded-lg  flex-shrink-0">
-        <canvas id="cesareaChart" class="w-full h-70"></canvas>
-      </div>
+        <div class="flex flex-row gap-4 items-center justify-center w-full max-w-screen-lg">
+            <div class="bg-white p-4 rounded-lg flex-shrink-0 w-full max-w-md">
+                <canvas id="partoNaturalChart" class="w-full h-72"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded-lg flex-shrink-0 w-full max-w-md">
+                <canvas id="cesareaChart" class="w-full h-72"></canvas>
+            </div>
+        </div>
     </div>
-  </div>
-  </template>
-  
+</template>
+
+
 
 <script>
 import Chart from 'chart.js/auto';
