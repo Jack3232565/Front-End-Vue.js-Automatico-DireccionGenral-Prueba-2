@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col items-center justify-center p-6 bg-gray-100 rounded-lg shadow-lg">
-    <div class="">
+  <div class="flex flex-col items-center justify-center p-6 bg-gray-100 rounded-lg shadow-xm">
+    <div class="flex flex-row gap-4 items-center justify-center w-full">
       <canvas id="chartSql1" class=""></canvas>
     </div>
   </div>
