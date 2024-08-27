@@ -274,19 +274,25 @@
                <ul v-show="menus.rmedicos" class="submenu ml-8">
 
                   <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Citas</a>
-                  </li>
-                  <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Expediente
-                        Médico</a>
-                  </li>
-                  <li>
-                     <a href="#"
-                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Receta
-                        Médica</a>
-                  </li>
+                        <router-link to="/graficas">
+                        <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-blue-100 dark:text-white dark:hover:bg-gray-700">Graficas</a>
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/citas">
+                        <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-blue-100 dark:text-white dark:hover:bg-gray-700">Citas</a>
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/expediente">
+                        <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-blue-100 dark:text-white dark:hover:bg-gray-700">Expediente Medico</a>
+                    </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/receta">
+                        <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-blue-100 dark:text-white dark:hover:bg-gray-700">Recetas Médicas</a>
+                    </router-link>
+                    </li>
                </ul>
             </li>
 

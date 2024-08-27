@@ -78,6 +78,15 @@ import VacunasForm from '@/components/Pediatria/VacunasForm.vue'
 import Grafica1 from '@/components/Pediatria/Grafica1.vue';
 import Grafica2 from '@/components/Pediatria/Grafica2.vue';
 
+// Registros Medicos
+import citas from '@/components/RegistroMedico/citas.vue'
+import expedientes from '@/components/RegistroMedico/expedientesM.vue'
+import recetaMedica from '@/components/RegistroMedico/recetaMedica.vue'
+import expedienteEdit from '@/components/RegistroMedico/expedientesEdit.vue'
+import CitasEdit from '@/components/RegistroMedico/citasEdit.vue'
+import recetaEdit from '@/components/RegistroMedico/recetasEdit.vue'
+import Graficas from '@/components/RegistroMedico/graficas.vue'
+
 
 
 const roleMap = {
@@ -360,46 +369,46 @@ const router = createRouter({
           path: '/registroNacimiento',
           name: 'RegistroNacimiento',
           component: RegistroNacimiento,
-          meta: { requiresRole: ['Pediatría'] }
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
         {
           path: '/nacimientos',
           name: 'Nacimientos',
           component: Nacimientos,
-          meta: { requiresRole: ['Pediatría'] }
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
         {
-          path: '/editar/:id',  // Define la ruta con el parámetro `id`
+          path: '/editar/:id',  
           name: 'editar',
           component: EditPediatria,
-          props: true, // Permite pasar el parámetro `id` como prop al componente
-          meta: { requiresRole: ['Pediatría'] }
+          props: true, 
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
         {
           path: '/vacunas/:id',
           name: 'VacunasForm',
           component: VacunasForm,
           props: true,
-          meta: { requiresRole: ['Pediatría'] }// Componente de error 404
+          meta: { requiresRole: ['Administrativo','Pediatría'] }// Componente de error 404
         },
         {
           path: '/tvacunas/:id',
           name: 'TablaVacunas',
           component: TablaVacunas,
           props: true,
-          meta: { requiresRole: ['Pediatría'] }
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
         {
           path: '/grafica1',
           name: 'Grafica1',
           component: Grafica1,
-          meta: { requiresRole: ['Pediatría'] }
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
         {
           path: '/grafica2',
           name: 'Grafica2',
           component: Grafica2,
-          meta: { requiresRole: ['Pediatría'] }
+          meta: { requiresRole: ['Administrativo','Pediatría'] }
         },
 
 
@@ -460,6 +469,54 @@ const router = createRouter({
           name:"listahorarios",
           component: listahorarios,
           meta: { requiresRole:  ['Administrativo', 'Direccion General', 'Programacion Quirurgica'] }
+        },
+
+        {
+          path:'/graficas', 
+          name: 'Graficas', 
+          component: Graficas,
+          meta: { requiresRole:  ['Registros Médicos', 'Medico Especialista', 'Direccion General','Administrativo']}
+        },
+
+        {
+          path:'/citas', 
+          name:'citas', 
+          component:citas,
+          meta: { requiresRole:  ['Registros Médicos', 'Medico Especialista', 'Direccion General','Administrativo']}
+        },
+
+        {
+          path:'/expediente', 
+          name:'expediente',
+          component:expedientes,
+          meta: { requiresRole:  ['Registros Médicos', 'Medico Especialista', 'Direccion General','Administrativo']}
+        },
+        {
+          path:'/receta', 
+          name:'receta', 
+          component: recetaMedica,
+          meta: { requiresRole:  ['Registros Médicos', 'Medico Especialista', 'Direccion General','Administrativo']}
+        },
+        {
+          path: '/editar/:id', 
+          name: 'editar',
+          component: CitasEdit,
+          props: true,
+          meta: { requiresRole:  ['Registros Médicos', 'Medico Especialista', 'Direccion General','Administrativo']}
+        },
+        {
+          path: '/editarE/:id',  
+          name: 'editarE',
+          component: expedienteEdit,
+          props: true,
+          meta: { requiresRole:  ['Registros Médicos', 'Medico Especialista', 'Direccion General','Administrativo']}
+        },
+        {
+          path: '/editarR/:id',  
+          name: 'editarR',
+          component: recetaEdit,
+          props: true,
+          meta: { requiresRole:  ['Registros Médicos', 'Medico Especialista', 'Direccion General','Administrativo']}
         }
       ]
     }
