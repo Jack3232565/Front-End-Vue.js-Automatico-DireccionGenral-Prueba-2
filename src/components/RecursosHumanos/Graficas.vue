@@ -23,7 +23,7 @@ export default defineComponent({
     'v-chart': VChart,
   },
   setup() {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6ImpvbmEyMyIsIkNvcnJlb19FbGVjdHJvbmljbyI6InN0cmluZyIsIkNvbnRyYXNlbmEiOiIxMjM0IiwiTnVtZXJvX1RlbGVmb25pY29fTW92aWwiOiJzdHJpbmcifQ.uGxblZ3LX-pRNbXaGEAs41QWESPwqCIdHmBqokYgPIA'; // Reemplaza 'tu_token_aqui' con el token real
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6ImpvbmEyMyIsIkNvcnJlb19FbGVjdHJvbmljbyI6InN0cmluZyIsIkNvbnRyYXNlbmEiOiIxMjM0IiwiTnVtZXJvX1RlbGVmb25pY29fTW92aWwiOiJzdHJpbmcifQ.uGxblZ3LX-pRNbXaGEAs41QWESPwqCIdHmBqokYgPIA"
 
     const chartOptions1 = ref({
       title: {
@@ -119,7 +119,7 @@ export default defineComponent({
     const token2 = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21icmVfVXN1YXJpbyI6Implc3MiLCJDb3JyZW9fRWxlY3Ryb25pY28iOiJzdHJpbmciLCJDb250cmFzZW5hIjoiMTIzIiwiTnVtZXJvX1RlbGVmb25pY29fTW92aWwiOiJzdHJpbmcifQ.eulYRMRY3dI3pLCOX2Q35hlCTmUxSMYOvd2btfgFAeg'
     
     const [response1, response2, response3] = await Promise.allSettled([
-      axios.get('http://127.0.0.1:8000/personal_medico/', {
+      axios.get('https://proyectohospital2024.onrender.com/personal_medico/', {
         headers: { Authorization: `Bearer ${token}` },
       }),
       axios.get('https://privilegecare-deploy-gqmt.onrender.com/puestos_departamentos', {
